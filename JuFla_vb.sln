@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JuFla_vb", "JuFla_vb\JuFla_vb.vbproj", "{D0EBCC1C-C803-44C2-867B-654376266D3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0EBCC1C-C803-44C2-867B-654376266D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EBCC1C-C803-44C2-867B-654376266D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EBCC1C-C803-44C2-867B-654376266D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EBCC1C-C803-44C2-867B-654376266D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7260BFD-BFD2-404C-9F66-BD90B13B8CD8}
+	EndGlobalSection
+EndGlobal
