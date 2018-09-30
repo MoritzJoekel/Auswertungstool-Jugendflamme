@@ -28,11 +28,11 @@ Partial Class FrmVeranstaltung
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.BtSave = New System.Windows.Forms.Button()
         Me.TbAbnahmeleiter = New System.Windows.Forms.TextBox()
         Me.TbOrt = New System.Windows.Forms.TextBox()
         Me.TbLandkreis = New System.Windows.Forms.TextBox()
         Me.TbBundesland = New System.Windows.Forms.TextBox()
-        Me.BtSave = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -46,10 +46,13 @@ Partial Class FrmVeranstaltung
         '
         'DpDatum
         '
+        Me.DpDatum.Checked = False
+        Me.DpDatum.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.JuFla_vb.My.MySettings.Default, "RsDate", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.DpDatum.Location = New System.Drawing.Point(139, 20)
         Me.DpDatum.Name = "DpDatum"
         Me.DpDatum.Size = New System.Drawing.Size(200, 20)
         Me.DpDatum.TabIndex = 1
+        Me.DpDatum.Value = Global.JuFla_vb.My.MySettings.Default.RsDate
         '
         'Label2
         '
@@ -91,6 +94,18 @@ Partial Class FrmVeranstaltung
         Me.Label5.Text = "Abnahmeleiter"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'BtSave
+        '
+        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.icon_checked
+        Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtSave.Location = New System.Drawing.Point(221, 424)
+        Me.BtSave.Name = "BtSave"
+        Me.BtSave.Size = New System.Drawing.Size(148, 34)
+        Me.BtSave.TabIndex = 10
+        Me.BtSave.Text = "Veranstaltung erstellen"
+        Me.BtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtSave.UseVisualStyleBackColor = True
+        '
         'TbAbnahmeleiter
         '
         Me.TbAbnahmeleiter.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsAbnahmeleiter", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
@@ -126,18 +141,6 @@ Partial Class FrmVeranstaltung
         Me.TbBundesland.Size = New System.Drawing.Size(200, 20)
         Me.TbBundesland.TabIndex = 3
         Me.TbBundesland.Text = Global.JuFla_vb.My.MySettings.Default.RsBundesland
-        '
-        'BtSave
-        '
-        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.icon_checked
-        Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtSave.Location = New System.Drawing.Point(221, 424)
-        Me.BtSave.Name = "BtSave"
-        Me.BtSave.Size = New System.Drawing.Size(148, 34)
-        Me.BtSave.TabIndex = 10
-        Me.BtSave.Text = "Veranstaltung erstellen"
-        Me.BtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtSave.UseVisualStyleBackColor = True
         '
         'FrmVeranstaltung
         '

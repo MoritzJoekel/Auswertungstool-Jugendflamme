@@ -17,5 +17,8 @@
     <Setting Name="RsAbnahmeleiter" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="RsDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2018-09-29</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

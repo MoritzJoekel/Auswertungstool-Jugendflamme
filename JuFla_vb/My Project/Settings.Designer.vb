@@ -113,6 +113,18 @@ Namespace My
                 Me("RsAbnahmeleiter") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2018-09-29")>  _
+        Public Property RsDate() As Date
+            Get
+                Return CType(Me("RsDate"),Date)
+            End Get
+            Set
+                Me("RsDate") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
