@@ -712,6 +712,8 @@ Partial Public Class DtsJuFla
         
         Private columnfinished As Global.System.Data.DataColumn
         
+        Private columnComboName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -836,6 +838,14 @@ Partial Public Class DtsJuFla
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ComboNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComboName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -872,9 +882,9 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla2MemberRow(ByVal parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member As TblJuFla2MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwPrak As Integer, ByVal ValFwTheorie As Integer, ByVal ValSport As Boolean, ByVal finished As Boolean) As TblJuFla2MemberRow
+        Public Overloads Function AddTblJuFla2MemberRow(ByVal parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member As TblJuFla2MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwPrak As Integer, ByVal ValFwTheorie As Integer, ByVal ValSport As Boolean, ByVal finished As Boolean, ByVal ComboName As String) As TblJuFla2MemberRow
             Dim rowTblJuFla2MemberRow As TblJuFla2MemberRow = CType(Me.NewRow,TblJuFla2MemberRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwPrak, ValFwTheorie, ValSport, finished}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwPrak, ValFwTheorie, ValSport, finished, ComboName}
             If (Not (parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member) Is Nothing) Then
                 columnValuesArray(1) = parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member(1)
             End If
@@ -917,6 +927,7 @@ Partial Public Class DtsJuFla
             Me.columnValFwTheorie = MyBase.Columns("ValFwTheorie")
             Me.columnValSport = MyBase.Columns("ValSport")
             Me.columnfinished = MyBase.Columns("finished")
+            Me.columnComboName = MyBase.Columns("ComboName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -944,6 +955,8 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnValSport)
             Me.columnfinished = New Global.System.Data.DataColumn("finished", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfinished)
+            Me.columnComboName = New Global.System.Data.DataColumn("ComboName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComboName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -1403,6 +1416,8 @@ Partial Public Class DtsJuFla
         
         Private columnfinished As Global.System.Data.DataColumn
         
+        Private columnComboName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1527,6 +1542,14 @@ Partial Public Class DtsJuFla
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ComboNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComboName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1563,9 +1586,9 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEH As Integer, ByVal ValPraesentation As Boolean, ByVal finished As Boolean) As TblJuFla3MemberRow
+        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEH As Integer, ByVal ValPraesentation As Boolean, ByVal finished As Boolean, ByVal ComboName As String) As TblJuFla3MemberRow
             Dim rowTblJuFla3MemberRow As TblJuFla3MemberRow = CType(Me.NewRow,TblJuFla3MemberRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEH, ValPraesentation, finished}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEH, ValPraesentation, finished, ComboName}
             If (Not (parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member) Is Nothing) Then
                 columnValuesArray(1) = parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member(1)
             End If
@@ -1608,6 +1631,7 @@ Partial Public Class DtsJuFla
             Me.columnValEH = MyBase.Columns("ValEH")
             Me.columnValPraesentation = MyBase.Columns("ValPraesentation")
             Me.columnfinished = MyBase.Columns("finished")
+            Me.columnComboName = MyBase.Columns("ComboName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1635,6 +1659,8 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnValPraesentation)
             Me.columnfinished = New Global.System.Data.DataColumn("finished", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfinished)
+            Me.columnComboName = New Global.System.Data.DataColumn("ComboName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComboName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -2024,6 +2050,21 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ComboName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblJuFla2Member.ComboNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ComboName in Tabelle TblJuFla2Member ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblJuFla2Member.ComboNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property TblJuFla2MannschaftenRow() As TblJuFla2MannschaftenRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("TblJuFla2Mannschaften_TblJuFla2Member")),TblJuFla2MannschaftenRow)
@@ -2139,6 +2180,18 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetfinishedNull()
             Me(Me.tableTblJuFla2Member.finishedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsComboNameNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla2Member.ComboNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetComboNameNull()
+            Me(Me.tableTblJuFla2Member.ComboNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2391,6 +2444,21 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ComboName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblJuFla3Member.ComboNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ComboName in Tabelle TblJuFla3Member ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblJuFla3Member.ComboNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property TblJuFla3MannschaftenRow() As TblJuFla3MannschaftenRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("TblJuFla3Mannschaften_TblJuFla3Member")),TblJuFla3MannschaftenRow)
@@ -2506,6 +2574,18 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetfinishedNull()
             Me(Me.tableTblJuFla3Member.finishedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsComboNameNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla3Member.ComboNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetComboNameNull()
+            Me(Me.tableTblJuFla3Member.ComboNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

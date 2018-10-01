@@ -104,6 +104,12 @@
     <Compile Include="FrmVeranstaltung.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmWettbewerbseingabe.Designer.vb">
+      <DependentUpon>FrmWettbewerbseingabe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWettbewerbseingabe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVeranstaltung.resx">
       <DependentUpon>FrmVeranstaltung.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWettbewerbseingabe.resx">
+      <DependentUpon>FrmWettbewerbseingabe.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -164,6 +173,7 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\add.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\icon_checked.png" />
   </ItemGroup>
