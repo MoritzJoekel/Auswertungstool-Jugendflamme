@@ -51,6 +51,9 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DGV Printer">
+      <HintPath>..\..\..\..\Desktop\DGV Printer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -173,6 +176,7 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\printing-tool.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\icon_checked.png" />

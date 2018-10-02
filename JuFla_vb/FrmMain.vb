@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports DGVPrinterHelper
 
 Public Class FrmMain
     Public HomeStream As String = Application.UserAppDataPath
@@ -11,7 +12,7 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Public Sub FrmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Public Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init(True)
         TiMain.Start()
     End Sub
@@ -29,7 +30,7 @@ Public Class FrmMain
         End If
     End Sub
 
-    Private Sub FrmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub FrmMain_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
         Try
             DtsJuFla.WriteXml(DataStream)
         Catch ex As Exception
@@ -128,11 +129,56 @@ Public Class FrmMain
     End Sub
 
     Private Sub TeilnehmerEntfernenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TeilnehmerEntfernenToolStripMenuItem.Click
+        Try
+            Dim index As Integer = DgvJuFla2Member.CurrentCell.RowIndex
+            Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla2Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+            If result = MsgBoxResult.Yes Then
+                DgvJuFla2Member.Rows.RemoveAt(index)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 
-        Dim index As Integer = DgvJuFla2Member.CurrentCell.RowIndex
-        Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla2Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
-        If result = MsgBoxResult.Yes Then
-            DgvJuFla2Member.Rows.RemoveAt(index)
-        End If
+    Private Sub BtJuFla3AddTn_Click(sender As Object, e As EventArgs) Handles BtJuFla3AddTn.Click
+        Try
+            Dim sn As Integer = TbJuFla3Startnummer.Text
+            Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
+            Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
+            Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
+            Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+            Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+
+            DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub BtJuFla2PrintMember_Click(sender As Object, e As EventArgs) Handles BtJuFla2PrintMember.Click
+        Dim printer As DGVPrinter = New DGVPrinter With {
+            .Title = "Jugendflamme Stufe 2",
+            .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
+            .PorportionalColumns = True,
+            .Footer = System.DateTime.Now.ToString,
+            .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
+            .PageNumbers = False
+        }
+
+        printer.PrintDataGridView(DgvJuFla2Member)
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtJuFla3PrintMember.Click
+        Dim printer As DGVPrinter = New DGVPrinter With {
+            .Title = "Jugendflamme Stufe 3",
+            .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
+            .PorportionalColumns = True,
+            .Footer = System.DateTime.Now.ToString,
+            .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
+            .PageNumbers = False
+        }
+
+        printer.PrintDataGridView(DgvJuFla3Member)
     End Sub
 End Class

@@ -957,6 +957,10 @@ Partial Public Class DtsJuFla
             Me.columnID.AllowDBNull = false
             Me.columnStartnummer.AllowDBNull = false
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
+            Me.columnValFwPrak.Caption = "FW-Praxis"
+            Me.columnValFwTheorie.Caption = "FW-Theorie"
+            Me.columnValSport.Caption = "Sportnachweis"
+            Me.columnfinished.Caption = "Bestanden"
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1588,7 +1592,7 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEhAufgabe As Integer, ByVal ValPraesentation As Boolean, ByVal finished As Boolean, ByVal ComboName As String, ByVal ValEhNachweis As Boolean) As TblJuFla3MemberRow
+        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEhAufgabe As Integer, ByVal ValPraesentation As Integer, ByVal finished As Boolean, ByVal ComboName As String, ByVal ValEhNachweis As Boolean) As TblJuFla3MemberRow
             Dim rowTblJuFla3MemberRow As TblJuFla3MemberRow = CType(Me.NewRow,TblJuFla3MemberRow)
             Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEhAufgabe, ValPraesentation, finished, ComboName, ValEhNachweis}
             If (Not (parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member) Is Nothing) Then
@@ -1652,7 +1656,7 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnValFwTechnik)
             Me.columnValEhAufgabe = New Global.System.Data.DataColumn("ValEhAufgabe", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnValEhAufgabe)
-            Me.columnValPraesentation = New Global.System.Data.DataColumn("ValPraesentation", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnValPraesentation = New Global.System.Data.DataColumn("ValPraesentation", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnValPraesentation)
             Me.columnfinished = New Global.System.Data.DataColumn("finished", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfinished)
@@ -1666,9 +1670,11 @@ Partial Public Class DtsJuFla
             Me.columnID.AllowDBNull = false
             Me.columnStartnummer.AllowDBNull = false
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
-            Me.columnValFwTechnik.Caption = "ValFwPrak"
-            Me.columnValEhAufgabe.Caption = "ValFwTheorie"
-            Me.columnValPraesentation.Caption = "ValSport"
+            Me.columnValFwTechnik.Caption = "FW-Technik"
+            Me.columnValEhAufgabe.Caption = "EH-Aufgabe"
+            Me.columnValPraesentation.Caption = "Präsentation"
+            Me.columnfinished.Caption = "Bestanden"
+            Me.columnValEhNachweis.Caption = "EH-Nachweis"
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2411,10 +2417,10 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ValPraesentation() As Boolean
+        Public Property ValPraesentation() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableTblJuFla3Member.ValPraesentationColumn),Boolean)
+                    Return CType(Me(Me.tableTblJuFla3Member.ValPraesentationColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ValPraesentation in Tabelle TblJuFla3Member ist DBNull.", e)
                 End Try
