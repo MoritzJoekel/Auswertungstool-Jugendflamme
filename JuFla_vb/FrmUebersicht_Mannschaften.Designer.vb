@@ -25,6 +25,9 @@ Partial Class FrmUebersicht_Mannschaften
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StartnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BsJuFla2Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.DtsJuFla = New JuFla_vb.DtsJuFla()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
@@ -32,9 +35,6 @@ Partial Class FrmUebersicht_Mannschaften
         Me.StartnummerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StartnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -74,6 +74,24 @@ Partial Class FrmUebersicht_Mannschaften
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(396, 568)
         Me.DataGridView1.TabIndex = 0
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        '
+        'StartnummerDataGridViewTextBoxColumn
+        '
+        Me.StartnummerDataGridViewTextBoxColumn.DataPropertyName = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn.HeaderText = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn.Name = "StartnummerDataGridViewTextBoxColumn"
+        '
+        'OrtDataGridViewTextBoxColumn
+        '
+        Me.OrtDataGridViewTextBoxColumn.DataPropertyName = "Ort"
+        Me.OrtDataGridViewTextBoxColumn.HeaderText = "Ort"
+        Me.OrtDataGridViewTextBoxColumn.Name = "OrtDataGridViewTextBoxColumn"
         '
         'BsJuFla2Mannschaften
         '
@@ -120,30 +138,14 @@ Partial Class FrmUebersicht_Mannschaften
         Me.BsJuFla3Mannschaften.DataMember = "TblJuFla3Mannschaften"
         Me.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla
         '
-        'IDDataGridViewTextBoxColumn
-        '
-        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
-        '
-        'StartnummerDataGridViewTextBoxColumn
-        '
-        Me.StartnummerDataGridViewTextBoxColumn.DataPropertyName = "Startnummer"
-        Me.StartnummerDataGridViewTextBoxColumn.HeaderText = "Startnummer"
-        Me.StartnummerDataGridViewTextBoxColumn.Name = "StartnummerDataGridViewTextBoxColumn"
-        '
-        'OrtDataGridViewTextBoxColumn
-        '
-        Me.OrtDataGridViewTextBoxColumn.DataPropertyName = "Ort"
-        Me.OrtDataGridViewTextBoxColumn.HeaderText = "Ort"
-        Me.OrtDataGridViewTextBoxColumn.Name = "OrtDataGridViewTextBoxColumn"
-        '
         'FrmUebersicht_Mannschaften
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(776, 568)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "FrmUebersicht_Mannschaften"
         Me.Text = "Mannschaftsübersicht"
         Me.SplitContainer1.Panel1.ResumeLayout(False)

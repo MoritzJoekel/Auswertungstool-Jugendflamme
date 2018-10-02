@@ -26,6 +26,7 @@ Partial Class FrmMain
         Me.MsMain = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VeranstaltungsdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DatenbankLeerenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MannschaftenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MannschaftStufe2HinzufügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MannschaftStufe3HinzufügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -41,7 +42,6 @@ Partial Class FrmMain
         Me.TbRoJuFla2Startnummer = New System.Windows.Forms.TextBox()
         Me.BsJuFla2Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.DtsJuFla = New JuFla_vb.DtsJuFla()
-        Me.BtJuFla2Mannschaftloeschen = New System.Windows.Forms.Button()
         Me.DgvJuFla2Member = New System.Windows.Forms.DataGridView()
         Me.IDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,12 +62,35 @@ Partial Class FrmMain
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CbJuFla2Ort = New System.Windows.Forms.ComboBox()
         Me.TpJuFla3 = New System.Windows.Forms.TabPage()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DgvJuFla3Mannschaften = New System.Windows.Forms.DataGridView()
         Me.IDDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.TiMain = New System.Windows.Forms.Timer(Me.components)
+        Me.CmsJuFla2Teilnehmer = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TeilnehmerEntfernenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DgvJuFla3Member = New System.Windows.Forms.DataGridView()
+        Me.BsJuFla3Member = New System.Windows.Forms.BindingSource(Me.components)
+        Me.IDDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StartnummerDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VornameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GeschlechtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GeburtsdatumDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AusweisnummerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValFwTechnikDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValEhAufgabeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValPraesentationDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.FinishedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ComboNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValEhNachweisDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TbJuFla3AnzBewerber = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TbJuFla3Startnummer = New System.Windows.Forms.TextBox()
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
@@ -77,8 +100,11 @@ Partial Class FrmMain
         CType(Me.BsJuFla2Member, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TpJuFla3.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CmsJuFla2Teilnehmer.SuspendLayout()
+        CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsJuFla3Member, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MsMain
@@ -92,7 +118,7 @@ Partial Class FrmMain
         '
         'StartToolStripMenuItem
         '
-        Me.StartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VeranstaltungsdatenToolStripMenuItem})
+        Me.StartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VeranstaltungsdatenToolStripMenuItem, Me.DatenbankLeerenToolStripMenuItem})
         Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
@@ -102,6 +128,12 @@ Partial Class FrmMain
         Me.VeranstaltungsdatenToolStripMenuItem.Name = "VeranstaltungsdatenToolStripMenuItem"
         Me.VeranstaltungsdatenToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.VeranstaltungsdatenToolStripMenuItem.Text = "Veranstaltungsdaten"
+        '
+        'DatenbankLeerenToolStripMenuItem
+        '
+        Me.DatenbankLeerenToolStripMenuItem.Name = "DatenbankLeerenToolStripMenuItem"
+        Me.DatenbankLeerenToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.DatenbankLeerenToolStripMenuItem.Text = "Datenbank leeren"
         '
         'MannschaftenToolStripMenuItem
         '
@@ -159,7 +191,6 @@ Partial Class FrmMain
         Me.TpJuFla2.Controls.Add(Me.TbJuFla2AnzMember)
         Me.TpJuFla2.Controls.Add(Me.Label2)
         Me.TpJuFla2.Controls.Add(Me.TbRoJuFla2Startnummer)
-        Me.TpJuFla2.Controls.Add(Me.BtJuFla2Mannschaftloeschen)
         Me.TpJuFla2.Controls.Add(Me.DgvJuFla2Member)
         Me.TpJuFla2.Controls.Add(Me.DgvJuFla2Mannschaften)
         Me.TpJuFla2.Controls.Add(Me.Label1)
@@ -230,18 +261,6 @@ Partial Class FrmMain
         Me.DtsJuFla.DataSetName = "DtsJuFla"
         Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'BtJuFla2Mannschaftloeschen
-        '
-        Me.BtJuFla2Mannschaftloeschen.Image = Global.JuFla_vb.My.Resources.Resources.delete
-        Me.BtJuFla2Mannschaftloeschen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2Mannschaftloeschen.Location = New System.Drawing.Point(417, 34)
-        Me.BtJuFla2Mannschaftloeschen.Name = "BtJuFla2Mannschaftloeschen"
-        Me.BtJuFla2Mannschaftloeschen.Size = New System.Drawing.Size(138, 43)
-        Me.BtJuFla2Mannschaftloeschen.TabIndex = 6
-        Me.BtJuFla2Mannschaftloeschen.Text = "Mannschaft löschen"
-        Me.BtJuFla2Mannschaftloeschen.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla2Mannschaftloeschen.UseVisualStyleBackColor = True
-        '
         'DgvJuFla2Member
         '
         Me.DgvJuFla2Member.AllowUserToAddRows = False
@@ -249,6 +268,7 @@ Partial Class FrmMain
         Me.DgvJuFla2Member.AutoGenerateColumns = False
         Me.DgvJuFla2Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvJuFla2Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn1, Me.StartnummerDataGridViewTextBoxColumn1, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.GeschlechtDataGridViewTextBoxColumn, Me.GeburtsdatumDataGridViewTextBoxColumn, Me.AusweisnummerDataGridViewTextBoxColumn, Me.ValFwPrakDataGridViewTextBoxColumn, Me.ValFwTheorieDataGridViewTextBoxColumn, Me.ValSportDataGridViewCheckBoxColumn, Me.FinishedDataGridViewCheckBoxColumn})
+        Me.DgvJuFla2Member.ContextMenuStrip = Me.CmsJuFla2Teilnehmer
         Me.DgvJuFla2Member.DataSource = Me.BsJuFla2Member
         Me.DgvJuFla2Member.Location = New System.Drawing.Point(11, 87)
         Me.DgvJuFla2Member.Name = "DgvJuFla2Member"
@@ -392,7 +412,14 @@ Partial Class FrmMain
         '
         'TpJuFla3
         '
-        Me.TpJuFla3.Controls.Add(Me.DataGridView1)
+        Me.TpJuFla3.Controls.Add(Me.Label5)
+        Me.TpJuFla3.Controls.Add(Me.TbJuFla3AnzBewerber)
+        Me.TpJuFla3.Controls.Add(Me.Label6)
+        Me.TpJuFla3.Controls.Add(Me.TbJuFla3Startnummer)
+        Me.TpJuFla3.Controls.Add(Me.CbJuFla3Mannschaft)
+        Me.TpJuFla3.Controls.Add(Me.DgvJuFla3Member)
+        Me.TpJuFla3.Controls.Add(Me.Label4)
+        Me.TpJuFla3.Controls.Add(Me.DgvJuFla3Mannschaften)
         Me.TpJuFla3.Location = New System.Drawing.Point(4, 22)
         Me.TpJuFla3.Name = "TpJuFla3"
         Me.TpJuFla3.Padding = New System.Windows.Forms.Padding(3)
@@ -401,16 +428,26 @@ Partial Class FrmMain
         Me.TpJuFla3.Text = "Jugendflamme Stufe 3"
         Me.TpJuFla3.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'Label4
         '
-        Me.DataGridView1.AutoGenerateColumns = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn2, Me.StartnummerDataGridViewTextBoxColumn2, Me.OrtDataGridViewTextBoxColumn1})
-        Me.DataGridView1.DataSource = Me.BsJuFla3Mannschaften
-        Me.DataGridView1.Location = New System.Drawing.Point(151, 74)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(618, 150)
-        Me.DataGridView1.TabIndex = 0
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(8, 22)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(66, 13)
+        Me.Label4.TabIndex = 1
+        Me.Label4.Text = "Mannschaft:"
+        '
+        'DgvJuFla3Mannschaften
+        '
+        Me.DgvJuFla3Mannschaften.AutoGenerateColumns = False
+        Me.DgvJuFla3Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJuFla3Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn2, Me.StartnummerDataGridViewTextBoxColumn2, Me.OrtDataGridViewTextBoxColumn1})
+        Me.DgvJuFla3Mannschaften.DataSource = Me.BsJuFla3Mannschaften
+        Me.DgvJuFla3Mannschaften.Location = New System.Drawing.Point(831, 22)
+        Me.DgvJuFla3Mannschaften.Name = "DgvJuFla3Mannschaften"
+        Me.DgvJuFla3Mannschaften.Size = New System.Drawing.Size(323, 94)
+        Me.DgvJuFla3Mannschaften.TabIndex = 0
+        Me.DgvJuFla3Mannschaften.Visible = False
         '
         'IDDataGridViewTextBoxColumn2
         '
@@ -437,7 +474,159 @@ Partial Class FrmMain
         '
         'TiMain
         '
-        Me.TiMain.Interval = 10
+        '
+        'CmsJuFla2Teilnehmer
+        '
+        Me.CmsJuFla2Teilnehmer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TeilnehmerEntfernenToolStripMenuItem})
+        Me.CmsJuFla2Teilnehmer.Name = "CmsJuFla2Teilnehmer"
+        Me.CmsJuFla2Teilnehmer.Size = New System.Drawing.Size(188, 26)
+        '
+        'TeilnehmerEntfernenToolStripMenuItem
+        '
+        Me.TeilnehmerEntfernenToolStripMenuItem.Name = "TeilnehmerEntfernenToolStripMenuItem"
+        Me.TeilnehmerEntfernenToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.TeilnehmerEntfernenToolStripMenuItem.Text = "Teilnehmer entfernen"
+        '
+        'DgvJuFla3Member
+        '
+        Me.DgvJuFla3Member.AllowUserToAddRows = False
+        Me.DgvJuFla3Member.AllowUserToDeleteRows = False
+        Me.DgvJuFla3Member.AutoGenerateColumns = False
+        Me.DgvJuFla3Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn3, Me.StartnummerDataGridViewTextBoxColumn3, Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewCheckBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ComboNameDataGridViewTextBoxColumn, Me.ValEhNachweisDataGridViewCheckBoxColumn})
+        Me.DgvJuFla3Member.DataSource = Me.BsJuFla3Member
+        Me.DgvJuFla3Member.Location = New System.Drawing.Point(11, 89)
+        Me.DgvJuFla3Member.Name = "DgvJuFla3Member"
+        Me.DgvJuFla3Member.ReadOnly = True
+        Me.DgvJuFla3Member.Size = New System.Drawing.Size(1130, 401)
+        Me.DgvJuFla3Member.TabIndex = 2
+        '
+        'BsJuFla3Member
+        '
+        Me.BsJuFla3Member.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
+        Me.BsJuFla3Member.DataSource = Me.BsJuFla3Mannschaften
+        '
+        'IDDataGridViewTextBoxColumn3
+        '
+        Me.IDDataGridViewTextBoxColumn3.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn3.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn3.Name = "IDDataGridViewTextBoxColumn3"
+        '
+        'StartnummerDataGridViewTextBoxColumn3
+        '
+        Me.StartnummerDataGridViewTextBoxColumn3.DataPropertyName = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn3.HeaderText = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn3.Name = "StartnummerDataGridViewTextBoxColumn3"
+        '
+        'NameDataGridViewTextBoxColumn1
+        '
+        Me.NameDataGridViewTextBoxColumn1.DataPropertyName = "Name"
+        Me.NameDataGridViewTextBoxColumn1.HeaderText = "Name"
+        Me.NameDataGridViewTextBoxColumn1.Name = "NameDataGridViewTextBoxColumn1"
+        '
+        'VornameDataGridViewTextBoxColumn1
+        '
+        Me.VornameDataGridViewTextBoxColumn1.DataPropertyName = "Vorname"
+        Me.VornameDataGridViewTextBoxColumn1.HeaderText = "Vorname"
+        Me.VornameDataGridViewTextBoxColumn1.Name = "VornameDataGridViewTextBoxColumn1"
+        '
+        'GeschlechtDataGridViewTextBoxColumn1
+        '
+        Me.GeschlechtDataGridViewTextBoxColumn1.DataPropertyName = "Geschlecht"
+        Me.GeschlechtDataGridViewTextBoxColumn1.HeaderText = "Geschlecht"
+        Me.GeschlechtDataGridViewTextBoxColumn1.Name = "GeschlechtDataGridViewTextBoxColumn1"
+        '
+        'GeburtsdatumDataGridViewTextBoxColumn1
+        '
+        Me.GeburtsdatumDataGridViewTextBoxColumn1.DataPropertyName = "Geburtsdatum"
+        Me.GeburtsdatumDataGridViewTextBoxColumn1.HeaderText = "Geburtsdatum"
+        Me.GeburtsdatumDataGridViewTextBoxColumn1.Name = "GeburtsdatumDataGridViewTextBoxColumn1"
+        '
+        'AusweisnummerDataGridViewTextBoxColumn1
+        '
+        Me.AusweisnummerDataGridViewTextBoxColumn1.DataPropertyName = "Ausweisnummer"
+        Me.AusweisnummerDataGridViewTextBoxColumn1.HeaderText = "Ausweisnummer"
+        Me.AusweisnummerDataGridViewTextBoxColumn1.Name = "AusweisnummerDataGridViewTextBoxColumn1"
+        '
+        'ValFwTechnikDataGridViewTextBoxColumn
+        '
+        Me.ValFwTechnikDataGridViewTextBoxColumn.DataPropertyName = "ValFwTechnik"
+        Me.ValFwTechnikDataGridViewTextBoxColumn.HeaderText = "ValFwTechnik"
+        Me.ValFwTechnikDataGridViewTextBoxColumn.Name = "ValFwTechnikDataGridViewTextBoxColumn"
+        '
+        'ValEhAufgabeDataGridViewTextBoxColumn
+        '
+        Me.ValEhAufgabeDataGridViewTextBoxColumn.DataPropertyName = "ValEhAufgabe"
+        Me.ValEhAufgabeDataGridViewTextBoxColumn.HeaderText = "ValEhAufgabe"
+        Me.ValEhAufgabeDataGridViewTextBoxColumn.Name = "ValEhAufgabeDataGridViewTextBoxColumn"
+        '
+        'ValPraesentationDataGridViewCheckBoxColumn
+        '
+        Me.ValPraesentationDataGridViewCheckBoxColumn.DataPropertyName = "ValPraesentation"
+        Me.ValPraesentationDataGridViewCheckBoxColumn.HeaderText = "ValPraesentation"
+        Me.ValPraesentationDataGridViewCheckBoxColumn.Name = "ValPraesentationDataGridViewCheckBoxColumn"
+        '
+        'FinishedDataGridViewCheckBoxColumn1
+        '
+        Me.FinishedDataGridViewCheckBoxColumn1.DataPropertyName = "finished"
+        Me.FinishedDataGridViewCheckBoxColumn1.HeaderText = "finished"
+        Me.FinishedDataGridViewCheckBoxColumn1.Name = "FinishedDataGridViewCheckBoxColumn1"
+        '
+        'ComboNameDataGridViewTextBoxColumn
+        '
+        Me.ComboNameDataGridViewTextBoxColumn.DataPropertyName = "ComboName"
+        Me.ComboNameDataGridViewTextBoxColumn.HeaderText = "ComboName"
+        Me.ComboNameDataGridViewTextBoxColumn.Name = "ComboNameDataGridViewTextBoxColumn"
+        '
+        'ValEhNachweisDataGridViewCheckBoxColumn
+        '
+        Me.ValEhNachweisDataGridViewCheckBoxColumn.DataPropertyName = "ValEhNachweis"
+        Me.ValEhNachweisDataGridViewCheckBoxColumn.HeaderText = "ValEhNachweis"
+        Me.ValEhNachweisDataGridViewCheckBoxColumn.Name = "ValEhNachweisDataGridViewCheckBoxColumn"
+        '
+        'CbJuFla3Mannschaft
+        '
+        Me.CbJuFla3Mannschaft.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsJuFla3Mannschaften, "Ort", True))
+        Me.CbJuFla3Mannschaft.FormattingEnabled = True
+        Me.CbJuFla3Mannschaft.Location = New System.Drawing.Point(90, 19)
+        Me.CbJuFla3Mannschaft.Name = "CbJuFla3Mannschaft"
+        Me.CbJuFla3Mannschaft.Size = New System.Drawing.Size(292, 21)
+        Me.CbJuFla3Mannschaft.TabIndex = 3
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(216, 59)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "Bewerber:"
+        '
+        'TbJuFla3AnzBewerber
+        '
+        Me.TbJuFla3AnzBewerber.Location = New System.Drawing.Point(282, 56)
+        Me.TbJuFla3AnzBewerber.Name = "TbJuFla3AnzBewerber"
+        Me.TbJuFla3AnzBewerber.ReadOnly = True
+        Me.TbJuFla3AnzBewerber.Size = New System.Drawing.Size(100, 20)
+        Me.TbJuFla3AnzBewerber.TabIndex = 13
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(8, 59)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(66, 13)
+        Me.Label6.TabIndex = 12
+        Me.Label6.Text = "Startnummer"
+        '
+        'TbJuFla3Startnummer
+        '
+        Me.TbJuFla3Startnummer.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsJuFla3Mannschaften, "Startnummer", True))
+        Me.TbJuFla3Startnummer.Location = New System.Drawing.Point(90, 56)
+        Me.TbJuFla3Startnummer.Name = "TbJuFla3Startnummer"
+        Me.TbJuFla3Startnummer.ReadOnly = True
+        Me.TbJuFla3Startnummer.Size = New System.Drawing.Size(110, 20)
+        Me.TbJuFla3Startnummer.TabIndex = 11
         '
         'FrmMain
         '
@@ -460,8 +649,12 @@ Partial Class FrmMain
         CType(Me.BsJuFla2Member, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgvJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TpJuFla3.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TpJuFla3.PerformLayout()
+        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CmsJuFla2Teilnehmer.ResumeLayout(False)
+        CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsJuFla3Member, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -481,9 +674,8 @@ Partial Class FrmMain
     Friend WithEvents MannschaftenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MannschaftStufe2HinzufügenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MannschaftStufe3HinzufügenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BtJuFla2Mannschaftloeschen As Button
     Friend WithEvents ÜbersichtMannschaftenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DgvJuFla3Mannschaften As DataGridView
     Friend WithEvents IDDataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents StartnummerDataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents OrtDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -512,4 +704,28 @@ Partial Class FrmMain
     Public WithEvents BsJuFla2Mannschaften As BindingSource
     Public WithEvents BsJuFla2Member As BindingSource
     Friend WithEvents BtJuFla2AddMember As Button
+    Friend WithEvents DatenbankLeerenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label4 As Label
+    Friend WithEvents CmsJuFla2Teilnehmer As ContextMenuStrip
+    Friend WithEvents TeilnehmerEntfernenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TbJuFla3AnzBewerber As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TbJuFla3Startnummer As TextBox
+    Friend WithEvents CbJuFla3Mannschaft As ComboBox
+    Friend WithEvents DgvJuFla3Member As DataGridView
+    Friend WithEvents IDDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents StartnummerDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents NameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents VornameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents GeschlechtDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents GeburtsdatumDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents AusweisnummerDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents ValFwTechnikDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ValEhAufgabeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ValPraesentationDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents FinishedDataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
+    Friend WithEvents ComboNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ValEhNachweisDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents BsJuFla3Member As BindingSource
 End Class

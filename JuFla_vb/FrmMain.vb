@@ -2,7 +2,7 @@
 
 Public Class FrmMain
     Public HomeStream As String = Application.UserAppDataPath
-    Public DataSteam As String = HomeStream + "\JuFla_Data.xml"
+    Public DataStream As String = HomeStream + "\JuFla_Data.xml"
     Private Sub VeranstaltungsdatenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VeranstaltungsdatenToolStripMenuItem.Click
         FrmVeranstaltung.Show()
     End Sub
@@ -22,7 +22,7 @@ Public Class FrmMain
         ElseIf LoadDb = True Then
             Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
             Try
-                DtsJuFla.ReadXml(DataSteam)
+                DtsJuFla.ReadXml(DataStream)
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Exclamation)
             End Try
@@ -31,7 +31,7 @@ Public Class FrmMain
 
     Private Sub FrmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Try
-            DtsJuFla.WriteXml(DataSteam)
+            DtsJuFla.WriteXml(DataStream)
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
@@ -43,7 +43,11 @@ Public Class FrmMain
         Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
 
         If Startnummer = 0 Then
-            Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
+            If DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
+                Startnummer = 1
+            Else
+                Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
+            End If
         End If
         Try
             DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
@@ -52,7 +56,7 @@ Public Class FrmMain
         End Try
     End Sub
 
-    Private Sub BtJuFla2Mannschaftloeschen_Click(sender As Object, e As EventArgs) Handles BtJuFla2Mannschaftloeschen.Click
+    Private Sub BtJuFla2Mannschaftloeschen_Click(sender As Object, e As EventArgs)
         Try
             For Each row As DataGridViewRow In DgvJuFla2Mannschaften.SelectedCells
                 DgvJuFla2Mannschaften.Rows.Remove(row)
@@ -79,7 +83,7 @@ Public Class FrmMain
                 Startnummer = 1
             End If
         End If
-            Try
+        Try
             DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -88,21 +92,47 @@ Public Class FrmMain
 
     Private Sub TiMain_Tick(sender As Object, e As EventArgs) Handles TiMain.Tick
         TbJuFla2AnzMember.Text = DgvJuFla2Member.Rows.Count
+        TbJuFla3AnzBewerber.Text = DgvJuFla3Member.Rows.Count
+        DgvJuFla2Member.Refresh()
     End Sub
 
     Private Sub WettbewerbseingabeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WettbewerbseingabeToolStripMenuItem.Click
         FrmWettbewerbseingabe.BsJuFla2Mannschaften.DataSource = Me.DtsJuFla.TblJuFla2Mannschaften
+        FrmWettbewerbseingabe.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla.TblJuFla3Mannschaften
         FrmWettbewerbseingabe.ShowDialog(Me)
     End Sub
 
     Private Sub BtJuFla2AddMember_Click(sender As Object, e As EventArgs) Handles BtJuFla2AddMember.Click
-        Dim sn As Integer = TbRoJuFla2Startnummer.Text
-        Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
-        Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
-        Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
-        Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
-        Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+        Try
+            Dim sn As Integer = TbRoJuFla2Startnummer.Text
+            Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
+            Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
+            Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
+            Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+            Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
 
-        DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, Nothing, Nothing, Nothing, Nothing, Name + ", " + Vorname)
+            DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub DatenbankLeerenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatenbankLeerenToolStripMenuItem.Click
+        Dim Result As MsgBoxResult = MsgBox("Wollen sie die Datenbank wirklich leeren?? (Backup wird erstellt)", MsgBoxStyle.YesNo)
+        If Result = MsgBoxResult.Yes Then
+            My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
+            DtsJuFla.Clear()
+            My.Computer.FileSystem.DeleteFile(DataStream)
+        End If
+    End Sub
+
+    Private Sub TeilnehmerEntfernenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TeilnehmerEntfernenToolStripMenuItem.Click
+
+        Dim index As Integer = DgvJuFla2Member.CurrentCell.RowIndex
+        Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla2Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+        If result = MsgBoxResult.Yes Then
+            DgvJuFla2Member.Rows.RemoveAt(index)
+        End If
     End Sub
 End Class

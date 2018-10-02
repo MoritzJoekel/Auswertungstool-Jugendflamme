@@ -59,10 +59,11 @@
               <xs:element name="Geburtsdatum" msprop:Generator_ColumnVarNameInTable="columnGeburtsdatum" msprop:Generator_ColumnPropNameInRow="Geburtsdatum" msprop:Generator_ColumnPropNameInTable="GeburtsdatumColumn" msprop:Generator_UserColumnName="Geburtsdatum" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Ausweisnummer" msprop:Generator_ColumnVarNameInTable="columnAusweisnummer" msprop:Generator_ColumnPropNameInRow="Ausweisnummer" msprop:Generator_ColumnPropNameInTable="AusweisnummerColumn" msprop:Generator_UserColumnName="Ausweisnummer" type="xs:int" minOccurs="0" />
               <xs:element name="ValFwTechnik" msdata:Caption="ValFwPrak" msprop:Generator_ColumnVarNameInTable="columnValFwTechnik" msprop:Generator_ColumnPropNameInRow="ValFwTechnik" msprop:Generator_ColumnPropNameInTable="ValFwTechnikColumn" msprop:Generator_UserColumnName="ValFwTechnik" type="xs:int" minOccurs="0" />
-              <xs:element name="ValEH" msdata:Caption="ValFwTheorie" msprop:Generator_ColumnVarNameInTable="columnValEH" msprop:Generator_ColumnPropNameInRow="ValEH" msprop:Generator_ColumnPropNameInTable="ValEHColumn" msprop:Generator_UserColumnName="ValEH" type="xs:int" minOccurs="0" />
+              <xs:element name="ValEhAufgabe" msdata:Caption="ValFwTheorie" msprop:Generator_ColumnVarNameInTable="columnValEhAufgabe" msprop:Generator_ColumnPropNameInRow="ValEhAufgabe" msprop:Generator_ColumnPropNameInTable="ValEhAufgabeColumn" msprop:Generator_UserColumnName="ValEhAufgabe" type="xs:int" minOccurs="0" />
               <xs:element name="ValPraesentation" msdata:Caption="ValSport" msprop:Generator_ColumnVarNameInTable="columnValPraesentation" msprop:Generator_ColumnPropNameInRow="ValPraesentation" msprop:Generator_ColumnPropNameInTable="ValPraesentationColumn" msprop:Generator_UserColumnName="ValPraesentation" type="xs:boolean" minOccurs="0" />
               <xs:element name="finished" msprop:Generator_ColumnVarNameInTable="columnfinished" msprop:Generator_ColumnPropNameInRow="finished" msprop:Generator_ColumnPropNameInTable="finishedColumn" msprop:Generator_UserColumnName="finished" type="xs:boolean" minOccurs="0" />
               <xs:element name="ComboName" msprop:Generator_ColumnVarNameInTable="columnComboName" msprop:Generator_ColumnPropNameInRow="ComboName" msprop:Generator_ColumnPropNameInTable="ComboNameColumn" msprop:Generator_UserColumnName="ComboName" type="xs:string" minOccurs="0" />
+              <xs:element name="ValEhNachweis" msprop:Generator_ColumnVarNameInTable="columnValEhNachweis" msprop:Generator_ColumnPropNameInRow="ValEhNachweis" msprop:Generator_ColumnPropNameInTable="ValEhNachweisColumn" msprop:Generator_UserColumnName="ValEhNachweis" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -72,16 +73,8 @@
       <xs:selector xpath=".//mstns:TblJuFla2Mannschaften" />
       <xs:field xpath="mstns:Startnummer" />
     </xs:unique>
-    <xs:unique name="TblJuFla2Member_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TblJuFla2Member" />
-      <xs:field xpath="mstns:Startnummer" />
-    </xs:unique>
     <xs:unique name="TblJuFla3Mannschaften_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblJuFla3Mannschaften" />
-      <xs:field xpath="mstns:Startnummer" />
-    </xs:unique>
-    <xs:unique name="TblJuFla3Member_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TblJuFla3Member" />
       <xs:field xpath="mstns:Startnummer" />
     </xs:unique>
   </xs:element>

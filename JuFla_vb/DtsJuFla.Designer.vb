@@ -895,12 +895,6 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByStartnummer(ByVal Startnummer As Integer) As TblJuFla2MemberRow
-            Return CType(Me.Rows.Find(New Object() {Startnummer}),TblJuFla2MemberRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As TblJuFla2MemberDataTable = CType(MyBase.Clone,TblJuFla2MemberDataTable)
             cln.InitVars
@@ -957,13 +951,11 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnfinished)
             Me.columnComboName = New Global.System.Data.DataColumn("ComboName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnComboName)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
             Me.columnID.AutoIncrementStep = -1
             Me.columnID.AllowDBNull = false
             Me.columnStartnummer.AllowDBNull = false
-            Me.columnStartnummer.Unique = true
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
         End Sub
         
@@ -1410,13 +1402,15 @@ Partial Public Class DtsJuFla
         
         Private columnValFwTechnik As Global.System.Data.DataColumn
         
-        Private columnValEH As Global.System.Data.DataColumn
+        Private columnValEhAufgabe As Global.System.Data.DataColumn
         
         Private columnValPraesentation As Global.System.Data.DataColumn
         
         Private columnfinished As Global.System.Data.DataColumn
         
         Private columnComboName As Global.System.Data.DataColumn
+        
+        Private columnValEhNachweis As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -1519,9 +1513,9 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property ValEHColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValEhAufgabeColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnValEH
+                Return Me.columnValEhAufgabe
             End Get
         End Property
         
@@ -1546,6 +1540,14 @@ Partial Public Class DtsJuFla
         Public ReadOnly Property ComboNameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnComboName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ValEhNachweisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnValEhNachweis
             End Get
         End Property
         
@@ -1586,21 +1588,15 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEH As Integer, ByVal ValPraesentation As Boolean, ByVal finished As Boolean, ByVal ComboName As String) As TblJuFla3MemberRow
+        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEhAufgabe As Integer, ByVal ValPraesentation As Boolean, ByVal finished As Boolean, ByVal ComboName As String, ByVal ValEhNachweis As Boolean) As TblJuFla3MemberRow
             Dim rowTblJuFla3MemberRow As TblJuFla3MemberRow = CType(Me.NewRow,TblJuFla3MemberRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEH, ValPraesentation, finished, ComboName}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEhAufgabe, ValPraesentation, finished, ComboName, ValEhNachweis}
             If (Not (parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member) Is Nothing) Then
                 columnValuesArray(1) = parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member(1)
             End If
             rowTblJuFla3MemberRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTblJuFla3MemberRow)
             Return rowTblJuFla3MemberRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByStartnummer(ByVal Startnummer As Integer) As TblJuFla3MemberRow
-            Return CType(Me.Rows.Find(New Object() {Startnummer}),TblJuFla3MemberRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1628,10 +1624,11 @@ Partial Public Class DtsJuFla
             Me.columnGeburtsdatum = MyBase.Columns("Geburtsdatum")
             Me.columnAusweisnummer = MyBase.Columns("Ausweisnummer")
             Me.columnValFwTechnik = MyBase.Columns("ValFwTechnik")
-            Me.columnValEH = MyBase.Columns("ValEH")
+            Me.columnValEhAufgabe = MyBase.Columns("ValEhAufgabe")
             Me.columnValPraesentation = MyBase.Columns("ValPraesentation")
             Me.columnfinished = MyBase.Columns("finished")
             Me.columnComboName = MyBase.Columns("ComboName")
+            Me.columnValEhNachweis = MyBase.Columns("ValEhNachweis")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1653,24 +1650,24 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnAusweisnummer)
             Me.columnValFwTechnik = New Global.System.Data.DataColumn("ValFwTechnik", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnValFwTechnik)
-            Me.columnValEH = New Global.System.Data.DataColumn("ValEH", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnValEH)
+            Me.columnValEhAufgabe = New Global.System.Data.DataColumn("ValEhAufgabe", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValEhAufgabe)
             Me.columnValPraesentation = New Global.System.Data.DataColumn("ValPraesentation", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnValPraesentation)
             Me.columnfinished = New Global.System.Data.DataColumn("finished", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfinished)
             Me.columnComboName = New Global.System.Data.DataColumn("ComboName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnComboName)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
+            Me.columnValEhNachweis = New Global.System.Data.DataColumn("ValEhNachweis", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValEhNachweis)
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
             Me.columnID.AutoIncrementStep = -1
             Me.columnID.AllowDBNull = false
             Me.columnStartnummer.AllowDBNull = false
-            Me.columnStartnummer.Unique = true
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
             Me.columnValFwTechnik.Caption = "ValFwPrak"
-            Me.columnValEH.Caption = "ValFwTheorie"
+            Me.columnValEhAufgabe.Caption = "ValFwTheorie"
             Me.columnValPraesentation.Caption = "ValSport"
         End Sub
         
@@ -2399,16 +2396,16 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ValEH() As Integer
+        Public Property ValEhAufgabe() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableTblJuFla3Member.ValEHColumn),Integer)
+                    Return CType(Me(Me.tableTblJuFla3Member.ValEhAufgabeColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ValEH in Tabelle TblJuFla3Member ist DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ValEhAufgabe in Tabelle TblJuFla3Member ist DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableTblJuFla3Member.ValEHColumn) = value
+                Me(Me.tableTblJuFla3Member.ValEhAufgabeColumn) = value
             End Set
         End Property
         
@@ -2454,6 +2451,21 @@ Partial Public Class DtsJuFla
             End Get
             Set
                 Me(Me.tableTblJuFla3Member.ComboNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ValEhNachweis() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblJuFla3Member.ValEhNachweisColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ValEhNachweis in Tabelle TblJuFla3Member ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblJuFla3Member.ValEhNachweisColumn) = value
             End Set
         End Property
         
@@ -2542,14 +2554,14 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsValEHNull() As Boolean
-            Return Me.IsNull(Me.tableTblJuFla3Member.ValEHColumn)
+        Public Function IsValEhAufgabeNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla3Member.ValEhAufgabeColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetValEHNull()
-            Me(Me.tableTblJuFla3Member.ValEHColumn) = Global.System.Convert.DBNull
+        Public Sub SetValEhAufgabeNull()
+            Me(Me.tableTblJuFla3Member.ValEhAufgabeColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2586,6 +2598,18 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetComboNameNull()
             Me(Me.tableTblJuFla3Member.ComboNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsValEhNachweisNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla3Member.ValEhNachweisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetValEhNachweisNull()
+            Me(Me.tableTblJuFla3Member.ValEhNachweisColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
