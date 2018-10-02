@@ -95,6 +95,7 @@ Public Class FrmMain
         TbJuFla2AnzMember.Text = DgvJuFla2Member.Rows.Count
         TbJuFla3AnzBewerber.Text = DgvJuFla3Member.Rows.Count
         DgvJuFla2Member.Refresh()
+        DgvJuFla3Member.Refresh()
     End Sub
 
     Private Sub WettbewerbseingabeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WettbewerbseingabeToolStripMenuItem.Click

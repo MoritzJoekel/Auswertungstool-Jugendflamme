@@ -73,6 +73,17 @@ Partial Class FrmMain
         Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
         Me.DgvJuFla3Member = New System.Windows.Forms.DataGridView()
+        Me.BsJuFla3Member = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DgvJuFla3Mannschaften = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StartnummerDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TiMain = New System.Windows.Forms.Timer(Me.components)
+        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
+        Me.BsJuFla2Member = New System.Windows.Forms.BindingSource(Me.components)
+        Me.BtJuFla3PrintMember = New System.Windows.Forms.Button()
         Me.IDDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -86,17 +97,6 @@ Partial Class FrmMain
         Me.ValEhNachweisDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FinishedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ComboNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BsJuFla3Member = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.DgvJuFla3Mannschaften = New System.Windows.Forms.DataGridView()
-        Me.IDDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StartnummerDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TiMain = New System.Windows.Forms.Timer(Me.components)
-        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
-        Me.BsJuFla2Member = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BtJuFla3PrintMember = New System.Windows.Forms.Button()
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
@@ -544,6 +544,77 @@ Partial Class FrmMain
         Me.DgvJuFla3Member.Size = New System.Drawing.Size(1143, 411)
         Me.DgvJuFla3Member.TabIndex = 2
         '
+        'BsJuFla3Member
+        '
+        Me.BsJuFla3Member.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
+        Me.BsJuFla3Member.DataSource = Me.BsJuFla3Mannschaften
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(8, 22)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(66, 13)
+        Me.Label4.TabIndex = 1
+        Me.Label4.Text = "Mannschaft:"
+        '
+        'DgvJuFla3Mannschaften
+        '
+        Me.DgvJuFla3Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJuFla3Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn2, Me.StartnummerDataGridViewTextBoxColumn2, Me.OrtDataGridViewTextBoxColumn1})
+        Me.DgvJuFla3Mannschaften.Location = New System.Drawing.Point(818, 6)
+        Me.DgvJuFla3Mannschaften.Name = "DgvJuFla3Mannschaften"
+        Me.DgvJuFla3Mannschaften.Size = New System.Drawing.Size(323, 94)
+        Me.DgvJuFla3Mannschaften.TabIndex = 0
+        Me.DgvJuFla3Mannschaften.Visible = False
+        '
+        'IDDataGridViewTextBoxColumn2
+        '
+        Me.IDDataGridViewTextBoxColumn2.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn2.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn2.Name = "IDDataGridViewTextBoxColumn2"
+        '
+        'StartnummerDataGridViewTextBoxColumn2
+        '
+        Me.StartnummerDataGridViewTextBoxColumn2.DataPropertyName = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn2.HeaderText = "Startnummer"
+        Me.StartnummerDataGridViewTextBoxColumn2.Name = "StartnummerDataGridViewTextBoxColumn2"
+        '
+        'OrtDataGridViewTextBoxColumn1
+        '
+        Me.OrtDataGridViewTextBoxColumn1.DataPropertyName = "Ort"
+        Me.OrtDataGridViewTextBoxColumn1.HeaderText = "Ort"
+        Me.OrtDataGridViewTextBoxColumn1.Name = "OrtDataGridViewTextBoxColumn1"
+        '
+        'TiMain
+        '
+        '
+        'CmsJuFla3Member
+        '
+        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
+        Me.CmsJuFla3Member.Size = New System.Drawing.Size(61, 4)
+        '
+        'DtsJuFla1
+        '
+        Me.DtsJuFla1.DataSetName = "DtsJuFla"
+        Me.DtsJuFla1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'BsJuFla2Member
+        '
+        Me.BsJuFla2Member.DataMember = "TblJuFla2Mannschaften_TblJuFla2Member"
+        '
+        'BtJuFla3PrintMember
+        '
+        Me.BtJuFla3PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.printing_tool
+        Me.BtJuFla3PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(503, 19)
+        Me.BtJuFla3PrintMember.Name = "BtJuFla3PrintMember"
+        Me.BtJuFla3PrintMember.Size = New System.Drawing.Size(108, 39)
+        Me.BtJuFla3PrintMember.TabIndex = 16
+        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken"
+        Me.BtJuFla3PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla3PrintMember.UseVisualStyleBackColor = True
+        '
         'IDDataGridViewTextBoxColumn3
         '
         Me.IDDataGridViewTextBoxColumn3.DataPropertyName = "ID"
@@ -642,77 +713,6 @@ Partial Class FrmMain
         Me.ComboNameDataGridViewTextBoxColumn.ReadOnly = True
         Me.ComboNameDataGridViewTextBoxColumn.Visible = False
         '
-        'BsJuFla3Member
-        '
-        Me.BsJuFla3Member.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
-        Me.BsJuFla3Member.DataSource = Me.BsJuFla3Mannschaften
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 22)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 13)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Mannschaft:"
-        '
-        'DgvJuFla3Mannschaften
-        '
-        Me.DgvJuFla3Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvJuFla3Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn2, Me.StartnummerDataGridViewTextBoxColumn2, Me.OrtDataGridViewTextBoxColumn1})
-        Me.DgvJuFla3Mannschaften.Location = New System.Drawing.Point(818, 6)
-        Me.DgvJuFla3Mannschaften.Name = "DgvJuFla3Mannschaften"
-        Me.DgvJuFla3Mannschaften.Size = New System.Drawing.Size(323, 94)
-        Me.DgvJuFla3Mannschaften.TabIndex = 0
-        Me.DgvJuFla3Mannschaften.Visible = False
-        '
-        'IDDataGridViewTextBoxColumn2
-        '
-        Me.IDDataGridViewTextBoxColumn2.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn2.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn2.Name = "IDDataGridViewTextBoxColumn2"
-        '
-        'StartnummerDataGridViewTextBoxColumn2
-        '
-        Me.StartnummerDataGridViewTextBoxColumn2.DataPropertyName = "Startnummer"
-        Me.StartnummerDataGridViewTextBoxColumn2.HeaderText = "Startnummer"
-        Me.StartnummerDataGridViewTextBoxColumn2.Name = "StartnummerDataGridViewTextBoxColumn2"
-        '
-        'OrtDataGridViewTextBoxColumn1
-        '
-        Me.OrtDataGridViewTextBoxColumn1.DataPropertyName = "Ort"
-        Me.OrtDataGridViewTextBoxColumn1.HeaderText = "Ort"
-        Me.OrtDataGridViewTextBoxColumn1.Name = "OrtDataGridViewTextBoxColumn1"
-        '
-        'TiMain
-        '
-        '
-        'CmsJuFla3Member
-        '
-        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
-        Me.CmsJuFla3Member.Size = New System.Drawing.Size(61, 4)
-        '
-        'DtsJuFla1
-        '
-        Me.DtsJuFla1.DataSetName = "DtsJuFla"
-        Me.DtsJuFla1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'BsJuFla2Member
-        '
-        Me.BsJuFla2Member.DataMember = "TblJuFla2Mannschaften_TblJuFla2Member"
-        '
-        'BtJuFla3PrintMember
-        '
-        Me.BtJuFla3PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.printing_tool
-        Me.BtJuFla3PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(503, 19)
-        Me.BtJuFla3PrintMember.Name = "BtJuFla3PrintMember"
-        Me.BtJuFla3PrintMember.Size = New System.Drawing.Size(108, 39)
-        Me.BtJuFla3PrintMember.TabIndex = 16
-        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken"
-        Me.BtJuFla3PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla3PrintMember.UseVisualStyleBackColor = True
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -805,6 +805,9 @@ Partial Class FrmMain
     Friend WithEvents ValFwTheorieDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ValSportDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents FinishedDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents BtJuFla3AddTn As Button
+    Friend WithEvents BtJuFla2PrintMember As Button
+    Friend WithEvents BtJuFla3PrintMember As Button
     Friend WithEvents IDDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents StartnummerDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -818,7 +821,4 @@ Partial Class FrmMain
     Friend WithEvents ValEhNachweisDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents FinishedDataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
     Friend WithEvents ComboNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents BtJuFla3AddTn As Button
-    Friend WithEvents BtJuFla2PrintMember As Button
-    Friend WithEvents BtJuFla3PrintMember As Button
 End Class

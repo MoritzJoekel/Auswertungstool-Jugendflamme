@@ -75,7 +75,7 @@ Partial Class FrmWettbewerbseingabe
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.CbJuFla3Member = New System.Windows.Forms.ComboBox()
         Me.CbJuFla3Mannschaften = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -124,7 +124,7 @@ Partial Class FrmWettbewerbseingabe
         Me.SplitContainer1.Panel2.Controls.Add(Me.BtJuFla3Check)
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox1)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.ComboBox1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.CbJuFla3Member)
         Me.SplitContainer1.Panel2.Controls.Add(Me.CbJuFla3Mannschaften)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label15)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label14)
@@ -642,16 +642,16 @@ Partial Class FrmWettbewerbseingabe
         Me.TextBox6.Size = New System.Drawing.Size(116, 20)
         Me.TextBox6.TabIndex = 6
         '
-        'ComboBox1
+        'CbJuFla3Member
         '
-        Me.ComboBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DtsJuFla, "TblJuFla3Mannschaften.Ort", True))
-        Me.ComboBox1.DataSource = Me.BsJuFla3Member
-        Me.ComboBox1.DisplayMember = "ComboName"
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(102, 88)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(228, 21)
-        Me.ComboBox1.TabIndex = 19
+        Me.CbJuFla3Member.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DtsJuFla, "TblJuFla3Mannschaften.Ort", True))
+        Me.CbJuFla3Member.DataSource = Me.BsJuFla3Member
+        Me.CbJuFla3Member.DisplayMember = "ComboName"
+        Me.CbJuFla3Member.FormattingEnabled = True
+        Me.CbJuFla3Member.Location = New System.Drawing.Point(102, 88)
+        Me.CbJuFla3Member.Name = "CbJuFla3Member"
+        Me.CbJuFla3Member.Size = New System.Drawing.Size(228, 21)
+        Me.CbJuFla3Member.TabIndex = 19
         '
         'CbJuFla3Mannschaften
         '
@@ -769,7 +769,7 @@ Partial Class FrmWettbewerbseingabe
     Friend WithEvents Label13 As Label
     Friend WithEvents BsJuFla3Mannschaften As BindingSource
     Friend WithEvents BsJuFla2Member As BindingSource
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents CbJuFla3Member As ComboBox
     Friend WithEvents BsJuFla3Member As BindingSource
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label20 As Label

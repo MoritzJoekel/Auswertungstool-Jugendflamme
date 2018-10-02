@@ -1,33 +1,35 @@
 ﻿Public Class FrmWettbewerbseingabe
     Private Sub TiMain_Tick(sender As Object, e As EventArgs) Handles TiMain.Tick
-        Try
+        If Not CbJuFla2Member.Text = "" And Not CbJuFla3Member.Text = "" Then
 
-            If CheckJuFla(2) = True Then
-                LbStatus.Text = "BESTANDEN"
-                LbStatus.BackColor = Color.LightGreen
-                CbJuFla2Bestanden.Checked = True
-                BsJuFla2Member.Current(10) = True
-            ElseIf CheckJuFla(2) = False Then
-                LbStatus.Text = "NICHT BESTANDEN"
-                LbStatus.BackColor = Color.Red
-                CbJuFla2Bestanden.Checked = False
-                BsJuFla2Member.Current(10) = False
-            End If
+            Try
+                If CheckJuFla(2) = True Then
+                    LbStatus.Text = "BESTANDEN"
+                    LbStatus.BackColor = Color.LightGreen
+                    CbJuFla2Bestanden.Checked = True
+                    BsJuFla2Member.Current(10) = True
+                ElseIf CheckJuFla(2) = False Then
+                    LbStatus.Text = "NICHT BESTANDEN"
+                    LbStatus.BackColor = Color.Red
+                    CbJuFla2Bestanden.Checked = False
+                    BsJuFla2Member.Current(10) = False
+                End If
 
-            If CheckJuFla(3) = True Then
-                LbJuFla3Bestanden.Text = "BESTANDEN"
-                LbJuFla3Bestanden.BackColor = Color.LightGreen
-                CbJuFla3finished.Checked = True
-                BsJuFla3Member.Current(10) = True
-            ElseIf CheckJuFla(3) = False Then
-                LbJuFla3Bestanden.Text = "NICHT BESTANDEN"
-                LbJuFla3Bestanden.BackColor = Color.Red
-                CbJuFla3finished.Checked = False
-                BsJuFla3Member.Current(10) = False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
-        End Try
+                If CheckJuFla(3) = True Then
+                    LbJuFla3Bestanden.Text = "BESTANDEN"
+                    LbJuFla3Bestanden.BackColor = Color.LightGreen
+                    CbJuFla3finished.Checked = True
+                    BsJuFla3Member.Current(10) = True
+                ElseIf CheckJuFla(3) = False Then
+                    LbJuFla3Bestanden.Text = "NICHT BESTANDEN"
+                    LbJuFla3Bestanden.BackColor = Color.Red
+                    CbJuFla3finished.Checked = False
+                    BsJuFla3Member.Current(10) = False
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            End Try
+        End If
     End Sub
 
     Private Sub FrmWettbewerbseingabe_Load(sender As Object, e As EventArgs) Handles Me.Load
