@@ -107,22 +107,6 @@ Public Class FrmMain
         FrmWettbewerbseingabe.ShowDialog(Me)
     End Sub
 
-    Private Sub BtJuFla2AddMember_Click(sender As Object, e As EventArgs) Handles BtJuFla2AddMember.Click
-        Try
-            Dim sn As Integer = TbRoJuFla2Startnummer.Text
-            Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
-            Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
-            Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
-            Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
-            Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
-
-            DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
-    End Sub
-
     Private Sub DatenbankLeerenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatenbankLeerenToolStripMenuItem.Click
         Dim Result As MsgBoxResult = MsgBox("Wollen sie die Datenbank wirklich leeren?? (Backup wird erstellt)", MsgBoxStyle.YesNo)
         If Result = MsgBoxResult.Yes Then
@@ -132,67 +116,108 @@ Public Class FrmMain
         End If
     End Sub
 
-    Private Sub TeilnehmerEntfernenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TeilnehmerEntfernenToolStripMenuItem.Click
-        Try
-            Dim index As Integer = DgvJuFla2Member.CurrentCell.RowIndex
-            Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla2Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
-            If result = MsgBoxResult.Yes Then
-                DgvJuFla2Member.Rows.RemoveAt(index)
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    ''' <summary>
+    ''' Manuelles Hinzufügen von Mitgliedern in die ausgewählte Mannschaft
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    Private Sub AddMember(Stufe As Integer)
+        If Stufe = 2 Then
+            Try
+                Dim sn As Integer = TbRoJuFla2Startnummer.Text
+                Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
+                Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
+                Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
+                Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+                Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+        ElseIf Stufe = 3 Then
+            Try
+                Dim sn As Integer = TbJuFla3Startnummer.Text
+                Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
+                Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
+                Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
+                Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+                Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+
+                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+    End Sub
+    ''' <summary>
+    ''' Druckt Listen der Member der ausgewählten Mannschaft
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    Private Sub PrintMember(Stufe As Integer)
+        If Stufe = 2 Then
+
+            Dim printer As DGVPrinter = New DGVPrinter With {
+                .Title = "Jugendflamme Stufe 2",
+                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
+                .PorportionalColumns = True,
+                .Footer = System.DateTime.Now.ToString,
+                .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
+                .PageNumbers = False
+            }
+            printer.PrintDataGridView(DgvJuFla2Member)
+
+        ElseIf Stufe = 3 Then
+
+            Dim printer As DGVPrinter = New DGVPrinter With {
+                .Title = "Jugendflamme Stufe 3",
+                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
+                .PorportionalColumns = True,
+                .Footer = System.DateTime.Now.ToString,
+                .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
+                .PageNumbers = False
+            }
+            printer.PrintDataGridView(DgvJuFla3Member)
+        End If
     End Sub
 
-    Private Sub BtJuFla3AddTn_Click(sender As Object, e As EventArgs) Handles BtJuFla3AddTn.Click
-        Try
-            Dim sn As Integer = TbJuFla3Startnummer.Text
-            Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
-            Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
-            Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
-            Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
-            Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
-
-            DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    ''' <summary>
+    ''' Behandelt alle Click-Ereignisse auf FrmMain
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click,
+            BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click
+        Select Case True
+            Case sender Is BtJuFla2Import : Import(2)
+            Case sender Is BtJuFla3Import : Import(3)
+            Case sender Is BtJuFla2PrintMember : PrintMember(2)
+            Case sender Is BtJuFla3PrintMember : PrintMember(3)
+            Case sender Is BtJuFla2AddMember : AddMember(2)
+            Case sender Is BtJuFla3AddMember : AddMember(3)
+            Case sender Is CmsJuFla2RemoveMember : RemoveMember(2)
+            Case sender Is CmsJuFla3RemoveMember : RemoveMember(3)
+        End Select
     End Sub
 
-    Private Sub BtJuFla2PrintMember_Click(sender As Object, e As EventArgs) Handles BtJuFla2PrintMember.Click
-        Dim printer As DGVPrinter = New DGVPrinter With {
-            .Title = "Jugendflamme Stufe 2",
-            .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
-            .PorportionalColumns = True,
-            .Footer = System.DateTime.Now.ToString,
-            .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
-            .PageNumbers = False
-        }
+    ''' <summary>
+    ''' Ruft einen FileDialog zum Import auf und importiert Daten aus Excel in die entsprechende Member-Datentabelle
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    Public Sub Import(Stufe As Integer)
 
-        printer.PrintDataGridView(DgvJuFla2Member)
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtJuFla3PrintMember.Click
-        Dim printer As DGVPrinter = New DGVPrinter With {
-            .Title = "Jugendflamme Stufe 3",
-            .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
-            .PorportionalColumns = True,
-            .Footer = System.DateTime.Now.ToString,
-            .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
-            .PageNumbers = False
-        }
-
-        printer.PrintDataGridView(DgvJuFla3Member)
-    End Sub
-
-    Private Sub BtJuFla2Import_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click
+        ' Dialog zum Auswählen der Excel-Datei aufrufen
         Dim OfdImport As OpenFileDialog = New OpenFileDialog With {
-    .Filter = "Excel-Arbeitsmappen|*.xls; *.xlsx"
-}
-
+            .Filter = "Excel-Arbeitsmappen|*.xls; *.xlsx"
+        }
         OfdImport.ShowDialog()
+
         Dim sourceFile = OfdImport.FileName
+        If sourceFile = "" Then
+            Exit Sub
+        End If
+
+        ' Konvertierung von Excel zu .CSV
         Dim worksheetName = "Jugendflamme"
         Dim targetFile = HomeStream + "\Import.csv"
 
@@ -202,27 +227,28 @@ Public Class FrmMain
         Dim cmd As OleDbCommand
         Dim da As OleDbDataAdapter
 
+        ' Neue Verbindung mittels OleDb, CSV schreiben
         Try
             conn = New OleDbConnection(strConn)
             conn.Open()
             cmd = New OleDbCommand("SELECT * FROM [" & worksheetName & "$]", conn) With {
                 .CommandType = CommandType.Text
             }
-
             wrtr = New StreamWriter(targetFile)
             da = New OleDbDataAdapter(cmd)
 
-            Dim dt As DataTable = New DataTable()
-            da.Fill(dt)
+            TblImport = New DataTable()
+            da.Fill(TblImport)
 
-            For x As Integer = 0 To dt.Rows.Count - 1
+            For x As Integer = 0 To TblImport.Rows.Count - 1
                 Dim rowString As String = Nothing
-                For y As Integer = 0 To dt.Columns.Count - 1
-                    rowString &= dt.Rows(x)(y).ToString() & ";"
+                For y As Integer = 0 To TblImport.Columns.Count - 1
+                    rowString &= TblImport.Rows(x)(y).ToString() & ";"
                 Next y
                 wrtr.WriteLine(rowString)
             Next x
-            TblImport = dt
+
+
         Catch exc As Exception
             MessageBox.Show(exc.Message)
 
@@ -230,11 +256,12 @@ Public Class FrmMain
             If conn.State = ConnectionState.Open Then
                 conn.Close()
             End If
-
-            wrtr.Close()
-
+            If wrtr.BaseStream.ToString <> "" Then
+                wrtr.Close()
+            End If
         End Try
 
+        ' Importierte Tabelle manipulieren, auf gewünschte Informationen zuschneiden
         For rowIndex As Integer = 0 To 7
             TblImport.Rows(rowIndex).Delete()
         Next
@@ -249,114 +276,76 @@ Public Class FrmMain
         Dim Data = TblImport
 
         '9 - Stufe 2 // 10 - Stufe 3
-        columns.Remove("F1")
-        columns.Remove("F6")
+        columns.Remove("F1") ' Entferne (Spalte) laufende Nummer
+        columns.Remove("F6") ' Entferne (Spalte) Abnahmedatum
+
+        ' Entferne alle restlichen Spalten
         For columnIndex As Integer = 8 To 18
             columns.Remove("F" & columnIndex)
         Next
 
-
-
         TblImport.AcceptChanges()
-        Dim dts As DtsJuFla = New DtsJuFla
-        For Each row As DataRow In TblImport.Rows
 
-            Dim Name As String = row(0)
-            Dim Vorname As String = row(1)
-            Dim Geschlecht As String = row(2)
-            Dim Geburtsdatum As Date = "02.01.1900"
-            Dim Ausweisnummer As Integer = row(4)
+        ' Unterscheidung ob für Stufe 2 oder Stufe 3 importiert werden soll
+        If Stufe = 2 Then
 
-            DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name & ", " & Vorname)
-        Next
+            ' Durchlaufe alle Zeilen der Tabelle und sortiere Informationen ein
+            For Each row As DataRow In TblImport.Rows
 
+                Dim Name As String = row(0)
+                Dim Vorname As String = row(1)
+                Dim Geschlecht As String = row(2)
+                Dim Geburtsdatum As Date = row(3).ToString
+                Dim Ausweisnummer As Integer = row(4)
 
+                ' Erstellt eine neue Row in JuFla2Member in der Datenbank
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name & ", " & Vorname)
+            Next
+
+        ElseIf Stufe = 3 Then
+
+            ' Durchlaufe alle Zeilen der Tabelle und sortiere Informationen ein
+            For Each row As DataRow In TblImport.Rows
+
+                Dim Name As String = row(0)
+                Dim Vorname As String = row(1)
+                Dim Geschlecht As String = row(2)
+                Dim Geburtsdatum As Date = row(3).ToString
+                Dim Ausweisnummer As Integer = row(4)
+
+                ' Erstellt eine neu eRow in JuFla2Member in der Datenbank
+                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name & ", " & Vorname, False)
+            Next
+        End If
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim OfdImport As OpenFileDialog = New OpenFileDialog With {
-    .Filter = "Excel-Arbeitsmappen|*.xls; *.xlsx"
-}
+    ''' <summary>
+    ''' Behandelt Context-Menustrip-Ereignis zum Entfernen des ausgewählten Members
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    Private Sub RemoveMember(Stufe As Integer)
+        If Stufe = 2 Then
+            Try
+                Dim index As Integer = DgvJuFla2Member.CurrentCell.RowIndex
+                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla2Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+                If result = MsgBoxResult.Yes Then
+                    DgvJuFla2Member.Rows.RemoveAt(index)
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
 
-        OfdImport.ShowDialog()
-        Dim sourceFile = OfdImport.FileName
-        Dim worksheetName = "Jugendflamme"
-        Dim targetFile = HomeStream + "\Import.csv"
+        ElseIf Stufe = 3 Then
 
-        Dim strConn As String = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" & sourceFile & "; Extended Properties=Excel 12.0"
-        Dim conn As OleDbConnection
-        Dim wrtr As StreamWriter
-        Dim cmd As OleDbCommand
-        Dim da As OleDbDataAdapter
-
-        Try
-            conn = New OleDbConnection(strConn)
-            conn.Open()
-            cmd = New OleDbCommand("SELECT * FROM [" & worksheetName & "$]", conn) With {
-                .CommandType = CommandType.Text
-            }
-
-            wrtr = New StreamWriter(targetFile)
-            da = New OleDbDataAdapter(cmd)
-
-            Dim dt As DataTable = New DataTable()
-            da.Fill(dt)
-
-            For x As Integer = 0 To dt.Rows.Count - 1
-                Dim rowString As String = Nothing
-                For y As Integer = 0 To dt.Columns.Count - 1
-                    rowString &= dt.Rows(x)(y).ToString() & ";"
-                Next y
-                wrtr.WriteLine(rowString)
-            Next x
-            TblImport = dt
-        Catch exc As Exception
-            MessageBox.Show(exc.Message)
-
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
-            wrtr.Close()
-
-        End Try
-
-        For rowIndex As Integer = 0 To 7
-            TblImport.Rows(rowIndex).Delete()
-        Next
-        Dim TotalRows As Integer = TblImport.Rows.Count
-
-        For rowIndex As Integer = TotalRows - 4 To TotalRows - 1
-            TblImport.Rows(rowIndex).Delete()
-        Next
-
-        Dim columns As DataColumnCollection = TblImport.Columns
-        Dim Totalcolums As Integer = TblImport.Columns.Count
-        Dim Data = TblImport
-
-        '9 - Stufe 2 // 10 - Stufe 3
-        columns.Remove("F1")
-        columns.Remove("F6")
-        For columnIndex As Integer = 8 To 18
-            columns.Remove("F" & columnIndex)
-        Next
-
-
-
-
-        TblImport.AcceptChanges()
-        Dim dts As DtsJuFla = New DtsJuFla
-        For Each row As DataRow In TblImport.Rows
-
-            Dim Name As String = row(0)
-            Dim Vorname As String = row(1)
-            Dim Geschlecht As String = row(2)
-            Dim Geburtsdatum As Date = "02.01.1900"
-            Dim Ausweisnummer As Integer = row(4)
-
-            DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name & ", " & Vorname, False)
-        Next
-
+            Try
+                Dim index As Integer = DgvJuFla3Member.CurrentCell.RowIndex
+                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla3Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+                If result = MsgBoxResult.Yes Then
+                    DgvJuFla3Member.Rows.RemoveAt(index)
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
     End Sub
 End Class
