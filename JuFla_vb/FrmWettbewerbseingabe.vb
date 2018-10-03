@@ -51,10 +51,6 @@
         End If
     End Sub
 
-    Private Sub TbJuFla2ValFwPrak_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbJuFla2ValFwPrak.KeyPress
-        TbJuFla2ValFwPrak_KeyPress(e.ToString)
-    End Sub
-
     Public Function CheckJuFla(Stufe As Integer)
         If Stufe = 2 Then
             Dim ValJuFla2FwPrak As Integer
