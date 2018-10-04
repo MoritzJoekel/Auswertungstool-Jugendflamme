@@ -23,7 +23,6 @@ Partial Class FrmVeranstaltung
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.DpDatum = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -33,6 +32,7 @@ Partial Class FrmVeranstaltung
         Me.TbOrt = New System.Windows.Forms.TextBox()
         Me.TbLandkreis = New System.Windows.Forms.TextBox()
         Me.TbBundesland = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -43,16 +43,6 @@ Partial Class FrmVeranstaltung
         Me.Label1.Size = New System.Drawing.Size(106, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Veranstaltungsdatum"
-        '
-        'DpDatum
-        '
-        Me.DpDatum.Checked = False
-        Me.DpDatum.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.JuFla_vb.My.MySettings.Default, "RsDate", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.DpDatum.Location = New System.Drawing.Point(139, 20)
-        Me.DpDatum.Name = "DpDatum"
-        Me.DpDatum.Size = New System.Drawing.Size(200, 20)
-        Me.DpDatum.TabIndex = 1
-        Me.DpDatum.Value = Global.JuFla_vb.My.MySettings.Default.RsDate
         '
         'Label2
         '
@@ -142,11 +132,21 @@ Partial Class FrmVeranstaltung
         Me.TbBundesland.TabIndex = 3
         Me.TbBundesland.Text = Global.JuFla_vb.My.MySettings.Default.RsBundesland
         '
+        'TextBox1
+        '
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsDatum", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox1.Location = New System.Drawing.Point(139, 26)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(200, 20)
+        Me.TextBox1.TabIndex = 11
+        Me.TextBox1.Text = Global.JuFla_vb.My.MySettings.Default.RsDatum
+        '
         'FrmVeranstaltung
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(394, 480)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.BtSave)
         Me.Controls.Add(Me.TbAbnahmeleiter)
         Me.Controls.Add(Me.Label5)
@@ -156,8 +156,9 @@ Partial Class FrmVeranstaltung
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TbBundesland)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.DpDatum)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "FrmVeranstaltung"
         Me.Text = "FrmVeranstaltung"
         Me.ResumeLayout(False)
@@ -166,7 +167,6 @@ Partial Class FrmVeranstaltung
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents DpDatum As DateTimePicker
     Friend WithEvents Label2 As Label
     Friend WithEvents TbBundesland As TextBox
     Friend WithEvents Label3 As Label
@@ -176,4 +176,5 @@ Partial Class FrmVeranstaltung
     Friend WithEvents Label5 As Label
     Friend WithEvents TbAbnahmeleiter As TextBox
     Friend WithEvents BtSave As Button
+    Friend WithEvents TextBox1 As TextBox
 End Class
