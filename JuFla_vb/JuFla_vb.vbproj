@@ -176,6 +176,7 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\icon.png" />
     <None Include="Resources\printing-tool.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\delete.png" />

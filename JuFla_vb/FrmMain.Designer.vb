@@ -25,15 +25,14 @@ Partial Class FrmMain
         Me.components = New System.ComponentModel.Container()
         Me.MsMain = New System.Windows.Forms.MenuStrip()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VeranstaltungsdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DatenbankLeerenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsVeranstaltungsdaten = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsDtsLeeren = New System.Windows.Forms.ToolStripMenuItem()
         Me.MannschaftenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MannschaftStufe2HinzufügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportVonExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MannschaftStufe3HinzufügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ÜbersichtMannschaftenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsJuFla2AddMannschaft = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsJuFla3AddMannschaft = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsUebersichtMannschaften = New System.Windows.Forms.ToolStripMenuItem()
         Me.WettbewerbToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WettbewerbseingabeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsWettbewerbseingabe = New System.Windows.Forms.ToolStripMenuItem()
         Me.TcMain = New System.Windows.Forms.TabControl()
         Me.TpJuFla2 = New System.Windows.Forms.TabPage()
         Me.BtJuFla2Import = New System.Windows.Forms.Button()
@@ -77,7 +76,6 @@ Partial Class FrmMain
         Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
         Me.DgvJuFla3Member = New System.Windows.Forms.DataGridView()
-        Me.IDDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VornameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -131,67 +129,60 @@ Partial Class FrmMain
         '
         'StartToolStripMenuItem
         '
-        Me.StartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VeranstaltungsdatenToolStripMenuItem, Me.DatenbankLeerenToolStripMenuItem})
+        Me.StartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsVeranstaltungsdaten, Me.MsDtsLeeren})
         Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
         '
-        'VeranstaltungsdatenToolStripMenuItem
+        'MsVeranstaltungsdaten
         '
-        Me.VeranstaltungsdatenToolStripMenuItem.Name = "VeranstaltungsdatenToolStripMenuItem"
-        Me.VeranstaltungsdatenToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.VeranstaltungsdatenToolStripMenuItem.Text = "Veranstaltungsdaten"
+        Me.MsVeranstaltungsdaten.Name = "MsVeranstaltungsdaten"
+        Me.MsVeranstaltungsdaten.Size = New System.Drawing.Size(181, 22)
+        Me.MsVeranstaltungsdaten.Text = "Veranstaltungsdaten"
         '
-        'DatenbankLeerenToolStripMenuItem
+        'MsDtsLeeren
         '
-        Me.DatenbankLeerenToolStripMenuItem.Name = "DatenbankLeerenToolStripMenuItem"
-        Me.DatenbankLeerenToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.DatenbankLeerenToolStripMenuItem.Text = "Datenbank leeren"
+        Me.MsDtsLeeren.Name = "MsDtsLeeren"
+        Me.MsDtsLeeren.Size = New System.Drawing.Size(181, 22)
+        Me.MsDtsLeeren.Text = "Datenbank leeren"
         '
         'MannschaftenToolStripMenuItem
         '
-        Me.MannschaftenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MannschaftStufe2HinzufügenToolStripMenuItem, Me.MannschaftStufe3HinzufügenToolStripMenuItem, Me.ÜbersichtMannschaftenToolStripMenuItem})
+        Me.MannschaftenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsJuFla2AddMannschaft, Me.MsJuFla3AddMannschaft, Me.MsUebersichtMannschaften})
         Me.MannschaftenToolStripMenuItem.Name = "MannschaftenToolStripMenuItem"
         Me.MannschaftenToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
         Me.MannschaftenToolStripMenuItem.Text = "Mannschaften"
         '
-        'MannschaftStufe2HinzufügenToolStripMenuItem
+        'MsJuFla2AddMannschaft
         '
-        Me.MannschaftStufe2HinzufügenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportVonExcelToolStripMenuItem})
-        Me.MannschaftStufe2HinzufügenToolStripMenuItem.Name = "MannschaftStufe2HinzufügenToolStripMenuItem"
-        Me.MannschaftStufe2HinzufügenToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.MannschaftStufe2HinzufügenToolStripMenuItem.Text = "Mannschaft Stufe 2 hinzufügen"
+        Me.MsJuFla2AddMannschaft.Name = "MsJuFla2AddMannschaft"
+        Me.MsJuFla2AddMannschaft.Size = New System.Drawing.Size(239, 22)
+        Me.MsJuFla2AddMannschaft.Text = "Mannschaft Stufe 2 hinzufügen"
         '
-        'ImportVonExcelToolStripMenuItem
+        'MsJuFla3AddMannschaft
         '
-        Me.ImportVonExcelToolStripMenuItem.Name = "ImportVonExcelToolStripMenuItem"
-        Me.ImportVonExcelToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.ImportVonExcelToolStripMenuItem.Text = "Import von Excel"
+        Me.MsJuFla3AddMannschaft.Name = "MsJuFla3AddMannschaft"
+        Me.MsJuFla3AddMannschaft.Size = New System.Drawing.Size(239, 22)
+        Me.MsJuFla3AddMannschaft.Text = "Mannschaft Stufe 3 hinzufügen"
         '
-        'MannschaftStufe3HinzufügenToolStripMenuItem
+        'MsUebersichtMannschaften
         '
-        Me.MannschaftStufe3HinzufügenToolStripMenuItem.Name = "MannschaftStufe3HinzufügenToolStripMenuItem"
-        Me.MannschaftStufe3HinzufügenToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.MannschaftStufe3HinzufügenToolStripMenuItem.Text = "Mannschaft Stufe 3 hinzufügen"
-        '
-        'ÜbersichtMannschaftenToolStripMenuItem
-        '
-        Me.ÜbersichtMannschaftenToolStripMenuItem.Name = "ÜbersichtMannschaftenToolStripMenuItem"
-        Me.ÜbersichtMannschaftenToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.ÜbersichtMannschaftenToolStripMenuItem.Text = "Übersicht Mannschaften"
+        Me.MsUebersichtMannschaften.Name = "MsUebersichtMannschaften"
+        Me.MsUebersichtMannschaften.Size = New System.Drawing.Size(239, 22)
+        Me.MsUebersichtMannschaften.Text = "Übersicht Mannschaften"
         '
         'WettbewerbToolStripMenuItem
         '
-        Me.WettbewerbToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WettbewerbseingabeToolStripMenuItem})
+        Me.WettbewerbToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsWettbewerbseingabe})
         Me.WettbewerbToolStripMenuItem.Name = "WettbewerbToolStripMenuItem"
         Me.WettbewerbToolStripMenuItem.Size = New System.Drawing.Size(83, 20)
         Me.WettbewerbToolStripMenuItem.Text = "Wettbewerb"
         '
-        'WettbewerbseingabeToolStripMenuItem
+        'MsWettbewerbseingabe
         '
-        Me.WettbewerbseingabeToolStripMenuItem.Name = "WettbewerbseingabeToolStripMenuItem"
-        Me.WettbewerbseingabeToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.WettbewerbseingabeToolStripMenuItem.Text = "Wettbewerbseingabe"
+        Me.MsWettbewerbseingabe.Name = "MsWettbewerbseingabe"
+        Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(185, 22)
+        Me.MsWettbewerbseingabe.Text = "Wettbewerbseingabe"
         '
         'TcMain
         '
@@ -227,11 +218,14 @@ Partial Class FrmMain
         '
         'BtJuFla2Import
         '
-        Me.BtJuFla2Import.Location = New System.Drawing.Point(403, 6)
+        Me.BtJuFla2Import.Image = Global.JuFla_vb.My.Resources.Resources.icon
+        Me.BtJuFla2Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla2Import.Location = New System.Drawing.Point(620, 34)
         Me.BtJuFla2Import.Name = "BtJuFla2Import"
-        Me.BtJuFla2Import.Size = New System.Drawing.Size(97, 23)
+        Me.BtJuFla2Import.Size = New System.Drawing.Size(72, 39)
         Me.BtJuFla2Import.TabIndex = 14
         Me.BtJuFla2Import.Text = "Import"
+        Me.BtJuFla2Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla2Import.UseVisualStyleBackColor = True
         '
         'BtJuFla2PrintMember
@@ -394,7 +388,7 @@ Partial Class FrmMain
         '
         Me.CmsJuFla2Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla2RemoveMember})
         Me.CmsJuFla2Member.Name = "CmsJuFla2Teilnehmer"
-        Me.CmsJuFla2Member.Size = New System.Drawing.Size(188, 48)
+        Me.CmsJuFla2Member.Size = New System.Drawing.Size(188, 26)
         '
         'CmsJuFla2RemoveMember
         '
@@ -411,9 +405,9 @@ Partial Class FrmMain
         '
         Me.DgvJuFla2Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvJuFla2Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.StartnummerDataGridViewTextBoxColumn, Me.OrtDataGridViewTextBoxColumn})
-        Me.DgvJuFla2Mannschaften.Location = New System.Drawing.Point(632, -7)
+        Me.DgvJuFla2Mannschaften.Location = New System.Drawing.Point(955, -7)
         Me.DgvJuFla2Mannschaften.Name = "DgvJuFla2Mannschaften"
-        Me.DgvJuFla2Mannschaften.Size = New System.Drawing.Size(473, 57)
+        Me.DgvJuFla2Mannschaften.Size = New System.Drawing.Size(150, 59)
         Me.DgvJuFla2Mannschaften.TabIndex = 4
         Me.DgvJuFla2Mannschaften.Visible = False
         '
@@ -478,11 +472,14 @@ Partial Class FrmMain
         '
         'BtJuFla3Import
         '
-        Me.BtJuFla3Import.Location = New System.Drawing.Point(400, 12)
+        Me.BtJuFla3Import.Image = Global.JuFla_vb.My.Resources.Resources.icon
+        Me.BtJuFla3Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla3Import.Location = New System.Drawing.Point(617, 37)
         Me.BtJuFla3Import.Name = "BtJuFla3Import"
-        Me.BtJuFla3Import.Size = New System.Drawing.Size(97, 23)
+        Me.BtJuFla3Import.Size = New System.Drawing.Size(73, 39)
         Me.BtJuFla3Import.TabIndex = 17
         Me.BtJuFla3Import.Text = "Import"
+        Me.BtJuFla3Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla3Import.UseVisualStyleBackColor = True
         '
         'BtJuFla3PrintMember
@@ -568,20 +565,13 @@ Partial Class FrmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvJuFla3Member.AutoGenerateColumns = False
         Me.DgvJuFla3Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn3, Me.StartnummerDataGridViewTextBoxColumn3, Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewCheckBoxColumn, Me.ValEhNachweisDataGridViewCheckBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ComboNameDataGridViewTextBoxColumn})
+        Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.StartnummerDataGridViewTextBoxColumn3, Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewCheckBoxColumn, Me.ValEhNachweisDataGridViewCheckBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ComboNameDataGridViewTextBoxColumn})
         Me.DgvJuFla3Member.ContextMenuStrip = Me.CmsJuFla3Member
         Me.DgvJuFla3Member.DataSource = Me.BsJuFla3Member
         Me.DgvJuFla3Member.Location = New System.Drawing.Point(11, 89)
         Me.DgvJuFla3Member.Name = "DgvJuFla3Member"
         Me.DgvJuFla3Member.Size = New System.Drawing.Size(1143, 411)
         Me.DgvJuFla3Member.TabIndex = 2
-        '
-        'IDDataGridViewTextBoxColumn3
-        '
-        Me.IDDataGridViewTextBoxColumn3.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn3.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn3.Name = "IDDataGridViewTextBoxColumn3"
-        Me.IDDataGridViewTextBoxColumn3.Visible = False
         '
         'StartnummerDataGridViewTextBoxColumn3
         '
@@ -764,7 +754,7 @@ Partial Class FrmMain
 
     Friend WithEvents MsMain As MenuStrip
     Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents VeranstaltungsdatenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MsVeranstaltungsdaten As ToolStripMenuItem
     Friend WithEvents TcMain As TabControl
     Friend WithEvents TpJuFla2 As TabPage
     Friend WithEvents TpJuFla3 As TabPage
@@ -774,9 +764,9 @@ Partial Class FrmMain
     Friend WithEvents Label1 As Label
     Friend WithEvents DgvJuFla2Member As DataGridView
     Friend WithEvents MannschaftenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MannschaftStufe2HinzufügenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MannschaftStufe3HinzufügenToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ÜbersichtMannschaftenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MsJuFla2AddMannschaft As ToolStripMenuItem
+    Friend WithEvents MsJuFla3AddMannschaft As ToolStripMenuItem
+    Friend WithEvents MsUebersichtMannschaften As ToolStripMenuItem
     Friend WithEvents DgvJuFla3Mannschaften As DataGridView
     Friend WithEvents TbRoJuFla2Startnummer As TextBox
     Friend WithEvents Label2 As Label
@@ -784,9 +774,9 @@ Partial Class FrmMain
     Friend WithEvents Label3 As Label
     Friend WithEvents TiMain As Timer
     Friend WithEvents WettbewerbToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents WettbewerbseingabeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MsWettbewerbseingabe As ToolStripMenuItem
     Friend WithEvents BtJuFla2AddMember As Button
-    Friend WithEvents DatenbankLeerenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MsDtsLeeren As ToolStripMenuItem
     Friend WithEvents Label4 As Label
     Friend WithEvents CmsJuFla2Member As ContextMenuStrip
     Friend WithEvents CmsJuFla2RemoveMember As ToolStripMenuItem
@@ -823,7 +813,9 @@ Partial Class FrmMain
     Friend WithEvents BtJuFla3AddMember As Button
     Friend WithEvents BtJuFla2PrintMember As Button
     Friend WithEvents BtJuFla3PrintMember As Button
-    Friend WithEvents IDDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents BtJuFla2Import As Button
+    Friend WithEvents BtJuFla3Import As Button
+    Friend WithEvents CmsJuFla3RemoveMember As ToolStripMenuItem
     Friend WithEvents StartnummerDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents VornameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -836,8 +828,4 @@ Partial Class FrmMain
     Friend WithEvents ValEhNachweisDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents FinishedDataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
     Friend WithEvents ComboNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ImportVonExcelToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BtJuFla2Import As Button
-    Friend WithEvents BtJuFla3Import As Button
-    Friend WithEvents CmsJuFla3RemoveMember As ToolStripMenuItem
 End Class

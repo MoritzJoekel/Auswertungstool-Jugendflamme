@@ -4,22 +4,33 @@ Imports System.Data.OleDb
 Imports System.IO
 
 Public Class FrmMain
-    Public HomeStream As String = Application.UserAppDataPath
-    Public DataStream As String = HomeStream + "\JuFla_Data.xml"
-    Public TblImport As DataTable
-    Private Sub VeranstaltungsdatenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VeranstaltungsdatenToolStripMenuItem.Click
-        FrmVeranstaltung.Show()
-    End Sub
+    Public HomeStream As String = Application.UserAppDataPath ' --> Heimverzeichnis in AppData
+    Public DataStream As String = HomeStream + "\JuFla_Data.xml" ' --> Speicherort der XML der Datenbank
+    Public TblImport As DataTable ' --> Temporäre DataTable für Import aus Excel
+
     ''' <summary>
-    ''' Wird beim Laden der Anwendung aufgerufen
+    ''' Ruft FrmVeranstaltungsdaten auf
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Public Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MsVeranstaltungsdaten_Show(sender As Object, e As EventArgs) Handles MsVeranstaltungsdaten.Click
+        FrmVeranstaltung.Show()
+    End Sub
+    ''' <summary>
+    ''' Wird beim Laden der Anwendung aufgerufen, startet den Timer und ruft Initialisierung auf
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init(True)
         TiMain.Start()
     End Sub
 
+    ''' <summary>
+    ''' Initialisiert FrmMain, Title passt sich dem Wettbewerb an, wenn LoadDb = True wird die Datenbank aus der XML geladen
+    ''' --> Muss Public sein, da sie von Veranstaltungsdaten aufgerufen wird
+    ''' </summary>
+    ''' <param name="LoadDb">Unterscheidung, ob Datenbank geladen werden soll (True//False)</param>
     Public Sub Init(LoadDb As Boolean)
         If LoadDb = False Then
             Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
@@ -33,6 +44,11 @@ Public Class FrmMain
         End If
     End Sub
 
+    ''' <summary>
+    ''' Wird beim Schließen des Formulars aufgerufen, schreibt DtsJuFla in XML in den Homestream
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub FrmMain_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
         Try
             DtsJuFla.WriteXml(DataStream)
@@ -42,58 +58,57 @@ Public Class FrmMain
         TiMain.Stop()
     End Sub
 
-    Private Sub MannschaftStufe2HinzufügenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MannschaftStufe2HinzufügenToolStripMenuItem.Click
-        Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
-        Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
 
-        If Startnummer = 0 Then
-            If DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
-                Startnummer = 1
-            Else
-                Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
+    ''' <summary>
+    ''' Fügt eine Mannschaft zum Wettkampf hinzu, Abfrage Startnummer, Ortsbezeichnung
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    Private Sub AddMannschaft(Stufe As Integer)
+        Try
+            Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
+            Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
+
+            If Stufe = 2 Then
+                If Startnummer = 0 Then
+                    If DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
+                        Startnummer = 1
+                    Else
+                        Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
+                    End If
+                End If
+                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
+            ElseIf Stufe = 3 Then
+                If Startnummer = 0 Then
+                    If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
+                        Startnummer = 1
+                    Else
+                        Startnummer = DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
+                    End If
+                End If
+                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
             End If
-        End If
-        Try
-            DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
         Catch ex As Exception
             MsgBox(ex.Message)
+            Exit Sub
         End Try
     End Sub
 
-    Private Sub BtJuFla2Mannschaftloeschen_Click(sender As Object, e As EventArgs)
-        Try
-            For Each row As DataGridViewRow In DgvJuFla2Mannschaften.SelectedCells
-                DgvJuFla2Mannschaften.Rows.Remove(row)
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub ÜbersichtMannschaftenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÜbersichtMannschaftenToolStripMenuItem.Click
+    ''' <summary>
+    ''' Ruft die Mannschaftsübersicht auf, übergibt Datenquellen an FrmUebersichtMannschaften
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub UebersichtMannschaften_Show(sender As Object, e As EventArgs) Handles MsUebersichtMannschaften.Click
         FrmUebersicht_Mannschaften.BsJuFla2Mannschaften.DataSource = Me.DtsJuFla.TblJuFla2Mannschaften
         FrmUebersicht_Mannschaften.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla.TblJuFla3Mannschaften
         FrmUebersicht_Mannschaften.ShowDialog(Me)
     End Sub
 
-    Private Sub MannschaftStufe3HinzufügenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MannschaftStufe3HinzufügenToolStripMenuItem.Click
-        Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
-        Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
-
-        If Startnummer = 0 Then
-            If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) IsNot DBNull.Value Then
-                Startnummer = DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
-            Else
-                Startnummer = 1
-            End If
-        End If
-        Try
-            DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
-
+    ''' <summary>
+    ''' Überprüft im 100ms-Interval die Anzahl der Mitglieder einer Mannschaft, aktualisiert DgvMember
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub TiMain_Tick(sender As Object, e As EventArgs) Handles TiMain.Tick
         TbJuFla2AnzMember.Text = DgvJuFla2Member.Rows.Count
         TbJuFla3AnzBewerber.Text = DgvJuFla3Member.Rows.Count
@@ -101,13 +116,23 @@ Public Class FrmMain
         DgvJuFla3Member.Refresh()
     End Sub
 
-    Private Sub WettbewerbseingabeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WettbewerbseingabeToolStripMenuItem.Click
+    ''' <summary>
+    ''' Ruft die Wettbewerbseingabe auf, übergibt Datenquellen an FrmWettbewerbseingabe
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub Wettbewerbseingabe_Show(sender As Object, e As EventArgs) Handles MsWettbewerbseingabe.Click
         FrmWettbewerbseingabe.BsJuFla2Mannschaften.DataSource = Me.DtsJuFla.TblJuFla2Mannschaften
         FrmWettbewerbseingabe.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla.TblJuFla3Mannschaften
         FrmWettbewerbseingabe.ShowDialog(Me)
     End Sub
 
-    Private Sub DatenbankLeerenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatenbankLeerenToolStripMenuItem.Click
+    ''' <summary>
+    ''' Leert die aktuelle Datenbank, legt eine Backup-XML an
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub DtsJuFla_Clear(sender As Object, e As EventArgs) Handles MsDtsLeeren.Click
         Dim Result As MsgBoxResult = MsgBox("Wollen sie die Datenbank wirklich leeren?? (Backup wird erstellt)", MsgBoxStyle.YesNo)
         If Result = MsgBoxResult.Yes Then
             My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
@@ -186,8 +211,8 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click,
-            BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click
+    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click,
+        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -197,6 +222,8 @@ Public Class FrmMain
             Case sender Is BtJuFla3AddMember : AddMember(3)
             Case sender Is CmsJuFla2RemoveMember : RemoveMember(2)
             Case sender Is CmsJuFla3RemoveMember : RemoveMember(3)
+            Case sender Is MsJuFla2AddMannschaft : AddMannschaft(2)
+            Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
         End Select
     End Sub
 
@@ -219,7 +246,7 @@ Public Class FrmMain
 
         ' Konvertierung von Excel zu .CSV
         Dim worksheetName = "Jugendflamme"
-        Dim targetFile = HomeStream + "\Import.csv"
+        Dim targetFile = HomeStream + "\Import_temp.csv"
 
         Dim strConn As String = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" & sourceFile & "; Extended Properties=Excel 12.0"
         Dim conn As OleDbConnection
@@ -258,6 +285,7 @@ Public Class FrmMain
             End If
             If wrtr.BaseStream.ToString <> "" Then
                 wrtr.Close()
+                My.Computer.FileSystem.DeleteFile(targetFile)
             End If
         End Try
 
