@@ -14,7 +14,8 @@ Public Class FrmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub MsVeranstaltungsdaten_Show(sender As Object, e As EventArgs) Handles MsVeranstaltungsdaten.Click
-        FrmVeranstaltung.Show()
+        FrmVeranstaltung.BsEvents.DataSource = Me.DtsJuFla.TblEvents
+        FrmVeranstaltung.Show(Me)
     End Sub
     ''' <summary>
     ''' Wird beim Laden der Anwendung aufgerufen, startet den Timer und ruft Initialisierung auf
@@ -24,6 +25,8 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init(True)
         TiMain.Start()
+        TsCbVeranstaltung.ComboBox.DataSource = DtsJuFla.TblEvents
+        TsCbVeranstaltung.ComboBox.DisplayMember = "EventID"
     End Sub
 
     ''' <summary>
@@ -185,10 +188,11 @@ Public Class FrmMain
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 2",
                 .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
-                .PorportionalColumns = True,
+                .KeepRowsTogether = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
-                .PageNumbers = False
+                .PageNumbers = False,
+                .ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth
             }
             printer.PrintDataGridView(DgvJuFla2Member)
 
@@ -197,10 +201,10 @@ Public Class FrmMain
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 3",
                 .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
-                .PorportionalColumns = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
-                .PageNumbers = False
+                .PageNumbers = False,
+                .ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth
             }
             printer.PrintDataGridView(DgvJuFla3Member)
         End If
