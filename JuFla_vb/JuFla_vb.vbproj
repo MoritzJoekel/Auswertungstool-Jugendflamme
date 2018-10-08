@@ -128,6 +128,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Network.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmMain.resx">
@@ -176,6 +177,11 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\fire.ico" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\icon1.png" />
+    <None Include="Resources\printing-tool1.png" />
+    <None Include="Resources\add-button-inside-black-circle.png" />
     <None Include="Resources\icon.png" />
     <None Include="Resources\printing-tool.png" />
     <None Include="Resources\add.png" />

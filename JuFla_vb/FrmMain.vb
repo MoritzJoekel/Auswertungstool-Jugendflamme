@@ -222,7 +222,7 @@ Public Class FrmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click,
-        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click
+        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -234,6 +234,8 @@ Public Class FrmMain
             Case sender Is CmsJuFla3RemoveMember : RemoveMember(3)
             Case sender Is MsJuFla2AddMannschaft : AddMannschaft(2)
             Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
+            Case sender Is MsUpload : Network.UploadToFTP()
+            Case sender Is MsDownload : Network.DownloadFromFTP()
         End Select
     End Sub
 

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmWettbewerbseingabe
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,10 @@ Partial Class FrmWettbewerbseingabe
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWettbewerbseingabe))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.BtJuFla2ckeck = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -136,7 +137,7 @@ Partial Class FrmWettbewerbseingabe
         '
         'BtJuFla2ckeck
         '
-        Me.BtJuFla2ckeck.Image = Global.JuFla_vb.My.Resources.Resources.icon_checked
+        Me.BtJuFla2ckeck.Image = Global.JuFla_vb.My.Resources.Resources.checked
         Me.BtJuFla2ckeck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtJuFla2ckeck.Location = New System.Drawing.Point(6, 456)
         Me.BtJuFla2ckeck.Name = "BtJuFla2ckeck"
@@ -425,7 +426,7 @@ Partial Class FrmWettbewerbseingabe
         '
         'BtJuFla3Check
         '
-        Me.BtJuFla3Check.Image = Global.JuFla_vb.My.Resources.Resources.icon_checked
+        Me.BtJuFla3Check.Image = Global.JuFla_vb.My.Resources.Resources.checked
         Me.BtJuFla3Check.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtJuFla3Check.Location = New System.Drawing.Point(7, 456)
         Me.BtJuFla3Check.Name = "BtJuFla3Check"
@@ -709,6 +710,8 @@ Partial Class FrmWettbewerbseingabe
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(918, 518)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmWettbewerbseingabe"
         Me.Text = "FrmWettbewerbseingabe"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
