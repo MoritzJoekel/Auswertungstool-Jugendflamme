@@ -25,8 +25,8 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init(True)
         TiMain.Start()
-        TsCbVeranstaltung.ComboBox.DataSource = DtsJuFla.TblEvents
-        TsCbVeranstaltung.ComboBox.DisplayMember = "EventID"
+        MsCbVeranstaltung.ComboBox.DataSource = BsEvents
+        MsCbVeranstaltung.ComboBox.DisplayMember = "EventID"
     End Sub
 
     ''' <summary>
@@ -61,6 +61,13 @@ Public Class FrmMain
         TiMain.Stop()
     End Sub
 
+    ''' <summary>
+    ''' Aktualisiert die Member-Tabellen von FrmMain
+    ''' </summary>
+    Public Sub RefreshData()
+        DgvJuFla2Member.Refresh()
+        DgvJuFla3Member.Refresh()
+    End Sub
 
     ''' <summary>
     ''' Fügt eine Mannschaft zum Wettkampf hinzu, Abfrage Startnummer, Ortsbezeichnung
@@ -70,6 +77,7 @@ Public Class FrmMain
         Try
             Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
             Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
+            Dim EventID As String = MsCbVeranstaltung.Text
 
             If Stufe = 2 Then
                 If Startnummer = 0 Then
@@ -79,7 +87,7 @@ Public Class FrmMain
                         Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
                     End If
                 End If
-                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
+                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
             ElseIf Stufe = 3 Then
                 If Startnummer = 0 Then
                     If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
@@ -88,7 +96,7 @@ Public Class FrmMain
                         Startnummer = DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
                     End If
                 End If
-                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
+                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -115,8 +123,6 @@ Public Class FrmMain
     Private Sub TiMain_Tick(sender As Object, e As EventArgs) Handles TiMain.Tick
         TbJuFla2AnzMember.Text = DgvJuFla2Member.Rows.Count
         TbJuFla3AnzBewerber.Text = DgvJuFla3Member.Rows.Count
-        DgvJuFla2Member.Refresh()
-        DgvJuFla3Member.Refresh()
     End Sub
 
     ''' <summary>
@@ -330,8 +336,8 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
-                ' Erstellt eine neue Row in JuFla2Member in der Datenbank
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name & ", " & Vorname)
+                ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
             Next
 
         ElseIf Stufe = 3 Then
@@ -344,9 +350,11 @@ Public Class FrmMain
                 Dim Geschlecht As String = row(2)
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
+                Dim a As Date = "01.01.2000"
+                a = a.ToShortDateString
 
-                ' Erstellt eine neu eRow in JuFla2Member in der Datenbank
-                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name & ", " & Vorname, False)
+                ' Erstellt eine neue Row in JuFla3Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Nothing, False)
             Next
         End If
     End Sub

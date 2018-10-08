@@ -39,19 +39,15 @@
 
     Private Sub BtJuFla2ckeck_Click(sender As Object, e As EventArgs) Handles BtJuFla2ckeck.Click
         DtsJuFla.WriteXml(FrmMain.DataStream)
+        FrmMain.RefreshData()
     End Sub
 
-    Private Sub TbJuFla2ValFwPrak_KeyPress(keyAscii As Integer)
-        Dim Zugelassen As String = "123456"
-
-        If InStr(1, Zugelassen, Chr(keyAscii)) = 0 Then
-            ' Falls es sich bei dem Zeichen um ein unzulässiges Zeichen
-            ' handelt, wird die Eingabe durch Setzen von "KeyAscii = 0" unterbunden
-            keyAscii = 0
-        End If
-    End Sub
-
-    Public Function CheckJuFla(Stufe As Integer)
+    ''' <summary>
+    ''' Überprüft, ob Bedingungen erfüllt sind. Wenn ja wird finished in der Datenbank auf True gesetzt
+    ''' </summary>
+    ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
+    ''' <returns></returns>
+    Private Function CheckJuFla(Stufe As Integer)
         If Stufe = 2 Then
             Dim ValJuFla2FwPrak As Integer
 
@@ -142,5 +138,8 @@
 
     End Function
 
-
+    Private Sub BtJuFla3Check_Click(sender As Object, e As EventArgs) Handles BtJuFla3Check.Click
+        DtsJuFla.WriteXml(FrmMain.DataStream)
+        FrmMain.RefreshData()
+    End Sub
 End Class
