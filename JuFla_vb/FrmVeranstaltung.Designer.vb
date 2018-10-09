@@ -42,7 +42,7 @@ Partial Class FrmVeranstaltung
         '
         'BtSave
         '
-        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.checked
+        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.Ico_checked
         Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtSave.Location = New System.Drawing.Point(881, 451)
         Me.BtSave.Name = "BtSave"

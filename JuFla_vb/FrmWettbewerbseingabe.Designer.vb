@@ -137,7 +137,7 @@ Partial Class FrmWettbewerbseingabe
         '
         'BtJuFla2ckeck
         '
-        Me.BtJuFla2ckeck.Image = Global.JuFla_vb.My.Resources.Resources.checked
+        Me.BtJuFla2ckeck.Image = Global.JuFla_vb.My.Resources.Resources.Ico_checked
         Me.BtJuFla2ckeck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtJuFla2ckeck.Location = New System.Drawing.Point(6, 456)
         Me.BtJuFla2ckeck.Name = "BtJuFla2ckeck"
@@ -426,7 +426,7 @@ Partial Class FrmWettbewerbseingabe
         '
         'BtJuFla3Check
         '
-        Me.BtJuFla3Check.Image = Global.JuFla_vb.My.Resources.Resources.checked
+        Me.BtJuFla3Check.Image = Global.JuFla_vb.My.Resources.Resources.Ico_checked
         Me.BtJuFla3Check.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtJuFla3Check.Location = New System.Drawing.Point(7, 456)
         Me.BtJuFla3Check.Name = "BtJuFla3Check"

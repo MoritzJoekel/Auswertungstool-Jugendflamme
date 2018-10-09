@@ -168,21 +168,18 @@ Partial Class FrmUebersicht_Mannschaften
         '
         'StartlisteStufe2DruckenToolStripMenuItem
         '
-        Me.StartlisteStufe2DruckenToolStripMenuItem.Image = Global.JuFla_vb.My.Resources.Resources.printing_tool
         Me.StartlisteStufe2DruckenToolStripMenuItem.Name = "StartlisteStufe2DruckenToolStripMenuItem"
         Me.StartlisteStufe2DruckenToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.StartlisteStufe2DruckenToolStripMenuItem.Text = "Startliste Stufe 2 drucken"
         '
         'StartlisteStufe3DruckenToolStripMenuItem
         '
-        Me.StartlisteStufe3DruckenToolStripMenuItem.Image = Global.JuFla_vb.My.Resources.Resources.printing_tool
         Me.StartlisteStufe3DruckenToolStripMenuItem.Name = "StartlisteStufe3DruckenToolStripMenuItem"
         Me.StartlisteStufe3DruckenToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.StartlisteStufe3DruckenToolStripMenuItem.Text = "Startliste Stufe 3 drucken"
         '
         'FensterSchließenToolStripMenuItem
         '
-        Me.FensterSchließenToolStripMenuItem.Image = Global.JuFla_vb.My.Resources.Resources.delete
         Me.FensterSchließenToolStripMenuItem.Name = "FensterSchließenToolStripMenuItem"
         Me.FensterSchließenToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.FensterSchließenToolStripMenuItem.Text = "Fenster schließen"

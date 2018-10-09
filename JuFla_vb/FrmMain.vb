@@ -27,6 +27,12 @@ Public Class FrmMain
         TiMain.Start()
         MsCbVeranstaltung.ComboBox.DataSource = BsEvents
         MsCbVeranstaltung.ComboBox.DisplayMember = "EventID"
+
+        If MsCbVeranstaltung.ComboBox.Items.Count = 0 Then
+            MsVeranstaltungsdaten_Show(Nothing, Nothing)
+            MsgBox("Sind keine Veranstaltungsdaten vorhanden! Legen sie eine Veranstaltung an!", MsgBoxStyle.Exclamation)
+
+        End If
     End Sub
 
     ''' <summary>
@@ -221,7 +227,7 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click,
+    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click,
         BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
@@ -236,6 +242,7 @@ Public Class FrmMain
             Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
             Case sender Is MsUpload : Network.UploadToFTP()
             Case sender Is MsDownload : Network.DownloadFromFTP()
+            Case sender Is MsWettbInfo
         End Select
     End Sub
 
@@ -338,6 +345,11 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
+                If ExactAge(Geburtsdatum) < 13 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 13 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
+                End If
+
                 ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
                 DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
             Next
@@ -352,8 +364,11 @@ Public Class FrmMain
                 Dim Geschlecht As String = row(2)
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
-                Dim a As Date = "01.01.2000"
-                a = a.ToShortDateString
+
+                If ExactAge(Geburtsdatum) < 15 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 15 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
+                End If
 
                 ' Erstellt eine neue Row in JuFla3Member in der Datenbank // ComboName wird in Dataset per Expression generiert
                 DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Nothing, False)
@@ -390,4 +405,31 @@ Public Class FrmMain
             End Try
         End If
     End Sub
+
+    ''' <summary>
+    ''' Berechnet exaktes Alter am Abnahmetag
+    ''' </summary>
+    ''' <param name="Birthday">Zu prüfendes Geburtsdatum</param>
+    ''' <returns>Alter in Jahren</returns>
+    Private Function ExactAge(ByVal Birthday As System.DateTime) As Integer
+        Dim nMonth As Integer
+        Dim nYears As Integer
+        Dim Abnahmedatum As Date = TbAbnahmedatum.Text
+
+        ' Alter (Jahre) anhand Monatsdifferenz / 12 ermitteln
+        nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)
+
+        ' Wenn Geburtsmonat = aktueller Monat
+        ' Prüfen, ob Geburstag schon war oder noch kommt
+        ' und ggf. das Alter um 1 Jahr verringern
+        nMonth = DatePart(DateInterval.Month, Birthday)
+
+        If nMonth = DatePart(DateInterval.Month, Abnahmedatum) Then
+            If DatePart(DateInterval.Day, Birthday) > DatePart(DateInterval.Day, Abnahmedatum) Then
+                nYears += -1
+            End If
+        End If
+
+        Return nYears
+    End Function
 End Class

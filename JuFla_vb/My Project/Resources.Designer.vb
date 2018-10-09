@@ -63,9 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property add() As System.Drawing.Bitmap
+        Friend ReadOnly Property Ico_add() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("add", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Ico_add", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -73,9 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property add_button_inside_black_circle() As System.Drawing.Bitmap
+        Friend ReadOnly Property Ico_checked() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("add-button-inside-black-circle", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Ico_checked", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -83,9 +83,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property checked() As System.Drawing.Bitmap
+        Friend ReadOnly Property Ico_excel() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("checked", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Ico_excel", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -93,9 +93,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property delete() As System.Drawing.Bitmap
+        Friend ReadOnly Property Ico_fire() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("delete", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Ico_fire", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -103,59 +103,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property fire() As System.Drawing.Bitmap
+        Friend ReadOnly Property Ico_print() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("fire", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property icon() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("icon", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property icon_checked() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("icon_checked", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property icon1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("icon1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property printing_tool() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("printing-tool", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property printing_tool1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("printing-tool1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Ico_print", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
