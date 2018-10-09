@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("Auswertungstool Jugendflamme")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("Kreisjugendfeuerwehr Fulda")>
-<Assembly: AssemblyProduct("JuFla_vb")>
+<Assembly: AssemblyProduct("Auswertungstool Jugendflamme")>
 <Assembly: AssemblyCopyright("Copyright © Moritz Jökel  2018")>
 <Assembly: AssemblyTrademark("")>
 
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.1.0.0")>
+<Assembly: AssemblyFileVersion("1.1.0.0")>
 <Assembly: NeutralResourcesLanguage("de")>

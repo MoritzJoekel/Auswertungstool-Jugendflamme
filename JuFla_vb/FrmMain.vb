@@ -14,7 +14,8 @@ Public Class FrmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub MsVeranstaltungsdaten_Show(sender As Object, e As EventArgs) Handles MsVeranstaltungsdaten.Click
-        FrmVeranstaltung.Show()
+        FrmVeranstaltung.BsEvents.DataSource = Me.DtsJuFla.TblEvents
+        FrmVeranstaltung.Show(Me)
     End Sub
     ''' <summary>
     ''' Wird beim Laden der Anwendung aufgerufen, startet den Timer und ruft Initialisierung auf
@@ -24,6 +25,14 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init(True)
         TiMain.Start()
+        MsCbVeranstaltung.ComboBox.DataSource = BsEvents
+        MsCbVeranstaltung.ComboBox.DisplayMember = "EventID"
+
+        If MsCbVeranstaltung.ComboBox.Items.Count = 0 Then
+            MsVeranstaltungsdaten_Show(Nothing, Nothing)
+            MsgBox("Sind keine Veranstaltungsdaten vorhanden! Legen sie eine Veranstaltung an!", MsgBoxStyle.Exclamation)
+
+        End If
     End Sub
 
     ''' <summary>
@@ -32,10 +41,7 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="LoadDb">Unterscheidung, ob Datenbank geladen werden soll (True//False)</param>
     Public Sub Init(LoadDb As Boolean)
-        If LoadDb = False Then
-            Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
-        ElseIf LoadDb = True Then
-            Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
+        If LoadDb = True Then
             Try
                 DtsJuFla.ReadXml(DataStream)
             Catch ex As Exception
@@ -58,6 +64,13 @@ Public Class FrmMain
         TiMain.Stop()
     End Sub
 
+    ''' <summary>
+    ''' Aktualisiert die Member-Tabellen von FrmMain
+    ''' </summary>
+    Public Sub RefreshData()
+        DgvJuFla2Member.Refresh()
+        DgvJuFla3Member.Refresh()
+    End Sub
 
     ''' <summary>
     ''' Fügt eine Mannschaft zum Wettkampf hinzu, Abfrage Startnummer, Ortsbezeichnung
@@ -67,6 +80,7 @@ Public Class FrmMain
         Try
             Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
             Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
+            Dim EventID As String = MsCbVeranstaltung.Text
 
             If Stufe = 2 Then
                 If Startnummer = 0 Then
@@ -76,7 +90,7 @@ Public Class FrmMain
                         Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
                     End If
                 End If
-                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
+                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
             ElseIf Stufe = 3 Then
                 If Startnummer = 0 Then
                     If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
@@ -85,7 +99,7 @@ Public Class FrmMain
                         Startnummer = DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
                     End If
                 End If
-                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort)
+                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -112,8 +126,6 @@ Public Class FrmMain
     Private Sub TiMain_Tick(sender As Object, e As EventArgs) Handles TiMain.Tick
         TbJuFla2AnzMember.Text = DgvJuFla2Member.Rows.Count
         TbJuFla3AnzBewerber.Text = DgvJuFla3Member.Rows.Count
-        DgvJuFla2Member.Refresh()
-        DgvJuFla3Member.Refresh()
     End Sub
 
     ''' <summary>
@@ -185,10 +197,11 @@ Public Class FrmMain
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 2",
                 .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
-                .PorportionalColumns = True,
+                .KeepRowsTogether = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
-                .PageNumbers = False
+                .PageNumbers = False,
+                .ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth
             }
             printer.PrintDataGridView(DgvJuFla2Member)
 
@@ -197,10 +210,10 @@ Public Class FrmMain
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 3",
                 .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
-                .PorportionalColumns = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
-                .PageNumbers = False
+                .PageNumbers = False,
+                .ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth
             }
             printer.PrintDataGridView(DgvJuFla3Member)
         End If
@@ -211,8 +224,8 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click,
-        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click
+    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click, MsExport.Click,
+        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -224,6 +237,10 @@ Public Class FrmMain
             Case sender Is CmsJuFla3RemoveMember : RemoveMember(3)
             Case sender Is MsJuFla2AddMannschaft : AddMannschaft(2)
             Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
+            Case sender Is MsUpload : UploadToFTP()
+            Case sender Is MsDownload : DownloadFromFTP()
+            Case sender Is MsWettbInfo
+            Case sender Is MsExport : LocalExport()
         End Select
     End Sub
 
@@ -326,8 +343,13 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
-                ' Erstellt eine neue Row in JuFla2Member in der Datenbank
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name & ", " & Vorname)
+                If ExactAge(Geburtsdatum) < 13 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 13 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
+                End If
+
+                ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
             Next
 
         ElseIf Stufe = 3 Then
@@ -341,8 +363,13 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
-                ' Erstellt eine neu eRow in JuFla2Member in der Datenbank
-                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name & ", " & Vorname, False)
+                If ExactAge(Geburtsdatum) < 15 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 15 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
+                End If
+
+                ' Erstellt eine neue Row in JuFla3Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Nothing, False)
             Next
         End If
     End Sub
@@ -367,7 +394,7 @@ Public Class FrmMain
 
             Try
                 Dim index As Integer = DgvJuFla3Member.CurrentCell.RowIndex
-                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla3Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla3Member.Rows(index).Cells(0).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
                 If result = MsgBoxResult.Yes Then
                     DgvJuFla3Member.Rows.RemoveAt(index)
                 End If
@@ -375,5 +402,107 @@ Public Class FrmMain
                 MsgBox(ex.Message)
             End Try
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Berechnet exaktes Alter am Abnahmetag
+    ''' </summary>
+    ''' <param name="Birthday">Zu prüfendes Geburtsdatum</param>
+    ''' <returns>Alter in Jahren</returns>
+    Private Function ExactAge(ByVal Birthday As System.DateTime) As Integer
+        Dim nMonth As Integer
+        Dim nYears As Integer
+        Dim Abnahmedatum As Date = TbAbnahmedatum.Text
+
+        ' Alter (Jahre) anhand Monatsdifferenz / 12 ermitteln
+        nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)
+
+        ' Wenn Geburtsmonat = aktueller Monat
+        ' Prüfen, ob Geburstag schon war oder noch kommt
+        ' und ggf. das Alter um 1 Jahr verringern
+        nMonth = DatePart(DateInterval.Month, Birthday)
+
+        If nMonth = DatePart(DateInterval.Month, Abnahmedatum) Then
+            If DatePart(DateInterval.Day, Birthday) > DatePart(DateInterval.Day, Abnahmedatum) Then
+                nYears += -1
+            End If
+        End If
+
+        Return nYears
+    End Function
+
+    ''' <summary>
+    ''' Exportiert die Datenbank-XML in ein variables Verzeichnis. Ruft einen SaveFileDialog auf
+    ''' </summary>
+    Private Sub LocalExport()
+        Try
+            Dim sfd As SaveFileDialog = New SaveFileDialog With {
+                .DefaultExt = ".xml",
+                .AddExtension = True,
+                .FileName = "JuFla_Data_Export_" & DateAndTime.Now.ToShortDateString & ".xml",
+                .Filter = "Extensible Markup Language | .xml"
+            }
+
+            Dim savepath As String = sfd.FileName()
+            Dim result As DialogResult = sfd.ShowDialog()
+            If result <> DialogResult.OK Then
+                Exit Sub
+            End If
+
+            DtsJuFla.WriteXml(savepath)
+            NiMain.BalloonTipText = "Datenbank erfolgreich nach " & savepath & " exportiert."
+            NiMain.ShowBalloonTip(2000)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Läd die Datenbank-XML vom definierten Server herunter und läd die Db neu
+    ''' </summary>
+    Private Sub DownloadFromFTP()
+        Try
+            My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
+            DtsJuFla.Clear()
+
+            If My.Computer.FileSystem.FileExists(HomeStream + "\JuFla_Data_Down.xml") Then
+                My.Computer.FileSystem.DeleteFile(HomeStream + "\JuFla_Data_Down.xml")
+            End If
+
+            Dim serverAddress As String = "ftp://moritzjoekel.bplaced.net/JuFlaUpload.xml"
+
+            NiMain.BalloonTipText = "Download initiiert! Server: " & serverAddress
+            NiMain.ShowBalloonTip(2000)
+
+            My.Computer.Network.DownloadFile(serverAddress, HomeStream + "\JuFla_Data_Down.xml", "moritzjoekel_jufla", "Ww5bTjPev6NHL4uZ")
+
+            System.Threading.Thread.Sleep(2000)
+
+            DtsJuFla.ReadXml(HomeStream + "\JuFla_Data_Down.xml")
+            DtsJuFla.AcceptChanges()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Läd die bestehende Datenbank-XML auf einen definierten Server hoch
+    ''' </summary>
+    Private Sub UploadToFTP()
+        Try
+            Dim serverAddress As String = "ftp://moritzjoekel.bplaced.net/JuFlaUpload.xml"
+
+            DtsJuFla.WriteXml(DataStream)
+            NiMain.BalloonTipText = "Upload initiiert! Server: " & serverAddress
+            NiMain.ShowBalloonTip(2000)
+
+            My.Computer.Network.UploadFile(DataStream, serverAddress, "moritzjoekel_jufla", "Ww5bTjPev6NHL4uZ")
+            NiMain.BalloonTipText = "Upload abgeschlossen"
+            NiMain.ShowBalloonTip(2000)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        End Try
+
     End Sub
 End Class

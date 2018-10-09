@@ -22,158 +22,140 @@ Partial Class FrmVeranstaltung
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DpDatum = New System.Windows.Forms.DateTimePicker()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmVeranstaltung))
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.BsEvents = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
         Me.BtSave = New System.Windows.Forms.Button()
-        Me.TbAbnahmeleiter = New System.Windows.Forms.TextBox()
-        Me.TbOrt = New System.Windows.Forms.TextBox()
-        Me.TbLandkreis = New System.Windows.Forms.TextBox()
-        Me.TbBundesland = New System.Windows.Forms.TextBox()
+        Me.EventIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AbnahmeortDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AbnahmedatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AbnahmeleiterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LandkreisDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
+        'DataGridView1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 26)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(106, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Veranstaltungsdatum"
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.EventIDDataGridViewTextBoxColumn, Me.AbnahmeortDataGridViewTextBoxColumn, Me.AbnahmedatumDataGridViewTextBoxColumn, Me.AbnahmeleiterDataGridViewTextBoxColumn, Me.LandDataGridViewTextBoxColumn, Me.LandkreisDataGridViewTextBoxColumn, Me.IDDataGridViewTextBoxColumn})
+        Me.DataGridView1.DataSource = Me.BsEvents
+        Me.DataGridView1.Location = New System.Drawing.Point(21, 12)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(832, 473)
+        Me.DataGridView1.TabIndex = 12
         '
-        'DpDatum
+        'BsEvents
         '
-        Me.DpDatum.Checked = False
-        Me.DpDatum.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.JuFla_vb.My.MySettings.Default, "RsDate", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.DpDatum.Location = New System.Drawing.Point(139, 20)
-        Me.DpDatum.Name = "DpDatum"
-        Me.DpDatum.Size = New System.Drawing.Size(200, 20)
-        Me.DpDatum.TabIndex = 1
-        Me.DpDatum.Value = Global.JuFla_vb.My.MySettings.Default.RsDate
+        Me.BsEvents.DataMember = "TblEvents"
+        Me.BsEvents.DataSource = Me.DtsJuFla
         '
-        'Label2
+        'DtsJuFla
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 74)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(63, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Bundesland"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 129)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(53, 13)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Landkreis"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 185)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(89, 13)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Veranstaltungsort"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 301)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(74, 13)
-        Me.Label5.TabIndex = 8
-        Me.Label5.Text = "Abnahmeleiter"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.DtsJuFla.DataSetName = "DtsJuFla"
+        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'BtSave
         '
-        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.icon_checked
+        Me.BtSave.Image = Global.JuFla_vb.My.Resources.Resources.Ico_checked
         Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtSave.Location = New System.Drawing.Point(221, 424)
+        Me.BtSave.Location = New System.Drawing.Point(881, 451)
         Me.BtSave.Name = "BtSave"
-        Me.BtSave.Size = New System.Drawing.Size(148, 34)
+        Me.BtSave.Size = New System.Drawing.Size(90, 34)
         Me.BtSave.TabIndex = 10
-        Me.BtSave.Text = "Veranstaltung erstellen"
+        Me.BtSave.Text = "Schließen"
         Me.BtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtSave.UseVisualStyleBackColor = True
         '
-        'TbAbnahmeleiter
+        'EventIDDataGridViewTextBoxColumn
         '
-        Me.TbAbnahmeleiter.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsAbnahmeleiter", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TbAbnahmeleiter.Location = New System.Drawing.Point(139, 298)
-        Me.TbAbnahmeleiter.Name = "TbAbnahmeleiter"
-        Me.TbAbnahmeleiter.Size = New System.Drawing.Size(200, 20)
-        Me.TbAbnahmeleiter.TabIndex = 9
-        Me.TbAbnahmeleiter.Text = Global.JuFla_vb.My.MySettings.Default.RsAbnahmeleiter
+        Me.EventIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.EventIDDataGridViewTextBoxColumn.DataPropertyName = "EventID"
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver
+        Me.EventIDDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
+        Me.EventIDDataGridViewTextBoxColumn.DividerWidth = 5
+        Me.EventIDDataGridViewTextBoxColumn.HeaderText = "EventID"
+        Me.EventIDDataGridViewTextBoxColumn.Name = "EventIDDataGridViewTextBoxColumn"
+        Me.EventIDDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EventIDDataGridViewTextBoxColumn.ToolTipText = "Wird automatisch generiert!"
+        Me.EventIDDataGridViewTextBoxColumn.Width = 76
         '
-        'TbOrt
+        'AbnahmeortDataGridViewTextBoxColumn
         '
-        Me.TbOrt.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsOrt", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TbOrt.Location = New System.Drawing.Point(139, 182)
-        Me.TbOrt.Name = "TbOrt"
-        Me.TbOrt.Size = New System.Drawing.Size(200, 20)
-        Me.TbOrt.TabIndex = 7
-        Me.TbOrt.Text = Global.JuFla_vb.My.MySettings.Default.RsOrt
+        Me.AbnahmeortDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.AbnahmeortDataGridViewTextBoxColumn.DataPropertyName = "Abnahmeort"
+        Me.AbnahmeortDataGridViewTextBoxColumn.HeaderText = "Abnahmeort"
+        Me.AbnahmeortDataGridViewTextBoxColumn.Name = "AbnahmeortDataGridViewTextBoxColumn"
         '
-        'TbLandkreis
+        'AbnahmedatumDataGridViewTextBoxColumn
         '
-        Me.TbLandkreis.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsLandkreis", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TbLandkreis.Location = New System.Drawing.Point(139, 126)
-        Me.TbLandkreis.Name = "TbLandkreis"
-        Me.TbLandkreis.Size = New System.Drawing.Size(200, 20)
-        Me.TbLandkreis.TabIndex = 5
-        Me.TbLandkreis.Text = Global.JuFla_vb.My.MySettings.Default.RsLandkreis
+        Me.AbnahmedatumDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.AbnahmedatumDataGridViewTextBoxColumn.DataPropertyName = "Abnahmedatum"
+        Me.AbnahmedatumDataGridViewTextBoxColumn.HeaderText = "Abnahmedatum"
+        Me.AbnahmedatumDataGridViewTextBoxColumn.Name = "AbnahmedatumDataGridViewTextBoxColumn"
         '
-        'TbBundesland
+        'AbnahmeleiterDataGridViewTextBoxColumn
         '
-        Me.TbBundesland.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.JuFla_vb.My.MySettings.Default, "RsBundesland", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TbBundesland.Location = New System.Drawing.Point(139, 71)
-        Me.TbBundesland.Name = "TbBundesland"
-        Me.TbBundesland.Size = New System.Drawing.Size(200, 20)
-        Me.TbBundesland.TabIndex = 3
-        Me.TbBundesland.Text = Global.JuFla_vb.My.MySettings.Default.RsBundesland
+        Me.AbnahmeleiterDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.AbnahmeleiterDataGridViewTextBoxColumn.DataPropertyName = "Abnahmeleiter"
+        Me.AbnahmeleiterDataGridViewTextBoxColumn.HeaderText = "Abnahmeleiter"
+        Me.AbnahmeleiterDataGridViewTextBoxColumn.Name = "AbnahmeleiterDataGridViewTextBoxColumn"
+        '
+        'LandDataGridViewTextBoxColumn
+        '
+        Me.LandDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.LandDataGridViewTextBoxColumn.DataPropertyName = "Land"
+        Me.LandDataGridViewTextBoxColumn.HeaderText = "Land"
+        Me.LandDataGridViewTextBoxColumn.Name = "LandDataGridViewTextBoxColumn"
+        '
+        'LandkreisDataGridViewTextBoxColumn
+        '
+        Me.LandkreisDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.LandkreisDataGridViewTextBoxColumn.DataPropertyName = "Landkreis"
+        Me.LandkreisDataGridViewTextBoxColumn.HeaderText = "Landkreis"
+        Me.LandkreisDataGridViewTextBoxColumn.Name = "LandkreisDataGridViewTextBoxColumn"
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        Me.IDDataGridViewTextBoxColumn.Visible = False
         '
         'FrmVeranstaltung
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(394, 480)
+        Me.ClientSize = New System.Drawing.Size(983, 497)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.BtSave)
-        Me.Controls.Add(Me.TbAbnahmeleiter)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TbOrt)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TbLandkreis)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TbBundesland)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.DpDatum)
-        Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "FrmVeranstaltung"
-        Me.Text = "FrmVeranstaltung"
+        Me.Text = "Veranstaltungsdaten"
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Label1 As Label
-    Friend WithEvents DpDatum As DateTimePicker
-    Friend WithEvents Label2 As Label
-    Friend WithEvents TbBundesland As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents TbLandkreis As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents TbOrt As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents TbAbnahmeleiter As TextBox
     Friend WithEvents BtSave As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents BsEvents As BindingSource
+    Friend WithEvents DtsJuFla As DtsJuFla
+    Friend WithEvents EventIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AbnahmeortDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AbnahmedatumDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AbnahmeleiterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents LandDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents LandkreisDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

@@ -33,9 +33,15 @@ Partial Public Class DtsJuFla
     
     Private tableTblJuFla3Member As TblJuFla3MemberDataTable
     
+    Private tableTblEvents As TblEventsDataTable
+    
     Private relationTblJuFla2Mannschaften_TblJuFla2Member As Global.System.Data.DataRelation
     
     Private relationTblJuFla3Mannschaften_TblJuFla3Member As Global.System.Data.DataRelation
+    
+    Private relationTblEvents_TblJuFla2Mannschaften As Global.System.Data.DataRelation
+    
+    Private relationTblEvents_TblJuFla3Mannschaften As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -49,6 +55,7 @@ Partial Public Class DtsJuFla
         AddHandler MyBase.Tables.CollectionChanged, schemaChangedHandler
         AddHandler MyBase.Relations.CollectionChanged, schemaChangedHandler
         Me.EndInit
+        Me.InitExpressions
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -60,6 +67,9 @@ Partial Public Class DtsJuFla
             Dim schemaChangedHandler1 As Global.System.ComponentModel.CollectionChangeEventHandler = AddressOf Me.SchemaChanged
             AddHandler Me.Tables.CollectionChanged, schemaChangedHandler1
             AddHandler Me.Relations.CollectionChanged, schemaChangedHandler1
+            If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.ExcludeSchema) Then
+                Me.InitExpressions
+            End If
             Return
         End If
         Dim strSchema As String = CType(info.GetValue("XmlSchema", GetType(String)),String)
@@ -78,6 +88,9 @@ Partial Public Class DtsJuFla
             If (Not (ds.Tables("TblJuFla3Member")) Is Nothing) Then
                 MyBase.Tables.Add(New TblJuFla3MemberDataTable(ds.Tables("TblJuFla3Member")))
             End If
+            If (Not (ds.Tables("TblEvents")) Is Nothing) Then
+                MyBase.Tables.Add(New TblEventsDataTable(ds.Tables("TblEvents")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -88,6 +101,7 @@ Partial Public Class DtsJuFla
             Me.InitVars
         Else
             Me.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
+            Me.InitExpressions
         End If
         Me.GetSerializationData(info, context)
         Dim schemaChangedHandler As Global.System.ComponentModel.CollectionChangeEventHandler = AddressOf Me.SchemaChanged
@@ -137,6 +151,16 @@ Partial Public Class DtsJuFla
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property TblEvents() As TblEventsDataTable
+        Get
+            Return Me.tableTblEvents
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -179,6 +203,7 @@ Partial Public Class DtsJuFla
     Public Overrides Function Clone() As Global.System.Data.DataSet
         Dim cln As DtsJuFla = CType(MyBase.Clone,DtsJuFla)
         cln.InitVars
+        cln.InitExpressions
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
     End Function
@@ -213,6 +238,9 @@ Partial Public Class DtsJuFla
             End If
             If (Not (ds.Tables("TblJuFla3Member")) Is Nothing) Then
                 MyBase.Tables.Add(New TblJuFla3MemberDataTable(ds.Tables("TblJuFla3Member")))
+            End If
+            If (Not (ds.Tables("TblEvents")) Is Nothing) Then
+                MyBase.Tables.Add(New TblEventsDataTable(ds.Tables("TblEvents")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -270,8 +298,16 @@ Partial Public Class DtsJuFla
                 Me.tableTblJuFla3Member.InitVars
             End If
         End If
+        Me.tableTblEvents = CType(MyBase.Tables("TblEvents"),TblEventsDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableTblEvents) Is Nothing) Then
+                Me.tableTblEvents.InitVars
+            End If
+        End If
         Me.relationTblJuFla2Mannschaften_TblJuFla2Member = Me.Relations("TblJuFla2Mannschaften_TblJuFla2Member")
         Me.relationTblJuFla3Mannschaften_TblJuFla3Member = Me.Relations("TblJuFla3Mannschaften_TblJuFla3Member")
+        Me.relationTblEvents_TblJuFla2Mannschaften = Me.Relations("TblEvents_TblJuFla2Mannschaften")
+        Me.relationTblEvents_TblJuFla3Mannschaften = Me.Relations("TblEvents_TblJuFla3Mannschaften")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -284,16 +320,22 @@ Partial Public Class DtsJuFla
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableTblJuFla2Mannschaften = New TblJuFla2MannschaftenDataTable()
         MyBase.Tables.Add(Me.tableTblJuFla2Mannschaften)
-        Me.tableTblJuFla2Member = New TblJuFla2MemberDataTable()
+        Me.tableTblJuFla2Member = New TblJuFla2MemberDataTable(false)
         MyBase.Tables.Add(Me.tableTblJuFla2Member)
         Me.tableTblJuFla3Mannschaften = New TblJuFla3MannschaftenDataTable()
         MyBase.Tables.Add(Me.tableTblJuFla3Mannschaften)
-        Me.tableTblJuFla3Member = New TblJuFla3MemberDataTable()
+        Me.tableTblJuFla3Member = New TblJuFla3MemberDataTable(false)
         MyBase.Tables.Add(Me.tableTblJuFla3Member)
+        Me.tableTblEvents = New TblEventsDataTable(false)
+        MyBase.Tables.Add(Me.tableTblEvents)
         Me.relationTblJuFla2Mannschaften_TblJuFla2Member = New Global.System.Data.DataRelation("TblJuFla2Mannschaften_TblJuFla2Member", New Global.System.Data.DataColumn() {Me.tableTblJuFla2Mannschaften.StartnummerColumn}, New Global.System.Data.DataColumn() {Me.tableTblJuFla2Member.StartnummerColumn}, false)
         Me.Relations.Add(Me.relationTblJuFla2Mannschaften_TblJuFla2Member)
         Me.relationTblJuFla3Mannschaften_TblJuFla3Member = New Global.System.Data.DataRelation("TblJuFla3Mannschaften_TblJuFla3Member", New Global.System.Data.DataColumn() {Me.tableTblJuFla3Mannschaften.StartnummerColumn}, New Global.System.Data.DataColumn() {Me.tableTblJuFla3Member.StartnummerColumn}, false)
         Me.Relations.Add(Me.relationTblJuFla3Mannschaften_TblJuFla3Member)
+        Me.relationTblEvents_TblJuFla2Mannschaften = New Global.System.Data.DataRelation("TblEvents_TblJuFla2Mannschaften", New Global.System.Data.DataColumn() {Me.tableTblEvents.EventIDColumn}, New Global.System.Data.DataColumn() {Me.tableTblJuFla2Mannschaften.EventIDColumn}, false)
+        Me.Relations.Add(Me.relationTblEvents_TblJuFla2Mannschaften)
+        Me.relationTblEvents_TblJuFla3Mannschaften = New Global.System.Data.DataRelation("TblEvents_TblJuFla3Mannschaften", New Global.System.Data.DataColumn() {Me.tableTblEvents.EventIDColumn}, New Global.System.Data.DataColumn() {Me.tableTblJuFla3Mannschaften.EventIDColumn}, false)
+        Me.Relations.Add(Me.relationTblEvents_TblJuFla3Mannschaften)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -317,6 +359,12 @@ Partial Public Class DtsJuFla
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializeTblJuFla3Member() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializeTblEvents() As Boolean
         Return false
     End Function
     
@@ -378,6 +426,14 @@ Partial Public Class DtsJuFla
         Return type
     End Function
     
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Sub InitExpressions()
+        Me.TblJuFla2Member.ComboNameColumn.Expression = "Name + ', ' + Vorname"
+        Me.TblJuFla3Member.ComboNameColumn.Expression = "Name + ', ' + Vorname"
+        Me.TblEvents.EventIDColumn.Expression = "Abnahmeort + '-' + Abnahmedatum"
+    End Sub
+    
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub TblJuFla2MannschaftenRowChangeEventHandler(ByVal sender As Object, ByVal e As TblJuFla2MannschaftenRowChangeEvent)
     
@@ -389,6 +445,9 @@ Partial Public Class DtsJuFla
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub TblJuFla3MemberRowChangeEventHandler(ByVal sender As Object, ByVal e As TblJuFla3MemberRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub TblEventsRowChangeEventHandler(ByVal sender As Object, ByVal e As TblEventsRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -403,6 +462,8 @@ Partial Public Class DtsJuFla
         Private columnStartnummer As Global.System.Data.DataColumn
         
         Private columnOrt As Global.System.Data.DataColumn
+        
+        Private columnEventID As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -464,6 +525,14 @@ Partial Public Class DtsJuFla
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EventIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEventID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -500,9 +569,12 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla2MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String) As TblJuFla2MannschaftenRow
+        Public Overloads Function AddTblJuFla2MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla2Mannschaften As TblEventsRow) As TblJuFla2MannschaftenRow
             Dim rowTblJuFla2MannschaftenRow As TblJuFla2MannschaftenRow = CType(Me.NewRow,TblJuFla2MannschaftenRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort, Nothing}
+            If (Not (parentTblEventsRowByTblEvents_TblJuFla2Mannschaften) Is Nothing) Then
+                columnValuesArray(3) = parentTblEventsRowByTblEvents_TblJuFla2Mannschaften(0)
+            End If
             rowTblJuFla2MannschaftenRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTblJuFla2MannschaftenRow)
             Return rowTblJuFla2MannschaftenRow
@@ -534,6 +606,7 @@ Partial Public Class DtsJuFla
             Me.columnID = MyBase.Columns("ID")
             Me.columnStartnummer = MyBase.Columns("Startnummer")
             Me.columnOrt = MyBase.Columns("Ort")
+            Me.columnEventID = MyBase.Columns("EventID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -545,6 +618,8 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnStartnummer)
             Me.columnOrt = New Global.System.Data.DataColumn("Ort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrt)
+            Me.columnEventID = New Global.System.Data.DataColumn("EventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEventID)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -717,10 +792,19 @@ Partial Public Class DtsJuFla
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
+            Me.New(false)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal initExpressions As Boolean)
             MyBase.New
             Me.TableName = "TblJuFla2Member"
             Me.BeginInit
             Me.InitClass
+            If (initExpressions = true) Then
+                Me.InitExpressions
+            End If
             Me.EndInit
         End Sub
         
@@ -895,6 +979,19 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddTblJuFla2MemberRow(ByVal parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member As TblJuFla2MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwPrak As Integer, ByVal ValFwTheorie As Integer, ByVal ValSport As Boolean, ByVal finished As Boolean) As TblJuFla2MemberRow
+            Dim rowTblJuFla2MemberRow As TblJuFla2MemberRow = CType(Me.NewRow,TblJuFla2MemberRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwPrak, ValFwTheorie, ValSport, finished, Nothing}
+            If (Not (parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member) Is Nothing) Then
+                columnValuesArray(1) = parentTblJuFla2MannschaftenRowByTblJuFla2Mannschaften_TblJuFla2Member(1)
+            End If
+            rowTblJuFla2MemberRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTblJuFla2MemberRow)
+            Return rowTblJuFla2MemberRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As TblJuFla2MemberDataTable = CType(MyBase.Clone,TblJuFla2MemberDataTable)
             cln.InitVars
@@ -961,6 +1058,7 @@ Partial Public Class DtsJuFla
             Me.columnValFwTheorie.Caption = "FW-Theorie"
             Me.columnValSport.Caption = "Sportnachweis"
             Me.columnfinished.Caption = "Bestanden"
+            Me.columnComboName.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -980,6 +1078,12 @@ Partial Public Class DtsJuFla
         Protected Overrides Function GetRowType() As Global.System.Type
             Return GetType(TblJuFla2MemberRow)
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitExpressions()
+            Me.ComboNameColumn.Expression = "Name + ', ' + Vorname"
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -1104,6 +1208,8 @@ Partial Public Class DtsJuFla
         
         Private columnOrt As Global.System.Data.DataColumn
         
+        Private columnEventID As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1164,6 +1270,14 @@ Partial Public Class DtsJuFla
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EventIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEventID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1200,9 +1314,12 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTblJuFla3MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String) As TblJuFla3MannschaftenRow
+        Public Overloads Function AddTblJuFla3MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla3Mannschaften As TblEventsRow) As TblJuFla3MannschaftenRow
             Dim rowTblJuFla3MannschaftenRow As TblJuFla3MannschaftenRow = CType(Me.NewRow,TblJuFla3MannschaftenRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort, Nothing}
+            If (Not (parentTblEventsRowByTblEvents_TblJuFla3Mannschaften) Is Nothing) Then
+                columnValuesArray(3) = parentTblEventsRowByTblEvents_TblJuFla3Mannschaften(0)
+            End If
             rowTblJuFla3MannschaftenRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTblJuFla3MannschaftenRow)
             Return rowTblJuFla3MannschaftenRow
@@ -1234,6 +1351,7 @@ Partial Public Class DtsJuFla
             Me.columnID = MyBase.Columns("ID")
             Me.columnStartnummer = MyBase.Columns("Startnummer")
             Me.columnOrt = MyBase.Columns("Ort")
+            Me.columnEventID = MyBase.Columns("EventID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1245,6 +1363,8 @@ Partial Public Class DtsJuFla
             MyBase.Columns.Add(Me.columnStartnummer)
             Me.columnOrt = New Global.System.Data.DataColumn("Ort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrt)
+            Me.columnEventID = New Global.System.Data.DataColumn("EventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEventID)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnStartnummer}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -1419,10 +1539,19 @@ Partial Public Class DtsJuFla
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
+            Me.New(false)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal initExpressions As Boolean)
             MyBase.New
             Me.TableName = "TblJuFla3Member"
             Me.BeginInit
             Me.InitClass
+            If (initExpressions = true) Then
+                Me.InitExpressions
+            End If
             Me.EndInit
         End Sub
         
@@ -1605,6 +1734,19 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddTblJuFla3MemberRow(ByVal parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member As TblJuFla3MannschaftenRow, ByVal Name As String, ByVal Vorname As String, ByVal Geschlecht As String, ByVal Geburtsdatum As Date, ByVal Ausweisnummer As Integer, ByVal ValFwTechnik As Integer, ByVal ValEhAufgabe As Integer, ByVal ValPraesentation As Integer, ByVal finished As Boolean, ByVal ValEhNachweis As Boolean) As TblJuFla3MemberRow
+            Dim rowTblJuFla3MemberRow As TblJuFla3MemberRow = CType(Me.NewRow,TblJuFla3MemberRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, ValFwTechnik, ValEhAufgabe, ValPraesentation, finished, Nothing, ValEhNachweis}
+            If (Not (parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member) Is Nothing) Then
+                columnValuesArray(1) = parentTblJuFla3MannschaftenRowByTblJuFla3Mannschaften_TblJuFla3Member(1)
+            End If
+            rowTblJuFla3MemberRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTblJuFla3MemberRow)
+            Return rowTblJuFla3MemberRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As TblJuFla3MemberDataTable = CType(MyBase.Clone,TblJuFla3MemberDataTable)
             cln.InitVars
@@ -1674,6 +1816,7 @@ Partial Public Class DtsJuFla
             Me.columnValEhAufgabe.Caption = "EH-Aufgabe"
             Me.columnValPraesentation.Caption = "Präsentation"
             Me.columnfinished.Caption = "Bestanden"
+            Me.columnComboName.ReadOnly = true
             Me.columnValEhNachweis.Caption = "EH-Nachweis"
         End Sub
         
@@ -1694,6 +1837,12 @@ Partial Public Class DtsJuFla
         Protected Overrides Function GetRowType() As Global.System.Type
             Return GetType(TblJuFla3MemberRow)
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitExpressions()
+            Me.ComboNameColumn.Expression = "Name + ', ' + Vorname"
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -1805,6 +1954,369 @@ Partial Public Class DtsJuFla
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class TblEventsDataTable
+        Inherits Global.System.Data.TypedTableBase(Of TblEventsRow)
+        
+        Private columnEventID As Global.System.Data.DataColumn
+        
+        Private columnAbnahmeort As Global.System.Data.DataColumn
+        
+        Private columnAbnahmedatum As Global.System.Data.DataColumn
+        
+        Private columnAbnahmeleiter As Global.System.Data.DataColumn
+        
+        Private columnLand As Global.System.Data.DataColumn
+        
+        Private columnLandkreis As Global.System.Data.DataColumn
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            Me.New(false)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal initExpressions As Boolean)
+            MyBase.New
+            Me.TableName = "TblEvents"
+            Me.BeginInit
+            Me.InitClass
+            If (initExpressions = true) Then
+                Me.InitExpressions
+            End If
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EventIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEventID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AbnahmeortColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAbnahmeort
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AbnahmedatumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAbnahmedatum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AbnahmeleiterColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAbnahmeleiter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LandColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLand
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LandkreisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLandkreis
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As TblEventsRow
+            Get
+                Return CType(Me.Rows(index),TblEventsRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TblEventsRowChanging As TblEventsRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TblEventsRowChanged As TblEventsRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TblEventsRowDeleting As TblEventsRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TblEventsRowDeleted As TblEventsRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AddTblEventsRow(ByVal row As TblEventsRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddTblEventsRow(ByVal EventID As String, ByVal Abnahmeort As String, ByVal Abnahmedatum As Date, ByVal Abnahmeleiter As String, ByVal Land As String, ByVal Landkreis As String) As TblEventsRow
+            Dim rowTblEventsRow As TblEventsRow = CType(Me.NewRow,TblEventsRow)
+            Dim columnValuesArray() As Object = New Object() {EventID, Abnahmeort, Abnahmedatum, Abnahmeleiter, Land, Landkreis, Nothing}
+            rowTblEventsRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTblEventsRow)
+            Return rowTblEventsRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddTblEventsRow(ByVal Abnahmeort As String, ByVal Abnahmedatum As Date, ByVal Abnahmeleiter As String, ByVal Land As String, ByVal Landkreis As String) As TblEventsRow
+            Dim rowTblEventsRow As TblEventsRow = CType(Me.NewRow,TblEventsRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, Abnahmeort, Abnahmedatum, Abnahmeleiter, Land, Landkreis, Nothing}
+            rowTblEventsRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTblEventsRow)
+            Return rowTblEventsRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As TblEventsDataTable = CType(MyBase.Clone,TblEventsDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New TblEventsDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnEventID = MyBase.Columns("EventID")
+            Me.columnAbnahmeort = MyBase.Columns("Abnahmeort")
+            Me.columnAbnahmedatum = MyBase.Columns("Abnahmedatum")
+            Me.columnAbnahmeleiter = MyBase.Columns("Abnahmeleiter")
+            Me.columnLand = MyBase.Columns("Land")
+            Me.columnLandkreis = MyBase.Columns("Landkreis")
+            Me.columnID = MyBase.Columns("ID")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnEventID = New Global.System.Data.DataColumn("EventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEventID)
+            Me.columnAbnahmeort = New Global.System.Data.DataColumn("Abnahmeort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAbnahmeort)
+            Me.columnAbnahmedatum = New Global.System.Data.DataColumn("Abnahmedatum", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAbnahmedatum)
+            Me.columnAbnahmeleiter = New Global.System.Data.DataColumn("Abnahmeleiter", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAbnahmeleiter)
+            Me.columnLand = New Global.System.Data.DataColumn("Land", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLand)
+            Me.columnLandkreis = New Global.System.Data.DataColumn("Landkreis", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLandkreis)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, false))
+            Me.columnEventID.AllowDBNull = false
+            Me.columnEventID.ReadOnly = true
+            Me.columnID.AutoIncrement = true
+            Me.columnID.AutoIncrementSeed = -1
+            Me.columnID.AutoIncrementStep = -1
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewTblEventsRow() As TblEventsRow
+            Return CType(Me.NewRow,TblEventsRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New TblEventsRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(TblEventsRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitExpressions()
+            Me.EventIDColumn.Expression = "Abnahmeort + '-' + Abnahmedatum"
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.TblEventsRowChangedEvent) Is Nothing) Then
+                RaiseEvent TblEventsRowChanged(Me, New TblEventsRowChangeEvent(CType(e.Row,TblEventsRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.TblEventsRowChangingEvent) Is Nothing) Then
+                RaiseEvent TblEventsRowChanging(Me, New TblEventsRowChangeEvent(CType(e.Row,TblEventsRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.TblEventsRowDeletedEvent) Is Nothing) Then
+                RaiseEvent TblEventsRowDeleted(Me, New TblEventsRowChangeEvent(CType(e.Row,TblEventsRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.TblEventsRowDeletingEvent) Is Nothing) Then
+                RaiseEvent TblEventsRowDeleting(Me, New TblEventsRowChangeEvent(CType(e.Row,TblEventsRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemoveTblEventsRow(ByVal row As TblEventsRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DtsJuFla = New DtsJuFla()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "TblEventsDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class TblJuFla2MannschaftenRow
@@ -1858,6 +2370,32 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EventID() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblJuFla2Mannschaften.EventIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte EventID in Tabelle TblJuFla2Mannschaften ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblJuFla2Mannschaften.EventIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TblEventsRow() As TblEventsRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("TblEvents_TblJuFla2Mannschaften")),TblEventsRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("TblEvents_TblJuFla2Mannschaften"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsOrtNull() As Boolean
             Return Me.IsNull(Me.tableTblJuFla2Mannschaften.OrtColumn)
         End Function
@@ -1866,6 +2404,18 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetOrtNull()
             Me(Me.tableTblJuFla2Mannschaften.OrtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsEventIDNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla2Mannschaften.EventIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetEventIDNull()
+            Me(Me.tableTblJuFla2Mannschaften.EventIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2252,6 +2802,32 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EventID() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblJuFla3Mannschaften.EventIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte EventID in Tabelle TblJuFla3Mannschaften ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblJuFla3Mannschaften.EventIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TblEventsRow() As TblEventsRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("TblEvents_TblJuFla3Mannschaften")),TblEventsRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("TblEvents_TblJuFla3Mannschaften"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsOrtNull() As Boolean
             Return Me.IsNull(Me.tableTblJuFla3Mannschaften.OrtColumn)
         End Function
@@ -2260,6 +2836,18 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetOrtNull()
             Me(Me.tableTblJuFla3Mannschaften.OrtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsEventIDNull() As Boolean
+            Return Me.IsNull(Me.tableTblJuFla3Mannschaften.EventIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetEventIDNull()
+            Me(Me.tableTblJuFla3Mannschaften.EventIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2620,6 +3208,199 @@ Partial Public Class DtsJuFla
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class TblEventsRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableTblEvents As TblEventsDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableTblEvents = CType(Me.Table,TblEventsDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EventID() As String
+            Get
+                Return CType(Me(Me.tableTblEvents.EventIDColumn),String)
+            End Get
+            Set
+                Me(Me.tableTblEvents.EventIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Abnahmeort() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblEvents.AbnahmeortColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Abnahmeort in Tabelle TblEvents ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblEvents.AbnahmeortColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Abnahmedatum() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblEvents.AbnahmedatumColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Abnahmedatum in Tabelle TblEvents ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblEvents.AbnahmedatumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Abnahmeleiter() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblEvents.AbnahmeleiterColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Abnahmeleiter in Tabelle TblEvents ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblEvents.AbnahmeleiterColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Land() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblEvents.LandColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Land in Tabelle TblEvents ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblEvents.LandColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Landkreis() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTblEvents.LandkreisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Landkreis in Tabelle TblEvents ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTblEvents.LandkreisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ID() As Integer
+            Get
+                Return CType(Me(Me.tableTblEvents.IDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableTblEvents.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAbnahmeortNull() As Boolean
+            Return Me.IsNull(Me.tableTblEvents.AbnahmeortColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAbnahmeortNull()
+            Me(Me.tableTblEvents.AbnahmeortColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAbnahmedatumNull() As Boolean
+            Return Me.IsNull(Me.tableTblEvents.AbnahmedatumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAbnahmedatumNull()
+            Me(Me.tableTblEvents.AbnahmedatumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAbnahmeleiterNull() As Boolean
+            Return Me.IsNull(Me.tableTblEvents.AbnahmeleiterColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAbnahmeleiterNull()
+            Me(Me.tableTblEvents.AbnahmeleiterColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLandNull() As Boolean
+            Return Me.IsNull(Me.tableTblEvents.LandColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLandNull()
+            Me(Me.tableTblEvents.LandColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLandkreisNull() As Boolean
+            Return Me.IsNull(Me.tableTblEvents.LandkreisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLandkreisNull()
+            Me(Me.tableTblEvents.LandkreisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function GetTblJuFla2MannschaftenRows() As TblJuFla2MannschaftenRow()
+            If (Me.Table.ChildRelations("TblEvents_TblJuFla2Mannschaften") Is Nothing) Then
+                Return New TblJuFla2MannschaftenRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("TblEvents_TblJuFla2Mannschaften")),TblJuFla2MannschaftenRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function GetTblJuFla3MannschaftenRows() As TblJuFla3MannschaftenRow()
+            If (Me.Table.ChildRelations("TblEvents_TblJuFla3Mannschaften") Is Nothing) Then
+                Return New TblJuFla3MannschaftenRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("TblEvents_TblJuFla3Mannschaften")),TblJuFla3MannschaftenRow())
+            End If
+        End Function
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -2749,6 +3530,42 @@ Partial Public Class DtsJuFla
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property Row() As TblJuFla3MemberRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class TblEventsRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As TblEventsRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As TblEventsRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As TblEventsRow
             Get
                 Return Me.eventRow
             End Get

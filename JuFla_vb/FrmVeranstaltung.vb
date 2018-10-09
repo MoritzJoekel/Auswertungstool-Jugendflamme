@@ -4,4 +4,5 @@
         FrmMain.Init(False)
         Me.Close()
     End Sub
+
 End Class
