@@ -438,13 +438,26 @@ Public Class FrmMain
     ''' Exportiert die Datenbank-XML in ein variables Verzeichnis. Ruft einen SaveFileDialog auf
     ''' </summary>
     Private Sub LocalExport()
-        Dim sfd As SaveFileDialog = New SaveFileDialog()
-        sfd.ShowDialog()
-        Dim savepath As String = sfd.FileName()
+        Try
+            Dim sfd As SaveFileDialog = New SaveFileDialog With {
+                .DefaultExt = ".xml",
+                .AddExtension = True,
+                .FileName = "JuFla_Data_Export_" & DateAndTime.Now.ToShortDateString & ".xml",
+                .Filter = "Extensible Markup Language | .xml"
+            }
 
-        DtsJuFla.WriteXml(savepath)
-        NiMain.BalloonTipText = "Datenbank erfolgreich nach " & savepath & " exportiert."
-        NiMain.ShowBalloonTip(2000)
+            Dim savepath As String = sfd.FileName()
+            Dim result As DialogResult = sfd.ShowDialog()
+            If result <> DialogResult.OK Then
+                Exit Sub
+            End If
+
+            DtsJuFla.WriteXml(savepath)
+            NiMain.BalloonTipText = "Datenbank erfolgreich nach " & savepath & " exportiert."
+            NiMain.ShowBalloonTip(2000)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     ''' <summary>
