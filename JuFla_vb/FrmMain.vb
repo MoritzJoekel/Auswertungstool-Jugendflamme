@@ -394,7 +394,7 @@ Public Class FrmMain
 
             Try
                 Dim index As Integer = DgvJuFla3Member.CurrentCell.RowIndex
-                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla3Member.Rows(index).Cells(2).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
+                Dim result As MsgBoxResult = MsgBox("Bewerber " & DgvJuFla3Member.Rows(index).Cells(0).Value.ToString & " wirklich entfernen?", MsgBoxStyle.YesNo)
                 If result = MsgBoxResult.Yes Then
                     DgvJuFla3Member.Rows.RemoveAt(index)
                 End If

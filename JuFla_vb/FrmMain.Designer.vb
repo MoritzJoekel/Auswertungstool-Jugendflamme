@@ -103,6 +103,7 @@ Partial Class FrmMain
         Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
         Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.TtMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
@@ -142,6 +143,7 @@ Partial Class FrmMain
         Me.MsVeranstaltungsdaten.Name = "MsVeranstaltungsdaten"
         Me.MsVeranstaltungsdaten.Size = New System.Drawing.Size(181, 22)
         Me.MsVeranstaltungsdaten.Text = "Veranstaltungsdaten"
+        Me.MsVeranstaltungsdaten.ToolTipText = "Zeigt eine Übersicht aller Veranstaltungen an"
         '
         'MsDtsLeeren
         '
@@ -149,6 +151,7 @@ Partial Class FrmMain
         Me.MsDtsLeeren.Name = "MsDtsLeeren"
         Me.MsDtsLeeren.Size = New System.Drawing.Size(181, 22)
         Me.MsDtsLeeren.Text = "Datenbank leeren"
+        Me.MsDtsLeeren.ToolTipText = "Leert die aktuelle Datenbank und legt eine Sicherungsdatei an"
         '
         'DatenbankToolStripMenuItem
         '
@@ -163,6 +166,7 @@ Partial Class FrmMain
         Me.MsUpload.Name = "MsUpload"
         Me.MsUpload.Size = New System.Drawing.Size(197, 22)
         Me.MsUpload.Text = "Push Datenbank to FTP"
+        Me.MsUpload.ToolTipText = "Läd den aktuellen Datenbestand zum Server"
         '
         'MsDownload
         '
@@ -170,6 +174,7 @@ Partial Class FrmMain
         Me.MsDownload.Name = "MsDownload"
         Me.MsDownload.Size = New System.Drawing.Size(197, 22)
         Me.MsDownload.Text = "Fetch Server-DB"
+        Me.MsDownload.ToolTipText = "Läd Server-Datenbank herunter"
         '
         'MsExport
         '
@@ -177,6 +182,7 @@ Partial Class FrmMain
         Me.MsExport.Name = "MsExport"
         Me.MsExport.Size = New System.Drawing.Size(197, 22)
         Me.MsExport.Text = "Export"
+        Me.MsExport.ToolTipText = "Exportiert die Datenbank im XML-Format "
         '
         'MannschaftenToolStripMenuItem
         '
@@ -191,6 +197,7 @@ Partial Class FrmMain
         Me.MsJuFla2AddMannschaft.Name = "MsJuFla2AddMannschaft"
         Me.MsJuFla2AddMannschaft.Size = New System.Drawing.Size(239, 22)
         Me.MsJuFla2AddMannschaft.Text = "Mannschaft Stufe 2 hinzufügen"
+        Me.MsJuFla2AddMannschaft.ToolTipText = "Fügt eine Mannschaft zur Jugendflamme Stufe 2 hinzu"
         '
         'MsJuFla3AddMannschaft
         '
@@ -198,6 +205,7 @@ Partial Class FrmMain
         Me.MsJuFla3AddMannschaft.Name = "MsJuFla3AddMannschaft"
         Me.MsJuFla3AddMannschaft.Size = New System.Drawing.Size(239, 22)
         Me.MsJuFla3AddMannschaft.Text = "Mannschaft Stufe 3 hinzufügen"
+        Me.MsJuFla3AddMannschaft.ToolTipText = "Fügt eine Mannschaft zur Jugendflamme Stufe 2 hinzu"
         '
         'MsUebersichtMannschaften
         '
@@ -205,6 +213,7 @@ Partial Class FrmMain
         Me.MsUebersichtMannschaften.Name = "MsUebersichtMannschaften"
         Me.MsUebersichtMannschaften.Size = New System.Drawing.Size(239, 22)
         Me.MsUebersichtMannschaften.Text = "Übersicht Mannschaften"
+        Me.MsUebersichtMannschaften.ToolTipText = "Zeigt eine Übersicht aller Mannschaften des akuellen Events an"
         '
         'WettbewerbToolStripMenuItem
         '
@@ -219,6 +228,7 @@ Partial Class FrmMain
         Me.MsWettbewerbseingabe.Name = "MsWettbewerbseingabe"
         Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(185, 22)
         Me.MsWettbewerbseingabe.Text = "Wettbewerbseingabe"
+        Me.MsWettbewerbseingabe.ToolTipText = "Öffnet die Eingabemaske zur Wettbewerbseingabe"
         '
         'MsWettbInfo
         '
@@ -227,6 +237,7 @@ Partial Class FrmMain
         Me.MsWettbInfo.Name = "MsWettbInfo"
         Me.MsWettbInfo.Size = New System.Drawing.Size(185, 22)
         Me.MsWettbInfo.Text = "Wettbewerbsinfo"
+        Me.MsWettbInfo.ToolTipText = "BETA!"
         '
         'MsCbVeranstaltung
         '
@@ -352,6 +363,7 @@ Partial Class FrmMain
         Me.TbJuFla2AnzMember.ReadOnly = True
         Me.TbJuFla2AnzMember.Size = New System.Drawing.Size(100, 20)
         Me.TbJuFla2AnzMember.TabIndex = 9
+        Me.TtMain.SetToolTip(Me.TbJuFla2AnzMember, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 2")
         '
         'Label2
         '
@@ -370,6 +382,7 @@ Partial Class FrmMain
         Me.TbRoJuFla2Startnummer.ReadOnly = True
         Me.TbRoJuFla2Startnummer.Size = New System.Drawing.Size(110, 20)
         Me.TbRoJuFla2Startnummer.TabIndex = 7
+        Me.TtMain.SetToolTip(Me.TbRoJuFla2Startnummer, "Startnummer der ausgewählten Mannschaft")
         '
         'BsJuFla2EventsMannschaften
         '
@@ -514,6 +527,7 @@ Partial Class FrmMain
         Me.CbJuFla2Ort.Name = "CbJuFla2Ort"
         Me.CbJuFla2Ort.Size = New System.Drawing.Size(292, 21)
         Me.CbJuFla2Ort.TabIndex = 0
+        Me.TtMain.SetToolTip(Me.CbJuFla2Ort, "Mannschaft innerhalb der Jugendflamme Stufe 2 auswählen")
         '
         'TpJuFla3
         '
@@ -559,6 +573,7 @@ Partial Class FrmMain
         Me.DgvJuFla3Member.BackgroundColor = System.Drawing.SystemColors.ActiveCaption
         Me.DgvJuFla3Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewTextBoxColumn, Me.ValEhNachweisDataGridViewCheckBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ComboNameDataGridViewTextBoxColumn1})
+        Me.DgvJuFla3Member.ContextMenuStrip = Me.CmsJuFla3Member
         Me.DgvJuFla3Member.DataSource = Me.BsJuFla3MannschaftenMember
         Me.DgvJuFla3Member.Location = New System.Drawing.Point(11, 100)
         Me.DgvJuFla3Member.Name = "DgvJuFla3Member"
@@ -703,6 +718,7 @@ Partial Class FrmMain
         Me.TbJuFla3AnzBewerber.ReadOnly = True
         Me.TbJuFla3AnzBewerber.Size = New System.Drawing.Size(100, 20)
         Me.TbJuFla3AnzBewerber.TabIndex = 13
+        Me.TtMain.SetToolTip(Me.TbJuFla3AnzBewerber, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 3")
         '
         'Label6
         '
@@ -721,6 +737,7 @@ Partial Class FrmMain
         Me.TbJuFla3Startnummer.ReadOnly = True
         Me.TbJuFla3Startnummer.Size = New System.Drawing.Size(110, 20)
         Me.TbJuFla3Startnummer.TabIndex = 11
+        Me.TtMain.SetToolTip(Me.TbJuFla3Startnummer, "Startnummer der ausgewählten Mannschaft")
         '
         'CbJuFla3Mannschaft
         '
@@ -731,6 +748,7 @@ Partial Class FrmMain
         Me.CbJuFla3Mannschaft.Name = "CbJuFla3Mannschaft"
         Me.CbJuFla3Mannschaft.Size = New System.Drawing.Size(292, 21)
         Me.CbJuFla3Mannschaft.TabIndex = 3
+        Me.TtMain.SetToolTip(Me.CbJuFla3Mannschaft, "Mannschaft innerhalb der Jugendflamme Stufe 3 auswählen")
         '
         'Label4
         '
@@ -779,6 +797,11 @@ Partial Class FrmMain
         Me.Label9.Size = New System.Drawing.Size(105, 13)
         Me.Label9.TabIndex = 2
         Me.Label9.Text = "© Moritz Jökel, 2018"
+        '
+        'TtMain
+        '
+        Me.TtMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TtMain.ToolTipTitle = "Jugendflamme der DJF"
         '
         'FrmMain
         '
@@ -895,4 +918,5 @@ Partial Class FrmMain
     Friend WithEvents MsWettbInfo As ToolStripMenuItem
     Friend WithEvents MsExport As ToolStripMenuItem
     Friend WithEvents Label9 As Label
+    Friend WithEvents TtMain As ToolTip
 End Class
