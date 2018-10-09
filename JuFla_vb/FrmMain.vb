@@ -41,10 +41,7 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="LoadDb">Unterscheidung, ob Datenbank geladen werden soll (True//False)</param>
     Public Sub Init(LoadDb As Boolean)
-        If LoadDb = False Then
-            Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
-        ElseIf LoadDb = True Then
-            Me.Text = "Jugendflamme - Landkreis " & My.Settings.RsLandkreis & " in " & My.Settings.RsOrt
+        If LoadDb = True Then
             Try
                 DtsJuFla.ReadXml(DataStream)
             Catch ex As Exception

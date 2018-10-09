@@ -102,6 +102,7 @@ Partial Class FrmMain
         Me.TiMain = New System.Windows.Forms.Timer(Me.components)
         Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
         Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
@@ -137,12 +138,14 @@ Partial Class FrmMain
         '
         'MsVeranstaltungsdaten
         '
+        Me.MsVeranstaltungsdaten.Image = Global.JuFla_vb.My.Resources.Resources._event
         Me.MsVeranstaltungsdaten.Name = "MsVeranstaltungsdaten"
         Me.MsVeranstaltungsdaten.Size = New System.Drawing.Size(181, 22)
         Me.MsVeranstaltungsdaten.Text = "Veranstaltungsdaten"
         '
         'MsDtsLeeren
         '
+        Me.MsDtsLeeren.Image = Global.JuFla_vb.My.Resources.Resources.delete_rubbish
         Me.MsDtsLeeren.Name = "MsDtsLeeren"
         Me.MsDtsLeeren.Size = New System.Drawing.Size(181, 22)
         Me.MsDtsLeeren.Text = "Datenbank leeren"
@@ -156,18 +159,21 @@ Partial Class FrmMain
         '
         'MsUpload
         '
+        Me.MsUpload.Image = Global.JuFla_vb.My.Resources.Resources.upload
         Me.MsUpload.Name = "MsUpload"
         Me.MsUpload.Size = New System.Drawing.Size(197, 22)
         Me.MsUpload.Text = "Push Datenbank to FTP"
         '
         'MsDownload
         '
+        Me.MsDownload.Image = Global.JuFla_vb.My.Resources.Resources.download
         Me.MsDownload.Name = "MsDownload"
         Me.MsDownload.Size = New System.Drawing.Size(197, 22)
         Me.MsDownload.Text = "Fetch Server-DB"
         '
         'MsExport
         '
+        Me.MsExport.Image = Global.JuFla_vb.My.Resources.Resources.export
         Me.MsExport.Name = "MsExport"
         Me.MsExport.Size = New System.Drawing.Size(197, 22)
         Me.MsExport.Text = "Export"
@@ -181,18 +187,21 @@ Partial Class FrmMain
         '
         'MsJuFla2AddMannschaft
         '
+        Me.MsJuFla2AddMannschaft.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.MsJuFla2AddMannschaft.Name = "MsJuFla2AddMannschaft"
         Me.MsJuFla2AddMannschaft.Size = New System.Drawing.Size(239, 22)
         Me.MsJuFla2AddMannschaft.Text = "Mannschaft Stufe 2 hinzufügen"
         '
         'MsJuFla3AddMannschaft
         '
+        Me.MsJuFla3AddMannschaft.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.MsJuFla3AddMannschaft.Name = "MsJuFla3AddMannschaft"
         Me.MsJuFla3AddMannschaft.Size = New System.Drawing.Size(239, 22)
         Me.MsJuFla3AddMannschaft.Text = "Mannschaft Stufe 3 hinzufügen"
         '
         'MsUebersichtMannschaften
         '
+        Me.MsUebersichtMannschaften.Image = Global.JuFla_vb.My.Resources.Resources.information
         Me.MsUebersichtMannschaften.Name = "MsUebersichtMannschaften"
         Me.MsUebersichtMannschaften.Size = New System.Drawing.Size(239, 22)
         Me.MsUebersichtMannschaften.Text = "Übersicht Mannschaften"
@@ -206,12 +215,15 @@ Partial Class FrmMain
         '
         'MsWettbewerbseingabe
         '
+        Me.MsWettbewerbseingabe.Image = Global.JuFla_vb.My.Resources.Resources.edit
         Me.MsWettbewerbseingabe.Name = "MsWettbewerbseingabe"
         Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(185, 22)
         Me.MsWettbewerbseingabe.Text = "Wettbewerbseingabe"
         '
         'MsWettbInfo
         '
+        Me.MsWettbInfo.Enabled = False
+        Me.MsWettbInfo.Image = Global.JuFla_vb.My.Resources.Resources.information
         Me.MsWettbInfo.Name = "MsWettbInfo"
         Me.MsWettbInfo.Size = New System.Drawing.Size(185, 22)
         Me.MsWettbInfo.Text = "Wettbewerbsinfo"
@@ -264,6 +276,7 @@ Partial Class FrmMain
         Me.TbAbnahmedatum.ReadOnly = True
         Me.TbAbnahmedatum.Size = New System.Drawing.Size(100, 20)
         Me.TbAbnahmedatum.TabIndex = 16
+        Me.TbAbnahmedatum.Visible = False
         '
         'BsEvents
         '
@@ -756,17 +769,29 @@ Partial Class FrmMain
         Me.NiMain.Text = "Auswertungstool Jugendflamme"
         Me.NiMain.Visible = True
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label9.Location = New System.Drawing.Point(1085, 27)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(105, 13)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "© Moritz Jökel, 2018"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1190, 588)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.TcMain)
         Me.Controls.Add(Me.MsMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MsMain
         Me.Name = "FrmMain"
-        Me.Text = "Jugendflamme - KEINE VERANSTALTUNG"
+        Me.Text = "Auswertungstool Jugendflamme Landkreis Fulda"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MsMain.ResumeLayout(False)
         Me.MsMain.PerformLayout()
@@ -869,4 +894,5 @@ Partial Class FrmMain
     Friend WithEvents TbAbnahmedatum As TextBox
     Friend WithEvents MsWettbInfo As ToolStripMenuItem
     Friend WithEvents MsExport As ToolStripMenuItem
+    Friend WithEvents Label9 As Label
 End Class

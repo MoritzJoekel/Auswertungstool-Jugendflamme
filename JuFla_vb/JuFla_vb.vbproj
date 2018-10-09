@@ -196,6 +196,13 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\delete_rubbish.png" />
+    <None Include="Resources\event.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\upload.png" />
     <None Include="Resources\fire.ico" />
     <None Include="Resources\checked.png" />
     <None Include="Resources\icon1.png" />
