@@ -227,7 +227,7 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click,
+    Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click, MsExport.Click,
         BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
@@ -240,9 +240,10 @@ Public Class FrmMain
             Case sender Is CmsJuFla3RemoveMember : RemoveMember(3)
             Case sender Is MsJuFla2AddMannschaft : AddMannschaft(2)
             Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
-            Case sender Is MsUpload : Network.UploadToFTP()
-            Case sender Is MsDownload : Network.DownloadFromFTP()
+            Case sender Is MsUpload : UploadToFTP()
+            Case sender Is MsDownload : DownloadFromFTP()
             Case sender Is MsWettbInfo
+            Case sender Is MsExport : LocalExport()
         End Select
     End Sub
 
@@ -432,4 +433,66 @@ Public Class FrmMain
 
         Return nYears
     End Function
+
+    ''' <summary>
+    ''' Exportiert die Datenbank-XML in ein variables Verzeichnis. Ruft einen SaveFileDialog auf
+    ''' </summary>
+    Private Sub LocalExport()
+        Dim sfd As SaveFileDialog = New SaveFileDialog()
+        sfd.ShowDialog()
+        Dim savepath As String = sfd.FileName()
+
+        DtsJuFla.WriteXml(savepath)
+        NiMain.BalloonTipText = "Datenbank erfolgreich nach " & savepath & " exportiert."
+        NiMain.ShowBalloonTip(2000)
+    End Sub
+
+    ''' <summary>
+    ''' Läd die Datenbank-XML vom definierten Server herunter und läd die Db neu
+    ''' </summary>
+    Private Sub DownloadFromFTP()
+        Try
+            My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
+            DtsJuFla.Clear()
+
+            If My.Computer.FileSystem.FileExists(HomeStream + "\JuFla_Data_Down.xml") Then
+                My.Computer.FileSystem.DeleteFile(HomeStream + "\JuFla_Data_Down.xml")
+            End If
+
+            Dim serverAddress As String = "ftp://moritzjoekel.bplaced.net/JuFlaUpload.xml"
+
+            NiMain.BalloonTipText = "Download initiiert! Server: " & serverAddress
+            NiMain.ShowBalloonTip(2000)
+
+            My.Computer.Network.DownloadFile(serverAddress, HomeStream + "\JuFla_Data_Down.xml", "moritzjoekel_jufla", "Ww5bTjPev6NHL4uZ")
+
+            System.Threading.Thread.Sleep(2000)
+
+            DtsJuFla.ReadXml(HomeStream + "\JuFla_Data_Down.xml")
+            DtsJuFla.AcceptChanges()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Läd die bestehende Datenbank-XML auf einen definierten Server hoch
+    ''' </summary>
+    Private Sub UploadToFTP()
+        Try
+            Dim serverAddress As String = "ftp://moritzjoekel.bplaced.net/JuFlaUpload.xml"
+
+            DtsJuFla.WriteXml(DataStream)
+            NiMain.BalloonTipText = "Upload initiiert! Server: " & serverAddress
+            NiMain.ShowBalloonTip(2000)
+
+            My.Computer.Network.UploadFile(DataStream, serverAddress, "moritzjoekel_jufla", "Ww5bTjPev6NHL4uZ")
+            NiMain.BalloonTipText = "Upload abgeschlossen"
+            NiMain.ShowBalloonTip(2000)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        End Try
+
+    End Sub
 End Class

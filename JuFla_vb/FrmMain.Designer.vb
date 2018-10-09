@@ -31,15 +31,20 @@ Partial Class FrmMain
         Me.DatenbankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsUpload = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsDownload = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsExport = New System.Windows.Forms.ToolStripMenuItem()
         Me.MannschaftenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsJuFla2AddMannschaft = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsJuFla3AddMannschaft = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsUebersichtMannschaften = New System.Windows.Forms.ToolStripMenuItem()
         Me.WettbewerbToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsWettbewerbseingabe = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsWettbInfo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsCbVeranstaltung = New System.Windows.Forms.ToolStripComboBox()
         Me.TcMain = New System.Windows.Forms.TabControl()
         Me.TpJuFla2 = New System.Windows.Forms.TabPage()
+        Me.TbAbnahmedatum = New System.Windows.Forms.TextBox()
+        Me.BsEvents = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.BtJuFla2Import = New System.Windows.Forms.Button()
         Me.BtJuFla2PrintMember = New System.Windows.Forms.Button()
@@ -49,8 +54,6 @@ Partial Class FrmMain
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TbRoJuFla2Startnummer = New System.Windows.Forms.TextBox()
         Me.BsJuFla2EventsMannschaften = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BsEvents = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
         Me.DgvJuFla2Member = New System.Windows.Forms.DataGridView()
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -99,14 +102,12 @@ Partial Class FrmMain
         Me.TiMain = New System.Windows.Forms.Timer(Me.components)
         Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
         Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.TbAbnahmedatum = New System.Windows.Forms.TextBox()
-        Me.MsWettbInfo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
-        CType(Me.BsJuFla2EventsMannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsJuFla2EventsMannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvJuFla2Member, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CmsJuFla2Member.SuspendLayout()
         CType(Me.BsJuFla2MannschaftenMember, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,7 +149,7 @@ Partial Class FrmMain
         '
         'DatenbankToolStripMenuItem
         '
-        Me.DatenbankToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsUpload, Me.MsDownload})
+        Me.DatenbankToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsUpload, Me.MsDownload, Me.MsExport})
         Me.DatenbankToolStripMenuItem.Name = "DatenbankToolStripMenuItem"
         Me.DatenbankToolStripMenuItem.Size = New System.Drawing.Size(76, 23)
         Me.DatenbankToolStripMenuItem.Text = "Datenbank"
@@ -156,14 +157,20 @@ Partial Class FrmMain
         'MsUpload
         '
         Me.MsUpload.Name = "MsUpload"
-        Me.MsUpload.Size = New System.Drawing.Size(180, 22)
-        Me.MsUpload.Text = "Hochladen"
+        Me.MsUpload.Size = New System.Drawing.Size(197, 22)
+        Me.MsUpload.Text = "Push Datenbank to FTP"
         '
         'MsDownload
         '
         Me.MsDownload.Name = "MsDownload"
-        Me.MsDownload.Size = New System.Drawing.Size(180, 22)
+        Me.MsDownload.Size = New System.Drawing.Size(197, 22)
         Me.MsDownload.Text = "Fetch Server-DB"
+        '
+        'MsExport
+        '
+        Me.MsExport.Name = "MsExport"
+        Me.MsExport.Size = New System.Drawing.Size(197, 22)
+        Me.MsExport.Text = "Export"
         '
         'MannschaftenToolStripMenuItem
         '
@@ -202,6 +209,12 @@ Partial Class FrmMain
         Me.MsWettbewerbseingabe.Name = "MsWettbewerbseingabe"
         Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(185, 22)
         Me.MsWettbewerbseingabe.Text = "Wettbewerbseingabe"
+        '
+        'MsWettbInfo
+        '
+        Me.MsWettbInfo.Name = "MsWettbInfo"
+        Me.MsWettbInfo.Size = New System.Drawing.Size(185, 22)
+        Me.MsWettbInfo.Text = "Wettbewerbsinfo"
         '
         'MsCbVeranstaltung
         '
@@ -242,6 +255,25 @@ Partial Class FrmMain
         Me.TpJuFla2.Size = New System.Drawing.Size(1182, 535)
         Me.TpJuFla2.TabIndex = 0
         Me.TpJuFla2.Text = "Jugendflamme Stufe 2"
+        '
+        'TbAbnahmedatum
+        '
+        Me.TbAbnahmedatum.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsEvents, "Abnahmedatum", True))
+        Me.TbAbnahmedatum.Location = New System.Drawing.Point(1057, 20)
+        Me.TbAbnahmedatum.Name = "TbAbnahmedatum"
+        Me.TbAbnahmedatum.ReadOnly = True
+        Me.TbAbnahmedatum.Size = New System.Drawing.Size(100, 20)
+        Me.TbAbnahmedatum.TabIndex = 16
+        '
+        'BsEvents
+        '
+        Me.BsEvents.DataMember = "TblEvents"
+        Me.BsEvents.DataSource = Me.DtsJuFla
+        '
+        'DtsJuFla
+        '
+        Me.DtsJuFla.DataSetName = "DtsJuFla"
+        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Label7
         '
@@ -330,16 +362,6 @@ Partial Class FrmMain
         '
         Me.BsJuFla2EventsMannschaften.DataMember = "TblEvents_TblJuFla2Mannschaften"
         Me.BsJuFla2EventsMannschaften.DataSource = Me.BsEvents
-        '
-        'BsEvents
-        '
-        Me.BsEvents.DataMember = "TblEvents"
-        Me.BsEvents.DataSource = Me.DtsJuFla
-        '
-        'DtsJuFla
-        '
-        Me.DtsJuFla.DataSetName = "DtsJuFla"
-        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'DgvJuFla2Member
         '
@@ -734,21 +756,6 @@ Partial Class FrmMain
         Me.NiMain.Text = "Auswertungstool Jugendflamme"
         Me.NiMain.Visible = True
         '
-        'TbAbnahmedatum
-        '
-        Me.TbAbnahmedatum.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsEvents, "Abnahmedatum", True))
-        Me.TbAbnahmedatum.Location = New System.Drawing.Point(1057, 20)
-        Me.TbAbnahmedatum.Name = "TbAbnahmedatum"
-        Me.TbAbnahmedatum.ReadOnly = True
-        Me.TbAbnahmedatum.Size = New System.Drawing.Size(100, 20)
-        Me.TbAbnahmedatum.TabIndex = 16
-        '
-        'MsWettbInfo
-        '
-        Me.MsWettbInfo.Name = "MsWettbInfo"
-        Me.MsWettbInfo.Size = New System.Drawing.Size(185, 22)
-        Me.MsWettbInfo.Text = "Wettbewerbsinfo"
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -766,9 +773,9 @@ Partial Class FrmMain
         Me.TcMain.ResumeLayout(False)
         Me.TpJuFla2.ResumeLayout(False)
         Me.TpJuFla2.PerformLayout()
-        CType(Me.BsJuFla2EventsMannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsJuFla2EventsMannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgvJuFla2Member, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CmsJuFla2Member.ResumeLayout(False)
         CType(Me.BsJuFla2MannschaftenMember, System.ComponentModel.ISupportInitialize).EndInit()
@@ -861,4 +868,5 @@ Partial Class FrmMain
     Friend WithEvents MsDownload As ToolStripMenuItem
     Friend WithEvents TbAbnahmedatum As TextBox
     Friend WithEvents MsWettbInfo As ToolStripMenuItem
+    Friend WithEvents MsExport As ToolStripMenuItem
 End Class
