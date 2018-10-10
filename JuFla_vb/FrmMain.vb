@@ -365,10 +365,14 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
-                If ExactAge(Geburtsdatum) < 13 Then
+                If YearAge(Geburtsdatum) < 13 Then
                     MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 13 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
                     Continue For
+                ElseIf ExactAge(Geburtsdatum) >= 18 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
                 End If
+
 
                 ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
                 DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
@@ -385,8 +389,11 @@ Public Class FrmMain
                 Dim Geburtsdatum As Date = row(3).ToString
                 Dim Ausweisnummer As Integer = row(4)
 
-                If ExactAge(Geburtsdatum) < 15 Then
+                If YearAge(Geburtsdatum) < 15 Then
                     MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 15 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                    Continue For
+                ElseIf ExactAge(Geburtsdatum) >= 18 Then
+                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
                     Continue For
                 End If
 
