@@ -86,6 +86,8 @@ Partial Class FrmMain
         Me.ValEhNachweisDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FinishedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ComboNameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CmsJuFla3RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
         Me.BsJuFla3MannschaftenMember = New System.Windows.Forms.BindingSource(Me.components)
         Me.BsJuFla3EventsMannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.BtJuFla3Import = New System.Windows.Forms.Button()
@@ -97,8 +99,6 @@ Partial Class FrmMain
         Me.TbJuFla3Startnummer = New System.Windows.Forms.TextBox()
         Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CmsJuFla3RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
         Me.TiMain = New System.Windows.Forms.Timer(Me.components)
         Me.DtsJuFla1 = New JuFla_vb.DtsJuFla()
         Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
@@ -115,9 +115,9 @@ Partial Class FrmMain
         CType(Me.BsJuFla2MannschaftenMember, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TpJuFla3.SuspendLayout()
         CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CmsJuFla3Member.SuspendLayout()
         CType(Me.BsJuFla3MannschaftenMember, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsJuFla3EventsMannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CmsJuFla3Member.SuspendLayout()
         CType(Me.DtsJuFla1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -287,7 +287,6 @@ Partial Class FrmMain
         Me.TbAbnahmedatum.ReadOnly = True
         Me.TbAbnahmedatum.Size = New System.Drawing.Size(100, 20)
         Me.TbAbnahmedatum.TabIndex = 16
-        Me.TbAbnahmedatum.Visible = False
         '
         'BsEvents
         '
@@ -656,6 +655,18 @@ Partial Class FrmMain
         Me.ComboNameDataGridViewTextBoxColumn1.ReadOnly = True
         Me.ComboNameDataGridViewTextBoxColumn1.Visible = False
         '
+        'CmsJuFla3Member
+        '
+        Me.CmsJuFla3Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla3RemoveMember})
+        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
+        Me.CmsJuFla3Member.Size = New System.Drawing.Size(188, 26)
+        '
+        'CmsJuFla3RemoveMember
+        '
+        Me.CmsJuFla3RemoveMember.Name = "CmsJuFla3RemoveMember"
+        Me.CmsJuFla3RemoveMember.Size = New System.Drawing.Size(187, 22)
+        Me.CmsJuFla3RemoveMember.Text = "Teilnehmer entfernen"
+        '
         'BsJuFla3MannschaftenMember
         '
         Me.BsJuFla3MannschaftenMember.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
@@ -759,18 +770,6 @@ Partial Class FrmMain
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Mannschaft:"
         '
-        'CmsJuFla3Member
-        '
-        Me.CmsJuFla3Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla3RemoveMember})
-        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
-        Me.CmsJuFla3Member.Size = New System.Drawing.Size(188, 26)
-        '
-        'CmsJuFla3RemoveMember
-        '
-        Me.CmsJuFla3RemoveMember.Name = "CmsJuFla3RemoveMember"
-        Me.CmsJuFla3RemoveMember.Size = New System.Drawing.Size(187, 22)
-        Me.CmsJuFla3RemoveMember.Text = "Teilnehmer entfernen"
-        '
         'TiMain
         '
         Me.TiMain.Interval = 1000
@@ -830,9 +829,9 @@ Partial Class FrmMain
         Me.TpJuFla3.ResumeLayout(False)
         Me.TpJuFla3.PerformLayout()
         CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CmsJuFla3Member.ResumeLayout(False)
         CType(Me.BsJuFla3MannschaftenMember, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsJuFla3EventsMannschaften, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CmsJuFla3Member.ResumeLayout(False)
         CType(Me.DtsJuFla1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -164,12 +164,23 @@ Public Class FrmMain
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
-                Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+                Dim Geburtsdatum As String = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
                 Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+
+                Dim JahrAlter As Integer = YearAge(Geburtsdatum)
+                Dim ExaktAlter As Integer = ExactAge(Geburtsdatum)
+
+                If JahrAlter < 13 Then
+                    MsgBox("Teilnehmer ist zu jung für die Jugendflamme Stufe 2, TN ist " & JahrAlter & " Jahre alt.", MsgBoxStyle.Critical)
+                    Exit Sub
+                ElseIf ExaktAlter >= 18 Then
+                    MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 2, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
 
                 DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
             Catch ex As Exception
-                MsgBox(ex.Message)
+            MsgBox(ex.Message)
             End Try
 
         ElseIf Stufe = 3 Then
@@ -180,6 +191,17 @@ Public Class FrmMain
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
                 Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
                 Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
+
+                Dim JahrAlter As Integer = YearAge(Geburtsdatum)
+                Dim ExaktAlter As Integer = ExactAge(Geburtsdatum)
+
+                If JahrAlter < 15 Then
+                    MsgBox("Teilnehmer ist zu jung für die Jugendflamme Stufe 3, TN ist " & JahrAlter & " Jahre alt.", MsgBoxStyle.Critical)
+                    Exit Sub
+                ElseIf ExaktAlter >= 18 Then
+                    MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 3, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
 
                 DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
             Catch ex As Exception
@@ -409,10 +431,10 @@ Public Class FrmMain
     ''' </summary>
     ''' <param name="Birthday">Zu prüfendes Geburtsdatum</param>
     ''' <returns>Alter in Jahren</returns>
-    Private Function ExactAge(ByVal Birthday As System.DateTime) As Integer
+    Public Function ExactAge(ByVal Birthday As Date) As Integer
         Dim nMonth As Integer
         Dim nYears As Integer
-        Dim Abnahmedatum As Date = TbAbnahmedatum.Text
+        Dim Abnahmedatum As Date = Date.Parse(TbAbnahmedatum.Text)
 
         ' Alter (Jahre) anhand Monatsdifferenz / 12 ermitteln
         nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)
@@ -427,6 +449,21 @@ Public Class FrmMain
                 nYears += -1
             End If
         End If
+
+        Return nYears
+    End Function
+
+    ''' <summary>
+    ''' Berechnet Alter nach Jahrgang
+    ''' </summary>
+    ''' <param name="Birthday">Zu prüfendes Geburtsdatum</param>
+    ''' <returns>Alter nach Jahrgang in Jahren</returns>
+    Public Function YearAge(ByVal Birthday As Date) As Integer
+        Dim nYears As Integer
+        Dim Abnahmedatum As Date = Date.Parse(TbAbnahmedatum.Text)
+
+        ' Alter (Jahre) anhand Monatsdifferenz / 12
+        nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)
 
         Return nYears
     End Function
