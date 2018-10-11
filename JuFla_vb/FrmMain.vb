@@ -164,7 +164,7 @@ Public Class FrmMain
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
-                Dim Geburtsdatum As String = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
+                Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
                 Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
 
                 Dim JahrAlter As Integer = YearAge(Geburtsdatum)
@@ -247,7 +247,8 @@ Public Class FrmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click, MsExport.Click,
-        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click
+        BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click,
+        MsJuFla2AddMember.Click, MsJuFla3AddMember.Click, MsPrintJuFla2.Click, MsPrintJuFla3.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -261,8 +262,11 @@ Public Class FrmMain
             Case sender Is MsJuFla3AddMannschaft : AddMannschaft(3)
             Case sender Is MsUpload : UploadToFTP()
             Case sender Is MsDownload : DownloadFromFTP()
-            Case sender Is MsWettbInfo
             Case sender Is MsExport : LocalExport()
+            Case sender Is MsJuFla2AddMember : AddMember(2)
+            Case sender Is MsJuFla3AddMember : AddMember(3)
+            Case sender Is MsPrintJuFla2 : PrintMember(2)
+            Case sender Is MsPrintJuFla3 : PrintMember(3)
         End Select
     End Sub
 
@@ -441,7 +445,7 @@ Public Class FrmMain
     Public Function ExactAge(ByVal Birthday As Date) As Integer
         Dim nMonth As Integer
         Dim nYears As Integer
-        Dim Abnahmedatum As Date = Date.Parse(TbAbnahmedatum.Text)
+        Dim Abnahmedatum As Date = BsEvents.Current(2).ToString
 
         ' Alter (Jahre) anhand Monatsdifferenz / 12 ermitteln
         nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)
@@ -467,7 +471,7 @@ Public Class FrmMain
     ''' <returns>Alter nach Jahrgang in Jahren</returns>
     Public Function YearAge(ByVal Birthday As Date) As Integer
         Dim nYears As Integer
-        Dim Abnahmedatum As Date = Date.Parse(TbAbnahmedatum.Text)
+        Dim Abnahmedatum As Date = BsEvents.Current(2).ToString
 
         ' Alter (Jahre) anhand Monatsdifferenz / 12
         nYears = Math.Floor(DateDiff(DateInterval.Month, Birthday, Abnahmedatum) / 12)

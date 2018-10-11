@@ -40,6 +40,11 @@ Partial Class FrmMain
         Me.MsWettbewerbseingabe = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsWettbInfo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MsCbVeranstaltung = New System.Windows.Forms.ToolStripComboBox()
+        Me.BewerberToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsJuFla2AddMember = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsJuFla3AddMember = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsPrintJuFla2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MsPrintJuFla3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TcMain = New System.Windows.Forms.TabControl()
         Me.TpJuFla2 = New System.Windows.Forms.TabPage()
         Me.TbAbnahmedatum = New System.Windows.Forms.TextBox()
@@ -123,7 +128,7 @@ Partial Class FrmMain
         '
         'MsMain
         '
-        Me.MsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.DatenbankToolStripMenuItem, Me.MannschaftenToolStripMenuItem, Me.WettbewerbToolStripMenuItem, Me.MsCbVeranstaltung})
+        Me.MsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.DatenbankToolStripMenuItem, Me.MannschaftenToolStripMenuItem, Me.WettbewerbToolStripMenuItem, Me.MsCbVeranstaltung, Me.BewerberToolStripMenuItem})
         Me.MsMain.Location = New System.Drawing.Point(0, 0)
         Me.MsMain.Name = "MsMain"
         Me.MsMain.Size = New System.Drawing.Size(1190, 27)
@@ -195,7 +200,8 @@ Partial Class FrmMain
         '
         Me.MsJuFla2AddMannschaft.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.MsJuFla2AddMannschaft.Name = "MsJuFla2AddMannschaft"
-        Me.MsJuFla2AddMannschaft.Size = New System.Drawing.Size(239, 22)
+        Me.MsJuFla2AddMannschaft.ShortcutKeys = System.Windows.Forms.Keys.F2
+        Me.MsJuFla2AddMannschaft.Size = New System.Drawing.Size(258, 22)
         Me.MsJuFla2AddMannschaft.Text = "Mannschaft Stufe 2 hinzufügen"
         Me.MsJuFla2AddMannschaft.ToolTipText = "Fügt eine Mannschaft zur Jugendflamme Stufe 2 hinzu"
         '
@@ -203,7 +209,8 @@ Partial Class FrmMain
         '
         Me.MsJuFla3AddMannschaft.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.MsJuFla3AddMannschaft.Name = "MsJuFla3AddMannschaft"
-        Me.MsJuFla3AddMannschaft.Size = New System.Drawing.Size(239, 22)
+        Me.MsJuFla3AddMannschaft.ShortcutKeys = System.Windows.Forms.Keys.F3
+        Me.MsJuFla3AddMannschaft.Size = New System.Drawing.Size(258, 22)
         Me.MsJuFla3AddMannschaft.Text = "Mannschaft Stufe 3 hinzufügen"
         Me.MsJuFla3AddMannschaft.ToolTipText = "Fügt eine Mannschaft zur Jugendflamme Stufe 2 hinzu"
         '
@@ -211,7 +218,7 @@ Partial Class FrmMain
         '
         Me.MsUebersichtMannschaften.Image = Global.JuFla_vb.My.Resources.Resources.information
         Me.MsUebersichtMannschaften.Name = "MsUebersichtMannschaften"
-        Me.MsUebersichtMannschaften.Size = New System.Drawing.Size(239, 22)
+        Me.MsUebersichtMannschaften.Size = New System.Drawing.Size(258, 22)
         Me.MsUebersichtMannschaften.Text = "Übersicht Mannschaften"
         Me.MsUebersichtMannschaften.ToolTipText = "Zeigt eine Übersicht aller Mannschaften des akuellen Events an"
         '
@@ -226,7 +233,8 @@ Partial Class FrmMain
         '
         Me.MsWettbewerbseingabe.Image = Global.JuFla_vb.My.Resources.Resources.edit
         Me.MsWettbewerbseingabe.Name = "MsWettbewerbseingabe"
-        Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(185, 22)
+        Me.MsWettbewerbseingabe.ShortcutKeys = System.Windows.Forms.Keys.F4
+        Me.MsWettbewerbseingabe.Size = New System.Drawing.Size(204, 22)
         Me.MsWettbewerbseingabe.Text = "Wettbewerbseingabe"
         Me.MsWettbewerbseingabe.ToolTipText = "Öffnet die Eingabemaske zur Wettbewerbseingabe"
         '
@@ -235,7 +243,7 @@ Partial Class FrmMain
         Me.MsWettbInfo.Enabled = False
         Me.MsWettbInfo.Image = Global.JuFla_vb.My.Resources.Resources.information
         Me.MsWettbInfo.Name = "MsWettbInfo"
-        Me.MsWettbInfo.Size = New System.Drawing.Size(185, 22)
+        Me.MsWettbInfo.Size = New System.Drawing.Size(204, 22)
         Me.MsWettbInfo.Text = "Wettbewerbsinfo"
         Me.MsWettbInfo.ToolTipText = "BETA!"
         '
@@ -245,6 +253,42 @@ Partial Class FrmMain
         Me.MsCbVeranstaltung.Size = New System.Drawing.Size(121, 23)
         Me.MsCbVeranstaltung.Text = "Veranstaltung"
         Me.MsCbVeranstaltung.ToolTipText = "Veranstaltung nach Veranstaltungs-ID"
+        '
+        'BewerberToolStripMenuItem
+        '
+        Me.BewerberToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MsJuFla2AddMember, Me.MsJuFla3AddMember, Me.MsPrintJuFla2, Me.MsPrintJuFla3})
+        Me.BewerberToolStripMenuItem.Name = "BewerberToolStripMenuItem"
+        Me.BewerberToolStripMenuItem.Size = New System.Drawing.Size(68, 23)
+        Me.BewerberToolStripMenuItem.Text = "Bewerber"
+        Me.BewerberToolStripMenuItem.Visible = False
+        '
+        'MsJuFla2AddMember
+        '
+        Me.MsJuFla2AddMember.Name = "MsJuFla2AddMember"
+        Me.MsJuFla2AddMember.ShortcutKeys = System.Windows.Forms.Keys.F6
+        Me.MsJuFla2AddMember.Size = New System.Drawing.Size(206, 22)
+        Me.MsJuFla2AddMember.Text = "Add Bewerber Stufe 2"
+        '
+        'MsJuFla3AddMember
+        '
+        Me.MsJuFla3AddMember.Name = "MsJuFla3AddMember"
+        Me.MsJuFla3AddMember.ShortcutKeys = System.Windows.Forms.Keys.F7
+        Me.MsJuFla3AddMember.Size = New System.Drawing.Size(206, 22)
+        Me.MsJuFla3AddMember.Text = "Add Bewerber Stufe 3"
+        '
+        'MsPrintJuFla2
+        '
+        Me.MsPrintJuFla2.Name = "MsPrintJuFla2"
+        Me.MsPrintJuFla2.ShortcutKeys = System.Windows.Forms.Keys.F10
+        Me.MsPrintJuFla2.Size = New System.Drawing.Size(206, 22)
+        Me.MsPrintJuFla2.Text = "Print BW-List JuFla2"
+        '
+        'MsPrintJuFla3
+        '
+        Me.MsPrintJuFla3.Name = "MsPrintJuFla3"
+        Me.MsPrintJuFla3.ShortcutKeys = System.Windows.Forms.Keys.F11
+        Me.MsPrintJuFla3.Size = New System.Drawing.Size(206, 22)
+        Me.MsPrintJuFla3.Text = "Print BW-List JuFla3"
         '
         'TcMain
         '
@@ -281,11 +325,14 @@ Partial Class FrmMain
         '
         'TbAbnahmedatum
         '
+        Me.TbAbnahmedatum.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TbAbnahmedatum.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsEvents, "Abnahmedatum", True))
-        Me.TbAbnahmedatum.Location = New System.Drawing.Point(1057, 20)
+        Me.TbAbnahmedatum.Location = New System.Drawing.Point(1072, 19)
         Me.TbAbnahmedatum.Name = "TbAbnahmedatum"
         Me.TbAbnahmedatum.ReadOnly = True
-        Me.TbAbnahmedatum.Size = New System.Drawing.Size(100, 20)
+        Me.TbAbnahmedatum.Size = New System.Drawing.Size(85, 20)
         Me.TbAbnahmedatum.TabIndex = 16
         '
         'BsEvents
@@ -304,7 +351,7 @@ Partial Class FrmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(708, 44)
+        Me.Label7.Location = New System.Drawing.Point(708, 42)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(449, 29)
         Me.Label7.TabIndex = 15
@@ -314,7 +361,7 @@ Partial Class FrmMain
         '
         Me.BtJuFla2Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
         Me.BtJuFla2Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2Import.Location = New System.Drawing.Point(620, 34)
+        Me.BtJuFla2Import.Location = New System.Drawing.Point(630, 34)
         Me.BtJuFla2Import.Name = "BtJuFla2Import"
         Me.BtJuFla2Import.Size = New System.Drawing.Size(72, 39)
         Me.BtJuFla2Import.TabIndex = 14
@@ -326,11 +373,11 @@ Partial Class FrmMain
         '
         Me.BtJuFla2PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
         Me.BtJuFla2PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2PrintMember.Location = New System.Drawing.Point(506, 34)
+        Me.BtJuFla2PrintMember.Location = New System.Drawing.Point(516, 34)
         Me.BtJuFla2PrintMember.Name = "BtJuFla2PrintMember"
         Me.BtJuFla2PrintMember.Size = New System.Drawing.Size(108, 39)
         Me.BtJuFla2PrintMember.TabIndex = 12
-        Me.BtJuFla2PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken"
+        Me.BtJuFla2PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F10)"
         Me.BtJuFla2PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla2PrintMember.UseVisualStyleBackColor = True
         '
@@ -338,11 +385,11 @@ Partial Class FrmMain
         '
         Me.BtJuFla2AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.BtJuFla2AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2AddMember.Location = New System.Drawing.Point(403, 34)
+        Me.BtJuFla2AddMember.Location = New System.Drawing.Point(399, 34)
         Me.BtJuFla2AddMember.Name = "BtJuFla2AddMember"
-        Me.BtJuFla2AddMember.Size = New System.Drawing.Size(97, 39)
+        Me.BtJuFla2AddMember.Size = New System.Drawing.Size(111, 39)
         Me.BtJuFla2AddMember.TabIndex = 11
-        Me.BtJuFla2AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen"
+        Me.BtJuFla2AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F6)"
         Me.BtJuFla2AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla2AddMember.UseVisualStyleBackColor = True
         '
@@ -681,7 +728,7 @@ Partial Class FrmMain
         '
         Me.BtJuFla3Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
         Me.BtJuFla3Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3Import.Location = New System.Drawing.Point(617, 37)
+        Me.BtJuFla3Import.Location = New System.Drawing.Point(629, 37)
         Me.BtJuFla3Import.Name = "BtJuFla3Import"
         Me.BtJuFla3Import.Size = New System.Drawing.Size(73, 39)
         Me.BtJuFla3Import.TabIndex = 17
@@ -693,11 +740,11 @@ Partial Class FrmMain
         '
         Me.BtJuFla3PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
         Me.BtJuFla3PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(503, 37)
+        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(515, 37)
         Me.BtJuFla3PrintMember.Name = "BtJuFla3PrintMember"
         Me.BtJuFla3PrintMember.Size = New System.Drawing.Size(108, 39)
         Me.BtJuFla3PrintMember.TabIndex = 16
-        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken"
+        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F11)"
         Me.BtJuFla3PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla3PrintMember.UseVisualStyleBackColor = True
         '
@@ -705,11 +752,11 @@ Partial Class FrmMain
         '
         Me.BtJuFla3AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
         Me.BtJuFla3AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3AddMember.Location = New System.Drawing.Point(400, 37)
+        Me.BtJuFla3AddMember.Location = New System.Drawing.Point(399, 37)
         Me.BtJuFla3AddMember.Name = "BtJuFla3AddMember"
-        Me.BtJuFla3AddMember.Size = New System.Drawing.Size(97, 39)
+        Me.BtJuFla3AddMember.Size = New System.Drawing.Size(110, 39)
         Me.BtJuFla3AddMember.TabIndex = 15
-        Me.BtJuFla3AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen"
+        Me.BtJuFla3AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F7)"
         Me.BtJuFla3AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtJuFla3AddMember.UseVisualStyleBackColor = True
         '
@@ -913,9 +960,14 @@ Partial Class FrmMain
     Friend WithEvents DatenbankToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MsUpload As ToolStripMenuItem
     Friend WithEvents MsDownload As ToolStripMenuItem
-    Friend WithEvents TbAbnahmedatum As TextBox
     Friend WithEvents MsWettbInfo As ToolStripMenuItem
     Friend WithEvents MsExport As ToolStripMenuItem
     Friend WithEvents Label9 As Label
     Friend WithEvents TtMain As ToolTip
+    Friend WithEvents BewerberToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MsJuFla2AddMember As ToolStripMenuItem
+    Friend WithEvents MsJuFla3AddMember As ToolStripMenuItem
+    Friend WithEvents TbAbnahmedatum As TextBox
+    Friend WithEvents MsPrintJuFla2 As ToolStripMenuItem
+    Friend WithEvents MsPrintJuFla3 As ToolStripMenuItem
 End Class
