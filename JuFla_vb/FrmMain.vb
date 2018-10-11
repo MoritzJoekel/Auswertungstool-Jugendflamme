@@ -80,7 +80,7 @@ Public Class FrmMain
         Try
             Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
             Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
-            Dim EventID As String = MsCbVeranstaltung.Text
+            Dim EventID As String = BsEvents.Current(0).ToString
 
             If Stufe = 2 Then
                 If Startnummer = 0 Then
@@ -91,6 +91,7 @@ Public Class FrmMain
                     End If
                 End If
                 DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
+                DtsJuFla.AcceptChanges()
             ElseIf Stufe = 3 Then
                 If Startnummer = 0 Then
                     If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
@@ -146,11 +147,16 @@ Public Class FrmMain
     ''' <param name="e"></param>
     Private Sub DtsJuFla_Clear(sender As Object, e As EventArgs) Handles MsDtsLeeren.Click
         Dim Result As MsgBoxResult = MsgBox("Wollen sie die Datenbank wirklich leeren?? (Backup wird erstellt)", MsgBoxStyle.YesNo)
-        If Result = MsgBoxResult.Yes Then
-            My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
-            DtsJuFla.Clear()
-            My.Computer.FileSystem.DeleteFile(DataStream)
-        End If
+        Try
+            If Result = MsgBoxResult.Yes Then
+                DtsJuFla.WriteXml(DataStream)
+                My.Computer.FileSystem.CopyFile(DataStream, HomeStream + "\JuFla_Data_Backup.xml", True)
+                DtsJuFla.Clear()
+                My.Computer.FileSystem.DeleteFile(DataStream)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     ''' <summary>
@@ -160,7 +166,7 @@ Public Class FrmMain
     Private Sub AddMember(Stufe As Integer)
         If Stufe = 2 Then
             Try
-                Dim sn As Integer = TbRoJuFla2Startnummer.Text
+                Dim sn As Integer = TbJuFla2Startnummer.Text
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
@@ -218,7 +224,7 @@ Public Class FrmMain
 
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 2",
-                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Ort.Text & " (" & TbRoJuFla2Startnummer.Text & ")",
+                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Mannschaft.Text & " (" & TbJuFla2Startnummer.Text & ")",
                 .KeepRowsTogether = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
@@ -379,7 +385,7 @@ Public Class FrmMain
 
 
                 ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbRoJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
             Next
 
         ElseIf Stufe = 3 Then

@@ -25,16 +25,16 @@ Partial Class FrmUebersicht_Mannschaften
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DgvJuFla2Mannschaften = New System.Windows.Forms.DataGridView()
-        Me.DgvJuFla3Mannschaften = New System.Windows.Forms.DataGridView()
-        Me.BsJuFla2Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
-        Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BsJuFla2Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
+        Me.DgvJuFla3Mannschaften = New System.Windows.Forms.DataGridView()
         Me.IDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StartnummerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BsJuFla3Mannschaften = New System.Windows.Forms.BindingSource(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StartlisteStufe2DruckenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,9 +45,9 @@ Partial Class FrmUebersicht_Mannschaften
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.DgvJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -71,8 +71,6 @@ Partial Class FrmUebersicht_Mannschaften
         '
         'DgvJuFla2Mannschaften
         '
-        Me.DgvJuFla2Mannschaften.AllowUserToAddRows = False
-        Me.DgvJuFla2Mannschaften.AllowUserToDeleteRows = False
         Me.DgvJuFla2Mannschaften.AutoGenerateColumns = False
         Me.DgvJuFla2Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvJuFla2Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.StartnummerDataGridViewTextBoxColumn, Me.OrtDataGridViewTextBoxColumn})
@@ -82,35 +80,6 @@ Partial Class FrmUebersicht_Mannschaften
         Me.DgvJuFla2Mannschaften.Name = "DgvJuFla2Mannschaften"
         Me.DgvJuFla2Mannschaften.Size = New System.Drawing.Size(396, 544)
         Me.DgvJuFla2Mannschaften.TabIndex = 0
-        '
-        'DgvJuFla3Mannschaften
-        '
-        Me.DgvJuFla3Mannschaften.AllowUserToAddRows = False
-        Me.DgvJuFla3Mannschaften.AllowUserToDeleteRows = False
-        Me.DgvJuFla3Mannschaften.AutoGenerateColumns = False
-        Me.DgvJuFla3Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvJuFla3Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn1, Me.StartnummerDataGridViewTextBoxColumn1, Me.OrtDataGridViewTextBoxColumn1})
-        Me.DgvJuFla3Mannschaften.DataSource = Me.BsJuFla3Mannschaften
-        Me.DgvJuFla3Mannschaften.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DgvJuFla3Mannschaften.Location = New System.Drawing.Point(0, 0)
-        Me.DgvJuFla3Mannschaften.Name = "DgvJuFla3Mannschaften"
-        Me.DgvJuFla3Mannschaften.Size = New System.Drawing.Size(376, 544)
-        Me.DgvJuFla3Mannschaften.TabIndex = 0
-        '
-        'BsJuFla2Mannschaften
-        '
-        Me.BsJuFla2Mannschaften.DataMember = "TblJuFla2Mannschaften"
-        Me.BsJuFla2Mannschaften.DataSource = Me.DtsJuFla
-        '
-        'DtsJuFla
-        '
-        Me.DtsJuFla.DataSetName = "DtsJuFla"
-        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'BsJuFla3Mannschaften
-        '
-        Me.BsJuFla3Mannschaften.DataMember = "TblJuFla3Mannschaften"
-        Me.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla
         '
         'IDDataGridViewTextBoxColumn
         '
@@ -131,6 +100,28 @@ Partial Class FrmUebersicht_Mannschaften
         Me.OrtDataGridViewTextBoxColumn.HeaderText = "Ort"
         Me.OrtDataGridViewTextBoxColumn.Name = "OrtDataGridViewTextBoxColumn"
         '
+        'BsJuFla2Mannschaften
+        '
+        Me.BsJuFla2Mannschaften.DataMember = "TblJuFla2Mannschaften"
+        Me.BsJuFla2Mannschaften.DataSource = Me.DtsJuFla
+        '
+        'DtsJuFla
+        '
+        Me.DtsJuFla.DataSetName = "DtsJuFla"
+        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DgvJuFla3Mannschaften
+        '
+        Me.DgvJuFla3Mannschaften.AutoGenerateColumns = False
+        Me.DgvJuFla3Mannschaften.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJuFla3Mannschaften.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn1, Me.StartnummerDataGridViewTextBoxColumn1, Me.OrtDataGridViewTextBoxColumn1})
+        Me.DgvJuFla3Mannschaften.DataSource = Me.BsJuFla3Mannschaften
+        Me.DgvJuFla3Mannschaften.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvJuFla3Mannschaften.Location = New System.Drawing.Point(0, 0)
+        Me.DgvJuFla3Mannschaften.Name = "DgvJuFla3Mannschaften"
+        Me.DgvJuFla3Mannschaften.Size = New System.Drawing.Size(376, 544)
+        Me.DgvJuFla3Mannschaften.TabIndex = 0
+        '
         'IDDataGridViewTextBoxColumn1
         '
         Me.IDDataGridViewTextBoxColumn1.DataPropertyName = "ID"
@@ -149,6 +140,11 @@ Partial Class FrmUebersicht_Mannschaften
         Me.OrtDataGridViewTextBoxColumn1.DataPropertyName = "Ort"
         Me.OrtDataGridViewTextBoxColumn1.HeaderText = "Ort"
         Me.OrtDataGridViewTextBoxColumn1.Name = "OrtDataGridViewTextBoxColumn1"
+        '
+        'BsJuFla3Mannschaften
+        '
+        Me.BsJuFla3Mannschaften.DataMember = "TblJuFla3Mannschaften"
+        Me.BsJuFla3Mannschaften.DataSource = Me.DtsJuFla
         '
         'MenuStrip1
         '
@@ -200,9 +196,9 @@ Partial Class FrmUebersicht_Mannschaften
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.DgvJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsJuFla2Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsJuFla3Mannschaften, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
