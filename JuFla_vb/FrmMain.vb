@@ -559,4 +559,13 @@ Public Class FrmMain
         End Try
 
     End Sub
+
+    Private Sub ExportRechnung()
+        Dim wrtr As StreamWriter = New StreamWriter(HomeStream & "\export.csv")
+
+        For rowIndex = 0 To DtsJuFla.TblJuFla2Mannschaften.Rows.Count
+
+        Next rowIndex
+
+    End Sub
 End Class
