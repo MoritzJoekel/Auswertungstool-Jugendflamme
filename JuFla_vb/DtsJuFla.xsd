@@ -26,7 +26,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="Startnummer" msprop:Generator_ColumnVarNameInTable="columnStartnummer" msprop:Generator_ColumnPropNameInRow="Startnummer" msprop:Generator_ColumnPropNameInTable="StartnummerColumn" msprop:Generator_UserColumnName="Startnummer" type="xs:int" default="0" />
+              <xs:element name="MannschaftsID" msprop:Generator_ColumnVarNameInTable="columnMannschaftsID" msprop:Generator_ColumnPropNameInRow="MannschaftsID" msprop:Generator_ColumnPropNameInTable="MannschaftsIDColumn" msprop:Generator_UserColumnName="MannschaftsID" type="xs:int" default="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="Vorname" msprop:Generator_ColumnVarNameInTable="columnVorname" msprop:Generator_ColumnPropNameInRow="Vorname" msprop:Generator_ColumnPropNameInTable="VornameColumn" msprop:Generator_UserColumnName="Vorname" type="xs:string" minOccurs="0" />
               <xs:element name="Geschlecht" msprop:Generator_ColumnVarNameInTable="columnGeschlecht" msprop:Generator_ColumnPropNameInRow="Geschlecht" msprop:Generator_ColumnPropNameInTable="GeschlechtColumn" msprop:Generator_UserColumnName="Geschlecht" type="xs:string" minOccurs="0" />
@@ -54,7 +54,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="Startnummer" msprop:Generator_ColumnVarNameInTable="columnStartnummer" msprop:Generator_ColumnPropNameInRow="Startnummer" msprop:Generator_ColumnPropNameInTable="StartnummerColumn" msprop:Generator_UserColumnName="Startnummer" type="xs:int" default="0" />
+              <xs:element name="MannschaftsID" msprop:Generator_ColumnVarNameInTable="columnMannschaftsID" msprop:Generator_ColumnPropNameInRow="MannschaftsID" msprop:Generator_ColumnPropNameInTable="MannschaftsIDColumn" msprop:Generator_UserColumnName="MannschaftsID" type="xs:int" default="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="Vorname" msprop:Generator_ColumnVarNameInTable="columnVorname" msprop:Generator_ColumnPropNameInRow="Vorname" msprop:Generator_ColumnPropNameInTable="VornameColumn" msprop:Generator_UserColumnName="Vorname" type="xs:string" minOccurs="0" />
               <xs:element name="Geschlecht" msprop:Generator_ColumnVarNameInTable="columnGeschlecht" msprop:Generator_ColumnPropNameInRow="Geschlecht" msprop:Generator_ColumnPropNameInTable="GeschlechtColumn" msprop:Generator_UserColumnName="Geschlecht" type="xs:string" minOccurs="0" />
@@ -86,11 +86,11 @@
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblJuFla2Mannschaften" />
-      <xs:field xpath="mstns:Startnummer" />
+      <xs:field xpath="mstns:ID" />
     </xs:unique>
     <xs:unique name="TblJuFla3Mannschaften_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblJuFla3Mannschaften" />
-      <xs:field xpath="mstns:Startnummer" />
+      <xs:field xpath="mstns:ID" />
     </xs:unique>
     <xs:unique name="TblEvents_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:TblEvents" />
@@ -99,10 +99,10 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="TblJuFla2Mannschaften_TblJuFla2Member" msdata:parent="TblJuFla2Mannschaften" msdata:child="TblJuFla2Member" msdata:parentkey="Startnummer" msdata:childkey="Startnummer" msprop:Generator_UserChildTable="TblJuFla2Member" msprop:Generator_ChildPropName="GetTblJuFla2MemberRows" msprop:Generator_UserRelationName="TblJuFla2Mannschaften_TblJuFla2Member" msprop:Generator_RelationVarName="relationTblJuFla2Mannschaften_TblJuFla2Member" msprop:Generator_UserParentTable="TblJuFla2Mannschaften" msprop:Generator_ParentPropName="TblJuFla2MannschaftenRow" />
-      <msdata:Relationship name="TblJuFla3Mannschaften_TblJuFla3Member" msdata:parent="TblJuFla3Mannschaften" msdata:child="TblJuFla3Member" msdata:parentkey="Startnummer" msdata:childkey="Startnummer" msprop:Generator_UserChildTable="TblJuFla3Member" msprop:Generator_ChildPropName="GetTblJuFla3MemberRows" msprop:Generator_UserRelationName="TblJuFla3Mannschaften_TblJuFla3Member" msprop:Generator_RelationVarName="relationTblJuFla3Mannschaften_TblJuFla3Member" msprop:Generator_UserParentTable="TblJuFla3Mannschaften" msprop:Generator_ParentPropName="TblJuFla3MannschaftenRow" />
       <msdata:Relationship name="TblEvents_TblJuFla2Mannschaften" msdata:parent="TblEvents" msdata:child="TblJuFla2Mannschaften" msdata:parentkey="EventID" msdata:childkey="EventID" msprop:Generator_UserChildTable="TblJuFla2Mannschaften" msprop:Generator_ChildPropName="GetTblJuFla2MannschaftenRows" msprop:Generator_UserRelationName="TblEvents_TblJuFla2Mannschaften" msprop:Generator_RelationVarName="relationTblEvents_TblJuFla2Mannschaften" msprop:Generator_UserParentTable="TblEvents" msprop:Generator_ParentPropName="TblEventsRow" />
       <msdata:Relationship name="TblEvents_TblJuFla3Mannschaften" msdata:parent="TblEvents" msdata:child="TblJuFla3Mannschaften" msdata:parentkey="EventID" msdata:childkey="EventID" msprop:Generator_UserChildTable="TblJuFla3Mannschaften" msprop:Generator_ChildPropName="GetTblJuFla3MannschaftenRows" msprop:Generator_UserRelationName="TblEvents_TblJuFla3Mannschaften" msprop:Generator_RelationVarName="relationTblEvents_TblJuFla3Mannschaften" msprop:Generator_UserParentTable="TblEvents" msprop:Generator_ParentPropName="TblEventsRow" />
+      <msdata:Relationship name="TblJuFla2Mannschaften_TblJuFla2Member" msdata:parent="TblJuFla2Mannschaften" msdata:child="TblJuFla2Member" msdata:parentkey="ID" msdata:childkey="MannschaftsID" msprop:Generator_UserChildTable="TblJuFla2Member" msprop:Generator_ChildPropName="GetTblJuFla2MemberRows" msprop:Generator_UserRelationName="TblJuFla2Mannschaften_TblJuFla2Member" msprop:Generator_ParentPropName="TblJuFla2MannschaftenRow" msprop:Generator_RelationVarName="relationTblJuFla2Mannschaften_TblJuFla2Member" msprop:Generator_UserParentTable="TblJuFla2Mannschaften" />
+      <msdata:Relationship name="TblJuFla3Mannschaften_TblJuFla3Member" msdata:parent="TblJuFla3Mannschaften" msdata:child="TblJuFla3Member" msdata:parentkey="ID" msdata:childkey="MannschaftsID" msprop:Generator_UserChildTable="TblJuFla3Member" msprop:Generator_ChildPropName="GetTblJuFla3MemberRows" msprop:Generator_UserRelationName="TblJuFla3Mannschaften_TblJuFla3Member" msprop:Generator_ParentPropName="TblJuFla3MannschaftenRow" msprop:Generator_RelationVarName="relationTblJuFla3Mannschaften_TblJuFla3Member" msprop:Generator_UserParentTable="TblJuFla3Mannschaften" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

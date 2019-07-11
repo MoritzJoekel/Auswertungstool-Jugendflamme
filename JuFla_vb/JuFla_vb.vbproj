@@ -72,6 +72,9 @@
     <Reference Include="DGV Printer">
       <HintPath>..\..\..\..\Desktop\DGV Printer.dll</HintPath>
     </Reference>
+    <Reference Include="FileHelpers">
+      <HintPath>..\..\..\..\Desktop\FileHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -196,6 +199,7 @@
   <ItemGroup>
     <Content Include="Icons\icon_checked.png" />
     <Content Include="Icons\icon_new.png" />
+    <None Include="Resources\pie-chart.png" />
     <None Include="Resources\edit.png" />
     <None Include="Resources\information.png" />
     <None Include="Resources\delete_rubbish.png" />

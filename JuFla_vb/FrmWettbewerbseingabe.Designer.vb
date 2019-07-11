@@ -469,7 +469,7 @@ Partial Class FrmWettbewerbseingabe
         Me.TbJuFla3ValPraesentation.AutoCompleteCustomSource.AddRange(New String() {"1", "2", "3", "4", "5", "6"})
         Me.TbJuFla3ValPraesentation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.TbJuFla3ValPraesentation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.TbJuFla3ValPraesentation.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsJuFla3Member, "ValFwTechnik", True))
+        Me.TbJuFla3ValPraesentation.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BsJuFla3Member, "ValPraesentation", True))
         Me.TbJuFla3ValPraesentation.Location = New System.Drawing.Point(179, 110)
         Me.TbJuFla3ValPraesentation.Name = "TbJuFla3ValPraesentation"
         Me.TbJuFla3ValPraesentation.Size = New System.Drawing.Size(130, 20)

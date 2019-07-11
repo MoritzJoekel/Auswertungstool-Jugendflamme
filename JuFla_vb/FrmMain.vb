@@ -1,12 +1,13 @@
 ﻿Imports System.ComponentModel
-Imports DGVPrinterHelper
 Imports System.Data.OleDb
 Imports System.IO
+Imports DGVPrinterHelper
 
 Public Class FrmMain
     Public HomeStream As String = Application.UserAppDataPath ' --> Heimverzeichnis in AppData
     Public DataStream As String = HomeStream + "\JuFla_Data.xml" ' --> Speicherort der XML der Datenbank
     Public TblImport As DataTable ' --> Temporäre DataTable für Import aus Excel
+    Public Desktop As String = My.Computer.FileSystem.SpecialDirectories.Desktop
 
     ''' <summary>
     ''' Ruft FrmVeranstaltungsdaten auf
@@ -62,6 +63,7 @@ Public Class FrmMain
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
         TiMain.Stop()
+        NiMain.Visible = False
     End Sub
 
     ''' <summary>
@@ -186,7 +188,7 @@ Public Class FrmMain
 
                 DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
             Catch ex As Exception
-            MsgBox(ex.Message)
+                MsgBox(ex.Message)
             End Try
 
         ElseIf Stufe = 3 Then
@@ -254,7 +256,7 @@ Public Class FrmMain
     ''' <param name="e"></param>
     Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click, MsExport.Click,
         BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click,
-        MsJuFla2AddMember.Click, MsJuFla3AddMember.Click, MsPrintJuFla2.Click, MsPrintJuFla3.Click
+        MsJuFla2AddMember.Click, MsJuFla3AddMember.Click, MsPrintJuFla2.Click, MsPrintJuFla3.Click, MsStatistik.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -273,6 +275,7 @@ Public Class FrmMain
             Case sender Is MsJuFla3AddMember : AddMember(3)
             Case sender Is MsPrintJuFla2 : PrintMember(2)
             Case sender Is MsPrintJuFla3 : PrintMember(3)
+            Case sender Is MsStatistik : Exportstatistik()
         End Select
     End Sub
 
@@ -560,12 +563,9 @@ Public Class FrmMain
 
     End Sub
 
-    Private Sub ExportRechnung()
-        Dim wrtr As StreamWriter = New StreamWriter(HomeStream & "\export.csv")
-
-        For rowIndex = 0 To DtsJuFla.TblJuFla2Mannschaften.Rows.Count
-
-        Next rowIndex
-
+    Private Sub Exportstatistik()
+        FileHelpers.CsvEngine.DataTableToCsv(DtsJuFla.TblJuFla2Member, Desktop & "\JuFla2_TN.csv")
+        FileHelpers.CsvEngine.DataTableToCsv(DtsJuFla.TblJuFla3Member, Desktop & "\JuFla3_TN.csv")
+        MsgBox("Erfolgreich nach " & Desktop & " exportiert!")
     End Sub
 End Class
