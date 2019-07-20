@@ -2,12 +2,13 @@
 Imports System.Data.OleDb
 Imports System.IO
 Imports DGVPrinterHelper
+Imports FileHelpers
 
 Public Class FrmMain
     Public HomeStream As String = Application.UserAppDataPath ' --> Heimverzeichnis in AppData
     Public DataStream As String = HomeStream + "\JuFla_Data.xml" ' --> Speicherort der XML der Datenbank
     Public TblImport As DataTable ' --> Temporäre DataTable für Import aus Excel
-    Public Desktop As String = My.Computer.FileSystem.SpecialDirectories.Desktop
+    Public Desktop As String = My.Computer.FileSystem.SpecialDirectories.Desktop ' --> Desktopverzeichnis
 
     ''' <summary>
     ''' Ruft FrmVeranstaltungsdaten auf
@@ -168,7 +169,7 @@ Public Class FrmMain
     Private Sub AddMember(Stufe As Integer)
         If Stufe = 2 Then
             Try
-                Dim sn As Integer = TbJuFla2Startnummer.Text
+                Dim MannschaftID As Integer = TblEventsTblJuFla2MannschaftenBindingSource.Current("ID")
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
@@ -185,15 +186,19 @@ Public Class FrmMain
                     MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 2, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
+                If Not Geschlecht = "m" Or Geschlecht = "w" Then
+                    MsgBox("Ungültige Eingabe des Geschlechts! (m = männlich, w = weiblich)")
+                    Exit Sub
+                End If
 
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
+                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, MannschaftID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
 
         ElseIf Stufe = 3 Then
             Try
-                Dim sn As Integer = TbJuFla3Startnummer.Text
+                Dim MannschaftID As Integer = TblEventsTblJuFla3MannschaftenBindingSource.Current("ID")
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
@@ -210,8 +215,12 @@ Public Class FrmMain
                     MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 3, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
+                If Not Geschlecht = "m" Or Geschlecht = "w" Then
+                    MsgBox("Ungültige Eingabe des Geschlechts! (m = männlich, w = weiblich)")
+                    Exit Sub
+                End If
 
-                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
+                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, MannschaftID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -563,9 +572,39 @@ Public Class FrmMain
 
     End Sub
 
+    ''' <summary>
+    ''' Erstellt eine Liste, wie viele Bewerber pro Mannschaft das Abzeichen erhalten haben um die Erstellung von Rechnungen an die Kommunen zu vereinfachen
+    ''' </summary>
     Private Sub Exportstatistik()
-        FileHelpers.CsvEngine.DataTableToCsv(DtsJuFla.TblJuFla2Member, Desktop & "\JuFla2_TN.csv")
-        FileHelpers.CsvEngine.DataTableToCsv(DtsJuFla.TblJuFla3Member, Desktop & "\JuFla3_TN.csv")
-        MsgBox("Erfolgreich nach " & Desktop & " exportiert!")
+
+        Dim Path As String = Desktop & "\Statistik_JuFla" & DateTime.Now.ToShortDateString & ".txt"
+
+        If IO.File.Exists(Path) Then
+            IO.File.Delete(Path)
+        End If
+
+        Dim File As StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(Path, True)
+        Dim table As DataTable = DtsJuFla.Tables("TblJuFla2Member")
+
+        File.WriteLine("Statistik für Abrechnung Jugendflamme Stufe 2/3")
+        File.WriteLine("Statistik erstellt am " & Date.Now.ToString)
+        File.WriteLine("--------------------------------------------------------------------------------")
+        File.WriteLine("Jugendflamme Stufe 2:")
+
+        For Each Item In TblEventsTblJuFla2MannschaftenBindingSource
+            Dim Filterexpression As String = "MannschaftsID = '" & Item("ID") & "' AND finished = true"
+            Dim rows = table.Select(Filterexpression)
+            File.WriteLine(Item("Ort") & ": ---> " & rows.Length() & " Bewerber")
+        Next
+
+        File.WriteLine("--------------------------------------------------------------------------------")
+        File.WriteLine("Jugendflamme Stufe 3:")
+        For Each Item In TblEventsTblJuFla3MannschaftenBindingSource
+            Dim Filterexpression As String = "MannschaftsID = '" & Item("ID") & "' AND finished = true"
+            Dim rows = table.Select(Filterexpression)
+            File.WriteLine(Item("Ort") & ": ---> " & rows.Length() & " Bewerber")
+        Next
+        File.Close()
+
     End Sub
 End Class
