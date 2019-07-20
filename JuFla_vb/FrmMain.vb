@@ -160,62 +160,28 @@ Public Class FrmMain
     Private Sub AddMember(Stufe As Integer)
         If Stufe = 2 Then
             Try
-<<<<<<< Updated upstream
                 Dim sn As Integer = TbRoJuFla2Startnummer.Text
-=======
-                Dim MannschaftID As Integer = TblEventsTblJuFla2MannschaftenBindingSource.Current("ID")
->>>>>>> Stashed changes
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
                 Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
                 Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
 
-<<<<<<< Updated upstream
                 DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
-=======
-                Dim JahrAlter As Integer = YearAge(Geburtsdatum)
-                Dim ExaktAlter As Integer = ExactAge(Geburtsdatum)
-
-                If JahrAlter < 13 Then
-                    MsgBox("Teilnehmer ist zu jung für die Jugendflamme Stufe 2, TN ist " & JahrAlter & " Jahre alt.", MsgBoxStyle.Critical)
-                    Exit Sub
-                ElseIf ExaktAlter >= 18 Then
-                    MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 2, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, MannschaftID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Name + ", " + Vorname)
->>>>>>> Stashed changes
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
 
         ElseIf Stufe = 3 Then
             Try
-                Dim MannschaftID As Integer = TblEventsTblJuFla2MannschaftenBindingSource.Current("ID")
+                Dim sn As Integer = TbJuFla3Startnummer.Text
                 Dim Name As String = InputBox("Name des Bewerbers", , "undefined")
                 Dim Vorname As String = InputBox("Vorname des Bewerbers",, "undefinded")
                 Dim Geschlecht As String = InputBox("Geschlecht des Bewerbers (m = männlich / w = weiblich",, "undefined")
                 Dim Geburtsdatum As Date = InputBox("Geburtsdatum des Bewerbers (dd-mm-YYYY)",, "01.01.1900")
                 Dim Ausweisnummer As Integer = InputBox("Ausweisnummer des Bewerbers",, "0")
 
-<<<<<<< Updated upstream
                 DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, sn, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
-=======
-                Dim JahrAlter As Integer = YearAge(Geburtsdatum)
-                Dim ExaktAlter As Integer = ExactAge(Geburtsdatum)
-
-                If JahrAlter < 15 Then
-                    MsgBox("Teilnehmer ist zu jung für die Jugendflamme Stufe 3, TN ist " & JahrAlter & " Jahre alt.", MsgBoxStyle.Critical)
-                    Exit Sub
-                ElseIf ExaktAlter >= 18 Then
-                    MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 3, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, MannschaftID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Name + ", " + Vorname, False)
->>>>>>> Stashed changes
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try

@@ -628,7 +628,6 @@ Partial Public Class DtsJuFla
             Me.columnStartnummer.AllowDBNull = false
             Me.columnStartnummer.Unique = true
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
-            Me.columnEventID.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1374,7 +1373,6 @@ Partial Public Class DtsJuFla
             Me.columnStartnummer.AllowDBNull = false
             Me.columnStartnummer.Unique = true
             Me.columnStartnummer.DefaultValue = CType(0,Integer)
-            Me.columnEventID.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2374,7 +2372,11 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property EventID() As String
             Get
-                Return CType(Me(Me.tableTblJuFla2Mannschaften.EventIDColumn),String)
+                Try 
+                    Return CType(Me(Me.tableTblJuFla2Mannschaften.EventIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte EventID in Tabelle TblJuFla2Mannschaften ist DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableTblJuFla2Mannschaften.EventIDColumn) = value
@@ -2405,7 +2407,6 @@ Partial Public Class DtsJuFla
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-<<<<<<< Updated upstream
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsEventIDNull() As Boolean
             Return Me.IsNull(Me.tableTblJuFla2Mannschaften.EventIDColumn)
@@ -2419,9 +2420,6 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-=======
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
->>>>>>> Stashed changes
         Public Function GetTblJuFla2MemberRows() As TblJuFla2MemberRow()
             If (Me.Table.ChildRelations("TblJuFla2Mannschaften_TblJuFla2Member") Is Nothing) Then
                 Return New TblJuFla2MemberRow(-1) {}
@@ -2806,7 +2804,11 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property EventID() As String
             Get
-                Return CType(Me(Me.tableTblJuFla3Mannschaften.EventIDColumn),String)
+                Try 
+                    Return CType(Me(Me.tableTblJuFla3Mannschaften.EventIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte EventID in Tabelle TblJuFla3Mannschaften ist DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableTblJuFla3Mannschaften.EventIDColumn) = value
@@ -2837,7 +2839,6 @@ Partial Public Class DtsJuFla
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-<<<<<<< Updated upstream
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsEventIDNull() As Boolean
             Return Me.IsNull(Me.tableTblJuFla3Mannschaften.EventIDColumn)
@@ -2851,9 +2852,6 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-=======
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
->>>>>>> Stashed changes
         Public Function GetTblJuFla3MemberRows() As TblJuFla3MemberRow()
             If (Me.Table.ChildRelations("TblJuFla3Mannschaften_TblJuFla3Member") Is Nothing) Then
                 Return New TblJuFla3MemberRow(-1) {}
