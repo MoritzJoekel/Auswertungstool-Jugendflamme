@@ -4,6 +4,7 @@ Imports System.IO
 Imports DGVPrinterHelper
 Imports FileHelpers
 
+
 Public Class FrmMain
     Public HomeStream As String = Application.UserAppDataPath ' --> Heimverzeichnis in AppData
     Public DataStream As String = HomeStream + "\JuFla_Data.xml" ' --> Speicherort der XML der Datenbank
@@ -81,30 +82,18 @@ Public Class FrmMain
     ''' <param name="Stufe">Unterscheidung ob JuFla2 oder JuFla3 (2//3)</param>
     Private Sub AddMannschaft(Stufe As Integer)
         Try
-            Dim Startnummer As Integer = InputBox("Startnummer: (0 = Nummer wird automatisch generiert)", , 0)
+
             Dim Ort As String = InputBox("Ort: (Ort-Ortsteil)")
             Dim EventID As String = BsEvents.Current(0).ToString
+            Select Case Stufe
+                Case 2
+                    DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Ort, EventID)
+                    DtsJuFla.AcceptChanges()
+                Case 3
+                    DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Ort, EventID)
+                    DtsJuFla.AcceptChanges()
+            End Select
 
-            If Stufe = 2 Then
-                If Startnummer = 0 Then
-                    If DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
-                        Startnummer = 1
-                    Else
-                        Startnummer = DtsJuFla.TblJuFla2Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
-                    End If
-                End If
-                DtsJuFla.TblJuFla2Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
-                DtsJuFla.AcceptChanges()
-            ElseIf Stufe = 3 Then
-                If Startnummer = 0 Then
-                    If DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) Is DBNull.Value Then
-                        Startnummer = 1
-                    Else
-                        Startnummer = DtsJuFla.TblJuFla3Mannschaften.Compute("Max(Startnummer)", Nothing) + 1
-                    End If
-                End If
-                DtsJuFla.TblJuFla3Mannschaften.Rows.Add(Nothing, Startnummer, Ort, EventID)
-            End If
         Catch ex As Exception
             MsgBox(ex.Message)
             Exit Sub
@@ -186,7 +175,7 @@ Public Class FrmMain
                     MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 2, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
-                If Not Geschlecht = "m" Or Geschlecht = "w" Then
+                If Not Geschlecht = "m" And Not Geschlecht = "w" Then
                     MsgBox("Ungültige Eingabe des Geschlechts! (m = männlich, w = weiblich)")
                     Exit Sub
                 End If
@@ -215,7 +204,7 @@ Public Class FrmMain
                     MsgBox("Teilnehmer ist zu alt für die Jugendflamme Stufe 3, TN ist " & ExaktAlter & " Jahre alt.", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
-                If Not Geschlecht = "m" Or Geschlecht = "w" Then
+                If Geschlecht <> "m" And Geschlecht <> "w" Then
                     MsgBox("Ungültige Eingabe des Geschlechts! (m = männlich, w = weiblich)")
                     Exit Sub
                 End If
@@ -235,7 +224,7 @@ Public Class FrmMain
 
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 2",
-                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Mannschaft.Text & " (" & TbJuFla2Startnummer.Text & ")",
+                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla2Mannschaft.Text,
                 .KeepRowsTogether = True,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla2AnzMember.Text,
@@ -248,7 +237,7 @@ Public Class FrmMain
 
             Dim printer As DGVPrinter = New DGVPrinter With {
                 .Title = "Jugendflamme Stufe 3",
-                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text & " (" & TbJuFla3Startnummer.Text & ")",
+                .SubTitle = "Teilnehmer der Mannschaft: " & CbJuFla3Mannschaft.Text,
                 .Footer = System.DateTime.Now.ToString,
                 .PageText = "Anzahl Bewerber: " & TbJuFla3AnzBewerber.Text,
                 .PageNumbers = False,
@@ -265,7 +254,7 @@ Public Class FrmMain
     ''' <param name="e"></param>
     Private Sub AnyButton_Click(sender As Object, e As EventArgs) Handles BtJuFla2Import.Click, BtJuFla3Import.Click, MsJuFla2AddMannschaft.Click, MsJuFla3AddMannschaft.Click, MsWettbInfo.Click, MsExport.Click,
         BtJuFla2PrintMember.Click, BtJuFla3PrintMember.Click, BtJuFla2AddMember.Click, BtJuFla3AddMember.Click, CmsJuFla2RemoveMember.Click, CmsJuFla3RemoveMember.Click, MsUpload.Click, MsDownload.Click,
-        MsJuFla2AddMember.Click, MsJuFla3AddMember.Click, MsPrintJuFla2.Click, MsPrintJuFla3.Click, MsStatistik.Click
+        MsJuFla2AddMember.Click, MsJuFla3AddMember.Click, MsPrintJuFla2.Click, MsPrintJuFla3.Click, MsStatistik.Click, BtJuFla3RemoveMannschaft.Click, BtJuFla2RemoveMannschaft.Click
         Select Case True
             Case sender Is BtJuFla2Import : Import(2)
             Case sender Is BtJuFla3Import : Import(3)
@@ -285,6 +274,8 @@ Public Class FrmMain
             Case sender Is MsPrintJuFla2 : PrintMember(2)
             Case sender Is MsPrintJuFla3 : PrintMember(3)
             Case sender Is MsStatistik : Exportstatistik()
+            Case sender Is BtJuFla3RemoveMannschaft : RemoveMannschaft(3)
+            Case sender Is BtJuFla2RemoveMannschaft : RemoveMannschaft(2)
         End Select
     End Sub
 
@@ -351,26 +342,34 @@ Public Class FrmMain
         End Try
 
         ' Importierte Tabelle manipulieren, auf gewünschte Informationen zuschneiden
+
+        ' Erste 8 Zeilen der Tabelle löschen
         For rowIndex As Integer = 0 To 7
             TblImport.Rows(rowIndex).Delete()
         Next
         Dim TotalRows As Integer = TblImport.Rows.Count
 
+        ' 
         For rowIndex As Integer = TotalRows - 4 To TotalRows - 1
             TblImport.Rows(rowIndex).Delete()
         Next
 
+        TblImport.AcceptChanges()
+
         Dim columns As DataColumnCollection = TblImport.Columns
         Dim Totalcolums As Integer = TblImport.Columns.Count
-        Dim Data = TblImport
+        Dim Data As DataTable = TblImport
 
         '9 - Stufe 2 // 10 - Stufe 3
-        columns.Remove("F1") ' Entferne (Spalte) laufende Nummer
-        columns.Remove("F6") ' Entferne (Spalte) Abnahmedatum
+
+        columns.RemoveAt(0) ' Entferne (Spalte) laufende Nummer 
+        columns.RemoveAt(4) ' Entferne (Spalte) Abnahmedatum
+
+        TblImport.AcceptChanges()
 
         ' Entferne alle restlichen Spalten
-        For columnIndex As Integer = 8 To 18
-            columns.Remove("F" & columnIndex)
+        For columnIndex As Integer = 8 To 10
+            columns.RemoveAt(columnIndex)
         Next
 
         TblImport.AcceptChanges()
@@ -380,24 +379,31 @@ Public Class FrmMain
 
             ' Durchlaufe alle Zeilen der Tabelle und sortiere Informationen ein
             For Each row As DataRow In TblImport.Rows
-
-                Dim Name As String = row(0)
-                Dim Vorname As String = row(1)
-                Dim Geschlecht As String = row(2)
-                Dim Geburtsdatum As Date = row(3).ToString
-                Dim Ausweisnummer As Integer = row(4)
-
-                If YearAge(Geburtsdatum) < 13 Then
-                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 13 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
-                    Continue For
-                ElseIf ExactAge(Geburtsdatum) >= 18 Then
-                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
-                    Continue For
-                End If
+                Try
+                    Dim Name As String = row(0)
+                    Dim Vorname As String = row(1)
+                    Dim Geschlecht As String = row(2)
+                    Dim Geburtsdatum As Date = row(3).ToString()
+                    Dim Ausweisnummer As Integer = row(4)
+                    Dim MannschaftsID As Integer = TblEventsTblJuFla2MannschaftenBindingSource.Current("ID")
 
 
-                ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
-                DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, TbJuFla2Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
+                    If YearAge(Geburtsdatum) < 13 Then
+                        MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 13 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                        Continue For
+                    ElseIf ExactAge(Geburtsdatum) >= 18 Then
+                        MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                        Continue For
+                    End If
+
+                    ' Erstellt eine neue Row in JuFla2Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                    DtsJuFla.TblJuFla2Member.Rows.Add(Nothing, MannschaftsID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, False, False, Nothing)
+                Catch ex As Exception
+
+                End Try
+
+
+
             Next
 
         ElseIf Stufe = 3 Then
@@ -405,22 +411,28 @@ Public Class FrmMain
             ' Durchlaufe alle Zeilen der Tabelle und sortiere Informationen ein
             For Each row As DataRow In TblImport.Rows
 
-                Dim Name As String = row(0)
-                Dim Vorname As String = row(1)
-                Dim Geschlecht As String = row(2)
-                Dim Geburtsdatum As Date = row(3).ToString
-                Dim Ausweisnummer As Integer = row(4)
+                Try
+                    Dim Name As String = row(0)
+                    Dim Vorname As String = row(1)
+                    Dim Geschlecht As String = row(2)
+                    Dim Geburtsdatum As Date = row(3).ToString
+                    Dim Ausweisnummer As Integer = row(4)
+                    Dim MannschaftsID As Integer = TblEventsTblJuFla3MannschaftenBindingSource.Current("ID")
 
-                If YearAge(Geburtsdatum) < 15 Then
-                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 15 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
-                    Continue For
-                ElseIf ExactAge(Geburtsdatum) >= 18 Then
-                    MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
-                    Continue For
-                End If
+                    If YearAge(Geburtsdatum) < 15 Then
+                        MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag jünger als 15 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                        Continue For
+                    ElseIf ExactAge(Geburtsdatum) >= 18 Then
+                        MsgBox("Bewerber " & Name & ", " & Vorname & ", geboren am " & Geburtsdatum.ToShortDateString & " ist am Abnahmetag älter als 18 Jahre, wird nicht als Bewerber erfasst!", MsgBoxStyle.Critical)
+                        Continue For
+                    End If
 
-                ' Erstellt eine neue Row in JuFla3Member in der Datenbank // ComboName wird in Dataset per Expression generiert
-                DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, TbJuFla3Startnummer.Text, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Nothing, False)
+                    ' Erstellt eine neue Row in JuFla3Member in der Datenbank // ComboName wird in Dataset per Expression generiert
+                    DtsJuFla.TblJuFla3Member.Rows.Add(Nothing, MannschaftsID, Name, Vorname, Geschlecht, Geburtsdatum, Ausweisnummer, 0, 0, 0, False, Nothing, False)
+
+                Catch ex As Exception
+
+                End Try
             Next
         End If
     End Sub
@@ -509,14 +521,14 @@ Public Class FrmMain
                 .Filter = "Extensible Markup Language | .xml"
             }
 
-            Dim savepath As String = sfd.FileName()
+            Dim savepath As Stream = sfd.OpenFile()
             Dim result As DialogResult = sfd.ShowDialog()
             If result <> DialogResult.OK Then
                 Exit Sub
             End If
-
+            DtsJuFla.AcceptChanges()
             DtsJuFla.WriteXml(savepath)
-            NiMain.BalloonTipText = "Datenbank erfolgreich nach " & savepath & " exportiert."
+            NiMain.BalloonTipText = "Datenbank erfolgreich nach " + savepath.ToString() + " exportiert."
             NiMain.ShowBalloonTip(2000)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -577,6 +589,9 @@ Public Class FrmMain
     ''' </summary>
     Private Sub Exportstatistik()
 
+        'FrmStatistik.TblEventsBindingSource.DataSource = Me.DtsJuFla.TblEvents
+        'FrmStatistik.Show(Me)
+
         Dim Path As String = Desktop & "\Statistik_JuFla" & DateTime.Now.ToShortDateString & ".txt"
 
         If IO.File.Exists(Path) Then
@@ -587,6 +602,7 @@ Public Class FrmMain
         Dim table As DataTable = DtsJuFla.Tables("TblJuFla2Member")
 
         File.WriteLine("Statistik für Abrechnung Jugendflamme Stufe 2/3")
+        File.WriteLine("Veranstaltung: " & BsEvents.Current("EventID"))
         File.WriteLine("Statistik erstellt am " & Date.Now.ToString)
         File.WriteLine("--------------------------------------------------------------------------------")
         File.WriteLine("Jugendflamme Stufe 2:")
@@ -606,5 +622,39 @@ Public Class FrmMain
         Next
         File.Close()
 
+    End Sub
+
+    Private Sub RemoveMannschaft(Stufe As Integer)
+        If Stufe = 2 Then
+            Dim MannschaftId = TblEventsTblJuFla2MannschaftenBindingSource.Current("ID")
+            Dim Expression As String = "MannschaftsID = " + MannschaftId.ToString()
+            Dim FoundMemberRows = DtsJuFla.TblJuFla2Member.Select(Expression)
+
+            For Each FoundMemberRow As DataRow In FoundMemberRows
+                FoundMemberRow.Delete()
+            Next FoundMemberRow
+
+            Expression = "ID = " + MannschaftId.ToString()
+            Dim FoundMannschaftRows = DtsJuFla.TblJuFla2Mannschaften.Select(Expression)
+
+            For Each FoundMannschaftRow As DataRow In FoundMannschaftRows
+                FoundMannschaftRow.Delete()
+            Next FoundMannschaftRow
+        ElseIf Stufe = 3 Then
+            Dim MannschaftId = TblEventsTblJuFla3MannschaftenBindingSource.Current("ID")
+            Dim Expression As String = "MannschaftsID = " + MannschaftId.ToString()
+            Dim FoundMemberRows = DtsJuFla.TblJuFla3Member.Select(Expression)
+
+            For Each FoundMemberRow As DataRow In FoundMemberRows
+                FoundMemberRow.Delete()
+            Next FoundMemberRow
+
+            Expression = "ID = " + MannschaftId.ToString()
+            Dim FoundMannschaftRows = DtsJuFla.TblJuFla3Mannschaften.Select(Expression)
+
+            For Each FoundMannschaftRow As DataRow In FoundMannschaftRows
+                FoundMannschaftRow.Delete()
+            Next FoundMannschaftRow
+        End If
     End Sub
 End Class

@@ -48,45 +48,8 @@ Partial Class FrmMain
         Me.MsPrintJuFla3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TcMain = New System.Windows.Forms.TabControl()
         Me.TpJuFla2 = New System.Windows.Forms.TabPage()
-        Me.TbJuFla2Startnummer = New System.Windows.Forms.TextBox()
+        Me.BtJuFla2RemoveMannschaft = New System.Windows.Forms.Button()
         Me.DgvJuFla2Member = New System.Windows.Forms.DataGridView()
-        Me.CbJuFla2Mannschaft = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BtJuFla2Import = New System.Windows.Forms.Button()
-        Me.BtJuFla2PrintMember = New System.Windows.Forms.Button()
-        Me.BtJuFla2AddMember = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TbJuFla2AnzMember = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TpJuFla3 = New System.Windows.Forms.TabPage()
-        Me.TbJuFla3Startnummer = New System.Windows.Forms.TextBox()
-        Me.DgvJuFla3Member = New System.Windows.Forms.DataGridView()
-        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.BtJuFla3Import = New System.Windows.Forms.Button()
-        Me.BtJuFla3PrintMember = New System.Windows.Forms.Button()
-        Me.BtJuFla3AddMember = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TbJuFla3AnzBewerber = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.CmsJuFla2Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CmsJuFla2RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CmsJuFla3RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TiMain = New System.Windows.Forms.Timer(Me.components)
-        Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.TtMain = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TblJuFla2MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TblJuFla3MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BsEvents = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TblEventsTblJuFla2MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TblEventsTblJuFla3MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MannschaftsIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -99,10 +62,26 @@ Partial Class FrmMain
         Me.ValSportDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FinishedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ComboNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MannschaftsIDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TblEventsTblJuFla2MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.BsEvents = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DtsJuFla = New JuFla_vb.DtsJuFla()
+        Me.CbJuFla2Mannschaft = New System.Windows.Forms.ComboBox()
+        Me.TblJuFla2MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BtJuFla2Import = New System.Windows.Forms.Button()
+        Me.BtJuFla2PrintMember = New System.Windows.Forms.Button()
+        Me.BtJuFla2AddMember = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TbJuFla2AnzMember = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TpJuFla3 = New System.Windows.Forms.TabPage()
+        Me.BtJuFla3RemoveMannschaft = New System.Windows.Forms.Button()
+        Me.DgvJuFla3Member = New System.Windows.Forms.DataGridView()
         Me.NameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VornameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MannschaftsIDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GeschlechtDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GeburtsdatumDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AusweisnummerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -112,22 +91,41 @@ Partial Class FrmMain
         Me.FinishedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ValEhNachweisDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ComboNameDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TblEventsTblJuFla3MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.BtJuFla3Import = New System.Windows.Forms.Button()
+        Me.BtJuFla3PrintMember = New System.Windows.Forms.Button()
+        Me.BtJuFla3AddMember = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TbJuFla3AnzBewerber = New System.Windows.Forms.TextBox()
+        Me.CbJuFla3Mannschaft = New System.Windows.Forms.ComboBox()
+        Me.TblJuFla3MannschaftenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CmsJuFla2Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CmsJuFla2RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CmsJuFla3Member = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CmsJuFla3RemoveMember = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TiMain = New System.Windows.Forms.Timer(Me.components)
+        Me.NiMain = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TtMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.MsMain.SuspendLayout()
         Me.TcMain.SuspendLayout()
         Me.TpJuFla2.SuspendLayout()
         CType(Me.DgvJuFla2Member, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblEventsTblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TpJuFla3.SuspendLayout()
         CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblEventsTblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CmsJuFla2Member.SuspendLayout()
         Me.CmsJuFla3Member.SuspendLayout()
-        CType(Me.TblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblEventsTblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblEventsTblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MsMain
@@ -178,6 +176,7 @@ Partial Class FrmMain
         '
         'MsUpload
         '
+        Me.MsUpload.Enabled = False
         Me.MsUpload.Image = Global.JuFla_vb.My.Resources.Resources.upload
         Me.MsUpload.Name = "MsUpload"
         Me.MsUpload.Size = New System.Drawing.Size(196, 22)
@@ -186,6 +185,7 @@ Partial Class FrmMain
         '
         'MsDownload
         '
+        Me.MsDownload.Enabled = False
         Me.MsDownload.Image = Global.JuFla_vb.My.Resources.Resources.download
         Me.MsDownload.Name = "MsDownload"
         Me.MsDownload.Size = New System.Drawing.Size(196, 22)
@@ -317,7 +317,7 @@ Partial Class FrmMain
         'TpJuFla2
         '
         Me.TpJuFla2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TpJuFla2.Controls.Add(Me.TbJuFla2Startnummer)
+        Me.TpJuFla2.Controls.Add(Me.BtJuFla2RemoveMannschaft)
         Me.TpJuFla2.Controls.Add(Me.DgvJuFla2Member)
         Me.TpJuFla2.Controls.Add(Me.CbJuFla2Mannschaft)
         Me.TpJuFla2.Controls.Add(Me.Label7)
@@ -326,7 +326,6 @@ Partial Class FrmMain
         Me.TpJuFla2.Controls.Add(Me.BtJuFla2AddMember)
         Me.TpJuFla2.Controls.Add(Me.Label3)
         Me.TpJuFla2.Controls.Add(Me.TbJuFla2AnzMember)
-        Me.TpJuFla2.Controls.Add(Me.Label2)
         Me.TpJuFla2.Controls.Add(Me.Label1)
         Me.TpJuFla2.Location = New System.Drawing.Point(4, 22)
         Me.TpJuFla2.Name = "TpJuFla2"
@@ -335,15 +334,14 @@ Partial Class FrmMain
         Me.TpJuFla2.TabIndex = 0
         Me.TpJuFla2.Text = "Jugendflamme Stufe 2"
         '
-        'TbJuFla2Startnummer
+        'BtJuFla2RemoveMannschaft
         '
-        Me.TbJuFla2Startnummer.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblEventsTblJuFla2MannschaftenBindingSource, "Startnummer", True))
-        Me.TbJuFla2Startnummer.Location = New System.Drawing.Point(90, 53)
-        Me.TbJuFla2Startnummer.Name = "TbJuFla2Startnummer"
-        Me.TbJuFla2Startnummer.ReadOnly = True
-        Me.TbJuFla2Startnummer.Size = New System.Drawing.Size(100, 20)
-        Me.TbJuFla2Startnummer.TabIndex = 19
-        Me.TtMain.SetToolTip(Me.TbJuFla2Startnummer, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 2")
+        Me.BtJuFla2RemoveMannschaft.Location = New System.Drawing.Point(266, 53)
+        Me.BtJuFla2RemoveMannschaft.Name = "BtJuFla2RemoveMannschaft"
+        Me.BtJuFla2RemoveMannschaft.Size = New System.Drawing.Size(116, 23)
+        Me.BtJuFla2RemoveMannschaft.TabIndex = 19
+        Me.BtJuFla2RemoveMannschaft.Text = "Mannschaft löschen"
+        Me.BtJuFla2RemoveMannschaft.UseVisualStyleBackColor = True
         '
         'DgvJuFla2Member
         '
@@ -361,335 +359,6 @@ Partial Class FrmMain
         Me.DgvJuFla2Member.ReadOnly = True
         Me.DgvJuFla2Member.Size = New System.Drawing.Size(1146, 421)
         Me.DgvJuFla2Member.TabIndex = 18
-        '
-        'CbJuFla2Mannschaft
-        '
-        Me.CbJuFla2Mannschaft.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblJuFla2MannschaftenBindingSource, "Ort", True))
-        Me.CbJuFla2Mannschaft.DataSource = Me.TblEventsTblJuFla2MannschaftenBindingSource
-        Me.CbJuFla2Mannschaft.DisplayMember = "Ort"
-        Me.CbJuFla2Mannschaft.FormattingEnabled = True
-        Me.CbJuFla2Mannschaft.Location = New System.Drawing.Point(90, 18)
-        Me.CbJuFla2Mannschaft.Name = "CbJuFla2Mannschaft"
-        Me.CbJuFla2Mannschaft.Size = New System.Drawing.Size(292, 21)
-        Me.CbJuFla2Mannschaft.TabIndex = 17
-        '
-        'Label7
-        '
-        Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(708, 42)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(449, 29)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "JUGENDFLAMME DER DJF STUFE 2"
-        '
-        'BtJuFla2Import
-        '
-        Me.BtJuFla2Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
-        Me.BtJuFla2Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2Import.Location = New System.Drawing.Point(630, 34)
-        Me.BtJuFla2Import.Name = "BtJuFla2Import"
-        Me.BtJuFla2Import.Size = New System.Drawing.Size(72, 39)
-        Me.BtJuFla2Import.TabIndex = 14
-        Me.BtJuFla2Import.Text = "Import"
-        Me.BtJuFla2Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla2Import.UseVisualStyleBackColor = True
-        '
-        'BtJuFla2PrintMember
-        '
-        Me.BtJuFla2PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
-        Me.BtJuFla2PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2PrintMember.Location = New System.Drawing.Point(516, 34)
-        Me.BtJuFla2PrintMember.Name = "BtJuFla2PrintMember"
-        Me.BtJuFla2PrintMember.Size = New System.Drawing.Size(108, 39)
-        Me.BtJuFla2PrintMember.TabIndex = 12
-        Me.BtJuFla2PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F10)"
-        Me.BtJuFla2PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla2PrintMember.UseVisualStyleBackColor = True
-        '
-        'BtJuFla2AddMember
-        '
-        Me.BtJuFla2AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
-        Me.BtJuFla2AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla2AddMember.Location = New System.Drawing.Point(399, 34)
-        Me.BtJuFla2AddMember.Name = "BtJuFla2AddMember"
-        Me.BtJuFla2AddMember.Size = New System.Drawing.Size(111, 39)
-        Me.BtJuFla2AddMember.TabIndex = 11
-        Me.BtJuFla2AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F6)"
-        Me.BtJuFla2AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla2AddMember.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(221, 56)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(55, 13)
-        Me.Label3.TabIndex = 10
-        Me.Label3.Text = "Bewerber:"
-        '
-        'TbJuFla2AnzMember
-        '
-        Me.TbJuFla2AnzMember.Location = New System.Drawing.Point(282, 53)
-        Me.TbJuFla2AnzMember.Name = "TbJuFla2AnzMember"
-        Me.TbJuFla2AnzMember.ReadOnly = True
-        Me.TbJuFla2AnzMember.Size = New System.Drawing.Size(100, 20)
-        Me.TbJuFla2AnzMember.TabIndex = 9
-        Me.TtMain.SetToolTip(Me.TbJuFla2AnzMember, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 2")
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 56)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(66, 13)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Startnummer"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 22)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Mannschaft"
-        '
-        'TpJuFla3
-        '
-        Me.TpJuFla3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TpJuFla3.Controls.Add(Me.TbJuFla3Startnummer)
-        Me.TpJuFla3.Controls.Add(Me.DgvJuFla3Member)
-        Me.TpJuFla3.Controls.Add(Me.Label8)
-        Me.TpJuFla3.Controls.Add(Me.BtJuFla3Import)
-        Me.TpJuFla3.Controls.Add(Me.BtJuFla3PrintMember)
-        Me.TpJuFla3.Controls.Add(Me.BtJuFla3AddMember)
-        Me.TpJuFla3.Controls.Add(Me.Label5)
-        Me.TpJuFla3.Controls.Add(Me.TbJuFla3AnzBewerber)
-        Me.TpJuFla3.Controls.Add(Me.Label6)
-        Me.TpJuFla3.Controls.Add(Me.CbJuFla3Mannschaft)
-        Me.TpJuFla3.Controls.Add(Me.Label4)
-        Me.TpJuFla3.Location = New System.Drawing.Point(4, 22)
-        Me.TpJuFla3.Name = "TpJuFla3"
-        Me.TpJuFla3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TpJuFla3.Size = New System.Drawing.Size(1182, 535)
-        Me.TpJuFla3.TabIndex = 1
-        Me.TpJuFla3.Text = "Jugendflamme Stufe 3"
-        '
-        'TbJuFla3Startnummer
-        '
-        Me.TbJuFla3Startnummer.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblEventsTblJuFla3MannschaftenBindingSource, "Startnummer", True))
-        Me.TbJuFla3Startnummer.Location = New System.Drawing.Point(90, 56)
-        Me.TbJuFla3Startnummer.Name = "TbJuFla3Startnummer"
-        Me.TbJuFla3Startnummer.ReadOnly = True
-        Me.TbJuFla3Startnummer.Size = New System.Drawing.Size(100, 20)
-        Me.TbJuFla3Startnummer.TabIndex = 21
-        Me.TtMain.SetToolTip(Me.TbJuFla3Startnummer, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 3")
-        '
-        'DgvJuFla3Member
-        '
-        Me.DgvJuFla3Member.AllowUserToAddRows = False
-        Me.DgvJuFla3Member.AllowUserToDeleteRows = False
-        Me.DgvJuFla3Member.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvJuFla3Member.AutoGenerateColumns = False
-        Me.DgvJuFla3Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn1, Me.MannschaftsIDDataGridViewTextBoxColumn1, Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewTextBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ValEhNachweisDataGridViewCheckBoxColumn, Me.ComboNameDataGridViewTextBoxColumn1})
-        Me.DgvJuFla3Member.DataSource = Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource
-        Me.DgvJuFla3Member.Location = New System.Drawing.Point(14, 86)
-        Me.DgvJuFla3Member.Name = "DgvJuFla3Member"
-        Me.DgvJuFla3Member.ReadOnly = True
-        Me.DgvJuFla3Member.Size = New System.Drawing.Size(1142, 426)
-        Me.DgvJuFla3Member.TabIndex = 20
-        '
-        'DtsJuFla
-        '
-        Me.DtsJuFla.DataSetName = "DtsJuFla"
-        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'Label8
-        '
-        Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(708, 47)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(449, 29)
-        Me.Label8.TabIndex = 19
-        Me.Label8.Text = "JUGENDFLAMME DER DJF STUFE 3"
-        '
-        'BtJuFla3Import
-        '
-        Me.BtJuFla3Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
-        Me.BtJuFla3Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3Import.Location = New System.Drawing.Point(629, 37)
-        Me.BtJuFla3Import.Name = "BtJuFla3Import"
-        Me.BtJuFla3Import.Size = New System.Drawing.Size(73, 39)
-        Me.BtJuFla3Import.TabIndex = 17
-        Me.BtJuFla3Import.Text = "Import"
-        Me.BtJuFla3Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla3Import.UseVisualStyleBackColor = True
-        '
-        'BtJuFla3PrintMember
-        '
-        Me.BtJuFla3PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
-        Me.BtJuFla3PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(515, 37)
-        Me.BtJuFla3PrintMember.Name = "BtJuFla3PrintMember"
-        Me.BtJuFla3PrintMember.Size = New System.Drawing.Size(108, 39)
-        Me.BtJuFla3PrintMember.TabIndex = 16
-        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F11)"
-        Me.BtJuFla3PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla3PrintMember.UseVisualStyleBackColor = True
-        '
-        'BtJuFla3AddMember
-        '
-        Me.BtJuFla3AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
-        Me.BtJuFla3AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtJuFla3AddMember.Location = New System.Drawing.Point(399, 37)
-        Me.BtJuFla3AddMember.Name = "BtJuFla3AddMember"
-        Me.BtJuFla3AddMember.Size = New System.Drawing.Size(110, 39)
-        Me.BtJuFla3AddMember.TabIndex = 15
-        Me.BtJuFla3AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F7)"
-        Me.BtJuFla3AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtJuFla3AddMember.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(216, 59)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 13)
-        Me.Label5.TabIndex = 14
-        Me.Label5.Text = "Bewerber:"
-        '
-        'TbJuFla3AnzBewerber
-        '
-        Me.TbJuFla3AnzBewerber.Location = New System.Drawing.Point(282, 56)
-        Me.TbJuFla3AnzBewerber.Name = "TbJuFla3AnzBewerber"
-        Me.TbJuFla3AnzBewerber.ReadOnly = True
-        Me.TbJuFla3AnzBewerber.Size = New System.Drawing.Size(100, 20)
-        Me.TbJuFla3AnzBewerber.TabIndex = 13
-        Me.TtMain.SetToolTip(Me.TbJuFla3AnzBewerber, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 3")
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 59)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(66, 13)
-        Me.Label6.TabIndex = 12
-        Me.Label6.Text = "Startnummer"
-        '
-        'CbJuFla3Mannschaft
-        '
-        Me.CbJuFla3Mannschaft.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblJuFla3MannschaftenBindingSource, "Ort", True))
-        Me.CbJuFla3Mannschaft.DataSource = Me.TblEventsTblJuFla3MannschaftenBindingSource
-        Me.CbJuFla3Mannschaft.FormattingEnabled = True
-        Me.CbJuFla3Mannschaft.Location = New System.Drawing.Point(90, 19)
-        Me.CbJuFla3Mannschaft.Name = "CbJuFla3Mannschaft"
-        Me.CbJuFla3Mannschaft.Size = New System.Drawing.Size(292, 21)
-        Me.CbJuFla3Mannschaft.TabIndex = 3
-        Me.TtMain.SetToolTip(Me.CbJuFla3Mannschaft, "Mannschaft innerhalb der Jugendflamme Stufe 3 auswählen")
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 22)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 13)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Mannschaft:"
-        '
-        'CmsJuFla2Member
-        '
-        Me.CmsJuFla2Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla2RemoveMember})
-        Me.CmsJuFla2Member.Name = "CmsJuFla2Teilnehmer"
-        Me.CmsJuFla2Member.Size = New System.Drawing.Size(187, 26)
-        '
-        'CmsJuFla2RemoveMember
-        '
-        Me.CmsJuFla2RemoveMember.Name = "CmsJuFla2RemoveMember"
-        Me.CmsJuFla2RemoveMember.Size = New System.Drawing.Size(186, 22)
-        Me.CmsJuFla2RemoveMember.Text = "Teilnehmer entfernen"
-        '
-        'CmsJuFla3Member
-        '
-        Me.CmsJuFla3Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla3RemoveMember})
-        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
-        Me.CmsJuFla3Member.Size = New System.Drawing.Size(187, 26)
-        '
-        'CmsJuFla3RemoveMember
-        '
-        Me.CmsJuFla3RemoveMember.Name = "CmsJuFla3RemoveMember"
-        Me.CmsJuFla3RemoveMember.Size = New System.Drawing.Size(186, 22)
-        Me.CmsJuFla3RemoveMember.Text = "Teilnehmer entfernen"
-        '
-        'TiMain
-        '
-        Me.TiMain.Interval = 1000
-        '
-        'NiMain
-        '
-        Me.NiMain.BalloonTipTitle = "Jugendflamme"
-        Me.NiMain.Icon = CType(resources.GetObject("NiMain.Icon"), System.Drawing.Icon)
-        Me.NiMain.Text = "Auswertungstool Jugendflamme"
-        Me.NiMain.Visible = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.White
-        Me.Label9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label9.Location = New System.Drawing.Point(1085, 27)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(105, 13)
-        Me.Label9.TabIndex = 2
-        Me.Label9.Text = "© Moritz Jökel, 2019"
-        '
-        'TtMain
-        '
-        Me.TtMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.TtMain.ToolTipTitle = "Jugendflamme der DJF"
-        '
-        'TblJuFla2MannschaftenBindingSource
-        '
-        Me.TblJuFla2MannschaftenBindingSource.DataMember = "TblJuFla2Mannschaften"
-        Me.TblJuFla2MannschaftenBindingSource.DataSource = Me.DtsJuFla
-        '
-        'TblJuFla3MannschaftenBindingSource
-        '
-        Me.TblJuFla3MannschaftenBindingSource.DataMember = "TblJuFla3Mannschaften"
-        Me.TblJuFla3MannschaftenBindingSource.DataSource = Me.DtsJuFla
-        '
-        'BsEvents
-        '
-        Me.BsEvents.DataMember = "TblEvents"
-        Me.BsEvents.DataSource = Me.DtsJuFla
-        '
-        'TblEventsTblJuFla2MannschaftenBindingSource
-        '
-        Me.TblEventsTblJuFla2MannschaftenBindingSource.DataMember = "TblEvents_TblJuFla2Mannschaften"
-        Me.TblEventsTblJuFla2MannschaftenBindingSource.DataSource = Me.BsEvents
-        '
-        'TblEventsTblJuFla3MannschaftenBindingSource
-        '
-        Me.TblEventsTblJuFla3MannschaftenBindingSource.DataMember = "TblEvents_TblJuFla3Mannschaften"
-        Me.TblEventsTblJuFla3MannschaftenBindingSource.DataSource = Me.BsEvents
-        '
-        'TblJuFla2MannschaftenTblJuFla2MemberBindingSource
-        '
-        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource.DataMember = "TblJuFla2Mannschaften_TblJuFla2Member"
-        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource.DataSource = Me.TblEventsTblJuFla2MannschaftenBindingSource
-        '
-        'TblJuFla3MannschaftenTblJuFla3MemberBindingSource
-        '
-        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
-        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource.DataSource = Me.TblEventsTblJuFla3MannschaftenBindingSource
         '
         'IDDataGridViewTextBoxColumn
         '
@@ -780,21 +449,164 @@ Partial Class FrmMain
         Me.ComboNameDataGridViewTextBoxColumn.ReadOnly = True
         Me.ComboNameDataGridViewTextBoxColumn.Visible = False
         '
-        'IDDataGridViewTextBoxColumn1
+        'TblJuFla2MannschaftenTblJuFla2MemberBindingSource
         '
-        Me.IDDataGridViewTextBoxColumn1.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn1.Name = "IDDataGridViewTextBoxColumn1"
-        Me.IDDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.IDDataGridViewTextBoxColumn1.Visible = False
+        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource.DataMember = "TblJuFla2Mannschaften_TblJuFla2Member"
+        Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource.DataSource = Me.TblEventsTblJuFla2MannschaftenBindingSource
         '
-        'MannschaftsIDDataGridViewTextBoxColumn1
+        'TblEventsTblJuFla2MannschaftenBindingSource
         '
-        Me.MannschaftsIDDataGridViewTextBoxColumn1.DataPropertyName = "MannschaftsID"
-        Me.MannschaftsIDDataGridViewTextBoxColumn1.HeaderText = "MannschaftsID"
-        Me.MannschaftsIDDataGridViewTextBoxColumn1.Name = "MannschaftsIDDataGridViewTextBoxColumn1"
-        Me.MannschaftsIDDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.MannschaftsIDDataGridViewTextBoxColumn1.Visible = False
+        Me.TblEventsTblJuFla2MannschaftenBindingSource.DataMember = "TblEvents_TblJuFla2Mannschaften"
+        Me.TblEventsTblJuFla2MannschaftenBindingSource.DataSource = Me.BsEvents
+        '
+        'BsEvents
+        '
+        Me.BsEvents.DataMember = "TblEvents"
+        Me.BsEvents.DataSource = Me.DtsJuFla
+        '
+        'DtsJuFla
+        '
+        Me.DtsJuFla.DataSetName = "DtsJuFla"
+        Me.DtsJuFla.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CbJuFla2Mannschaft
+        '
+        Me.CbJuFla2Mannschaft.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblJuFla2MannschaftenBindingSource, "Ort", True))
+        Me.CbJuFla2Mannschaft.DataSource = Me.TblEventsTblJuFla2MannschaftenBindingSource
+        Me.CbJuFla2Mannschaft.DisplayMember = "Ort"
+        Me.CbJuFla2Mannschaft.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbJuFla2Mannschaft.FormattingEnabled = True
+        Me.CbJuFla2Mannschaft.Location = New System.Drawing.Point(90, 18)
+        Me.CbJuFla2Mannschaft.Name = "CbJuFla2Mannschaft"
+        Me.CbJuFla2Mannschaft.Size = New System.Drawing.Size(292, 21)
+        Me.CbJuFla2Mannschaft.TabIndex = 17
+        '
+        'TblJuFla2MannschaftenBindingSource
+        '
+        Me.TblJuFla2MannschaftenBindingSource.AllowNew = False
+        Me.TblJuFla2MannschaftenBindingSource.DataMember = "TblJuFla2Mannschaften"
+        Me.TblJuFla2MannschaftenBindingSource.DataSource = Me.DtsJuFla
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(708, 42)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(449, 29)
+        Me.Label7.TabIndex = 15
+        Me.Label7.Text = "JUGENDFLAMME DER DJF STUFE 2"
+        '
+        'BtJuFla2Import
+        '
+        Me.BtJuFla2Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
+        Me.BtJuFla2Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla2Import.Location = New System.Drawing.Point(630, 34)
+        Me.BtJuFla2Import.Name = "BtJuFla2Import"
+        Me.BtJuFla2Import.Size = New System.Drawing.Size(72, 39)
+        Me.BtJuFla2Import.TabIndex = 14
+        Me.BtJuFla2Import.Text = "Import"
+        Me.BtJuFla2Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla2Import.UseVisualStyleBackColor = True
+        '
+        'BtJuFla2PrintMember
+        '
+        Me.BtJuFla2PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
+        Me.BtJuFla2PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla2PrintMember.Location = New System.Drawing.Point(516, 34)
+        Me.BtJuFla2PrintMember.Name = "BtJuFla2PrintMember"
+        Me.BtJuFla2PrintMember.Size = New System.Drawing.Size(108, 39)
+        Me.BtJuFla2PrintMember.TabIndex = 12
+        Me.BtJuFla2PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F10)"
+        Me.BtJuFla2PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla2PrintMember.UseVisualStyleBackColor = True
+        '
+        'BtJuFla2AddMember
+        '
+        Me.BtJuFla2AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
+        Me.BtJuFla2AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla2AddMember.Location = New System.Drawing.Point(399, 34)
+        Me.BtJuFla2AddMember.Name = "BtJuFla2AddMember"
+        Me.BtJuFla2AddMember.Size = New System.Drawing.Size(111, 39)
+        Me.BtJuFla2AddMember.TabIndex = 11
+        Me.BtJuFla2AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F6)"
+        Me.BtJuFla2AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla2AddMember.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(8, 60)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(55, 13)
+        Me.Label3.TabIndex = 10
+        Me.Label3.Text = "Bewerber:"
+        '
+        'TbJuFla2AnzMember
+        '
+        Me.TbJuFla2AnzMember.Location = New System.Drawing.Point(90, 53)
+        Me.TbJuFla2AnzMember.Name = "TbJuFla2AnzMember"
+        Me.TbJuFla2AnzMember.ReadOnly = True
+        Me.TbJuFla2AnzMember.Size = New System.Drawing.Size(100, 20)
+        Me.TbJuFla2AnzMember.TabIndex = 9
+        Me.TtMain.SetToolTip(Me.TbJuFla2AnzMember, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 2")
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(8, 22)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Mannschaft"
+        '
+        'TpJuFla3
+        '
+        Me.TpJuFla3.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.TpJuFla3.Controls.Add(Me.BtJuFla3RemoveMannschaft)
+        Me.TpJuFla3.Controls.Add(Me.DgvJuFla3Member)
+        Me.TpJuFla3.Controls.Add(Me.Label8)
+        Me.TpJuFla3.Controls.Add(Me.BtJuFla3Import)
+        Me.TpJuFla3.Controls.Add(Me.BtJuFla3PrintMember)
+        Me.TpJuFla3.Controls.Add(Me.BtJuFla3AddMember)
+        Me.TpJuFla3.Controls.Add(Me.Label5)
+        Me.TpJuFla3.Controls.Add(Me.TbJuFla3AnzBewerber)
+        Me.TpJuFla3.Controls.Add(Me.CbJuFla3Mannschaft)
+        Me.TpJuFla3.Controls.Add(Me.Label4)
+        Me.TpJuFla3.Location = New System.Drawing.Point(4, 22)
+        Me.TpJuFla3.Name = "TpJuFla3"
+        Me.TpJuFla3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TpJuFla3.Size = New System.Drawing.Size(1182, 535)
+        Me.TpJuFla3.TabIndex = 1
+        Me.TpJuFla3.Text = "Jugendflamme Stufe 3"
+        '
+        'BtJuFla3RemoveMannschaft
+        '
+        Me.BtJuFla3RemoveMannschaft.Location = New System.Drawing.Point(266, 52)
+        Me.BtJuFla3RemoveMannschaft.Name = "BtJuFla3RemoveMannschaft"
+        Me.BtJuFla3RemoveMannschaft.Size = New System.Drawing.Size(116, 23)
+        Me.BtJuFla3RemoveMannschaft.TabIndex = 21
+        Me.BtJuFla3RemoveMannschaft.Text = "Mannschaft löschen"
+        Me.BtJuFla3RemoveMannschaft.UseVisualStyleBackColor = True
+        '
+        'DgvJuFla3Member
+        '
+        Me.DgvJuFla3Member.AllowUserToAddRows = False
+        Me.DgvJuFla3Member.AllowUserToDeleteRows = False
+        Me.DgvJuFla3Member.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DgvJuFla3Member.AutoGenerateColumns = False
+        Me.DgvJuFla3Member.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJuFla3Member.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NameDataGridViewTextBoxColumn1, Me.VornameDataGridViewTextBoxColumn1, Me.MannschaftsIDDataGridViewTextBoxColumn1, Me.IDDataGridViewTextBoxColumn1, Me.GeschlechtDataGridViewTextBoxColumn1, Me.GeburtsdatumDataGridViewTextBoxColumn1, Me.AusweisnummerDataGridViewTextBoxColumn1, Me.ValFwTechnikDataGridViewTextBoxColumn, Me.ValEhAufgabeDataGridViewTextBoxColumn, Me.ValPraesentationDataGridViewTextBoxColumn, Me.FinishedDataGridViewCheckBoxColumn1, Me.ValEhNachweisDataGridViewCheckBoxColumn, Me.ComboNameDataGridViewTextBoxColumn1})
+        Me.DgvJuFla3Member.DataSource = Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource
+        Me.DgvJuFla3Member.Location = New System.Drawing.Point(14, 86)
+        Me.DgvJuFla3Member.Name = "DgvJuFla3Member"
+        Me.DgvJuFla3Member.ReadOnly = True
+        Me.DgvJuFla3Member.Size = New System.Drawing.Size(1142, 426)
+        Me.DgvJuFla3Member.TabIndex = 20
         '
         'NameDataGridViewTextBoxColumn1
         '
@@ -811,6 +623,23 @@ Partial Class FrmMain
         Me.VornameDataGridViewTextBoxColumn1.HeaderText = "Vorname"
         Me.VornameDataGridViewTextBoxColumn1.Name = "VornameDataGridViewTextBoxColumn1"
         Me.VornameDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'MannschaftsIDDataGridViewTextBoxColumn1
+        '
+        Me.MannschaftsIDDataGridViewTextBoxColumn1.DataPropertyName = "MannschaftsID"
+        Me.MannschaftsIDDataGridViewTextBoxColumn1.HeaderText = "MannschaftsID"
+        Me.MannschaftsIDDataGridViewTextBoxColumn1.Name = "MannschaftsIDDataGridViewTextBoxColumn1"
+        Me.MannschaftsIDDataGridViewTextBoxColumn1.ReadOnly = True
+        Me.MannschaftsIDDataGridViewTextBoxColumn1.Visible = False
+        '
+        'IDDataGridViewTextBoxColumn1
+        '
+        Me.IDDataGridViewTextBoxColumn1.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn1.Name = "IDDataGridViewTextBoxColumn1"
+        Me.IDDataGridViewTextBoxColumn1.ReadOnly = True
+        Me.IDDataGridViewTextBoxColumn1.Visible = False
+        Me.IDDataGridViewTextBoxColumn1.Width = 5
         '
         'GeschlechtDataGridViewTextBoxColumn1
         '
@@ -876,6 +705,160 @@ Partial Class FrmMain
         Me.ComboNameDataGridViewTextBoxColumn1.ReadOnly = True
         Me.ComboNameDataGridViewTextBoxColumn1.Visible = False
         '
+        'TblJuFla3MannschaftenTblJuFla3MemberBindingSource
+        '
+        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource.DataMember = "TblJuFla3Mannschaften_TblJuFla3Member"
+        Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource.DataSource = Me.TblEventsTblJuFla3MannschaftenBindingSource
+        '
+        'TblEventsTblJuFla3MannschaftenBindingSource
+        '
+        Me.TblEventsTblJuFla3MannschaftenBindingSource.DataMember = "TblEvents_TblJuFla3Mannschaften"
+        Me.TblEventsTblJuFla3MannschaftenBindingSource.DataSource = Me.BsEvents
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(708, 47)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(449, 29)
+        Me.Label8.TabIndex = 19
+        Me.Label8.Text = "JUGENDFLAMME DER DJF STUFE 3"
+        '
+        'BtJuFla3Import
+        '
+        Me.BtJuFla3Import.Image = Global.JuFla_vb.My.Resources.Resources.Ico_excel
+        Me.BtJuFla3Import.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla3Import.Location = New System.Drawing.Point(629, 37)
+        Me.BtJuFla3Import.Name = "BtJuFla3Import"
+        Me.BtJuFla3Import.Size = New System.Drawing.Size(73, 39)
+        Me.BtJuFla3Import.TabIndex = 17
+        Me.BtJuFla3Import.Text = "Import"
+        Me.BtJuFla3Import.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla3Import.UseVisualStyleBackColor = True
+        '
+        'BtJuFla3PrintMember
+        '
+        Me.BtJuFla3PrintMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_print
+        Me.BtJuFla3PrintMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla3PrintMember.Location = New System.Drawing.Point(515, 37)
+        Me.BtJuFla3PrintMember.Name = "BtJuFla3PrintMember"
+        Me.BtJuFla3PrintMember.Size = New System.Drawing.Size(108, 39)
+        Me.BtJuFla3PrintMember.TabIndex = 16
+        Me.BtJuFla3PrintMember.Text = "Bewerberliste" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drucken (F11)"
+        Me.BtJuFla3PrintMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla3PrintMember.UseVisualStyleBackColor = True
+        '
+        'BtJuFla3AddMember
+        '
+        Me.BtJuFla3AddMember.Image = Global.JuFla_vb.My.Resources.Resources.Ico_add
+        Me.BtJuFla3AddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtJuFla3AddMember.Location = New System.Drawing.Point(399, 37)
+        Me.BtJuFla3AddMember.Name = "BtJuFla3AddMember"
+        Me.BtJuFla3AddMember.Size = New System.Drawing.Size(110, 39)
+        Me.BtJuFla3AddMember.TabIndex = 15
+        Me.BtJuFla3AddMember.Text = "Bewerber " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hinzufügen (F7)"
+        Me.BtJuFla3AddMember.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtJuFla3AddMember.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(8, 59)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "Bewerber:"
+        '
+        'TbJuFla3AnzBewerber
+        '
+        Me.TbJuFla3AnzBewerber.Location = New System.Drawing.Point(90, 52)
+        Me.TbJuFla3AnzBewerber.Name = "TbJuFla3AnzBewerber"
+        Me.TbJuFla3AnzBewerber.ReadOnly = True
+        Me.TbJuFla3AnzBewerber.Size = New System.Drawing.Size(100, 20)
+        Me.TbJuFla3AnzBewerber.TabIndex = 13
+        Me.TtMain.SetToolTip(Me.TbJuFla3AnzBewerber, "Anzahl der Bewerber der ausgewählten Mannschaft der Jugendflamme Stufe 3")
+        '
+        'CbJuFla3Mannschaft
+        '
+        Me.CbJuFla3Mannschaft.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblJuFla3MannschaftenBindingSource, "Ort", True))
+        Me.CbJuFla3Mannschaft.DataSource = Me.TblEventsTblJuFla3MannschaftenBindingSource
+        Me.CbJuFla3Mannschaft.DisplayMember = "Ort"
+        Me.CbJuFla3Mannschaft.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbJuFla3Mannschaft.FormattingEnabled = True
+        Me.CbJuFla3Mannschaft.Location = New System.Drawing.Point(90, 19)
+        Me.CbJuFla3Mannschaft.Name = "CbJuFla3Mannschaft"
+        Me.CbJuFla3Mannschaft.Size = New System.Drawing.Size(292, 21)
+        Me.CbJuFla3Mannschaft.TabIndex = 3
+        Me.TtMain.SetToolTip(Me.CbJuFla3Mannschaft, "Mannschaft innerhalb der Jugendflamme Stufe 3 auswählen")
+        '
+        'TblJuFla3MannschaftenBindingSource
+        '
+        Me.TblJuFla3MannschaftenBindingSource.DataMember = "TblJuFla3Mannschaften"
+        Me.TblJuFla3MannschaftenBindingSource.DataSource = Me.DtsJuFla
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(8, 22)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(66, 13)
+        Me.Label4.TabIndex = 1
+        Me.Label4.Text = "Mannschaft:"
+        '
+        'CmsJuFla2Member
+        '
+        Me.CmsJuFla2Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla2RemoveMember})
+        Me.CmsJuFla2Member.Name = "CmsJuFla2Teilnehmer"
+        Me.CmsJuFla2Member.Size = New System.Drawing.Size(187, 26)
+        '
+        'CmsJuFla2RemoveMember
+        '
+        Me.CmsJuFla2RemoveMember.Name = "CmsJuFla2RemoveMember"
+        Me.CmsJuFla2RemoveMember.Size = New System.Drawing.Size(186, 22)
+        Me.CmsJuFla2RemoveMember.Text = "Teilnehmer entfernen"
+        '
+        'CmsJuFla3Member
+        '
+        Me.CmsJuFla3Member.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CmsJuFla3RemoveMember})
+        Me.CmsJuFla3Member.Name = "CmsJuFla3Member"
+        Me.CmsJuFla3Member.Size = New System.Drawing.Size(187, 26)
+        '
+        'CmsJuFla3RemoveMember
+        '
+        Me.CmsJuFla3RemoveMember.Name = "CmsJuFla3RemoveMember"
+        Me.CmsJuFla3RemoveMember.Size = New System.Drawing.Size(186, 22)
+        Me.CmsJuFla3RemoveMember.Text = "Teilnehmer entfernen"
+        '
+        'TiMain
+        '
+        Me.TiMain.Interval = 1000
+        '
+        'NiMain
+        '
+        Me.NiMain.BalloonTipTitle = "Jugendflamme"
+        Me.NiMain.Icon = CType(resources.GetObject("NiMain.Icon"), System.Drawing.Icon)
+        Me.NiMain.Text = "Auswertungstool Jugendflamme"
+        Me.NiMain.Visible = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label9.Location = New System.Drawing.Point(1014, 27)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(176, 13)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "© Moritz Jökel, 2019 - Version 1.0.4"
+        '
+        'TtMain
+        '
+        Me.TtMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TtMain.ToolTipTitle = "Jugendflamme der DJF"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -895,19 +878,19 @@ Partial Class FrmMain
         Me.TpJuFla2.ResumeLayout(False)
         Me.TpJuFla2.PerformLayout()
         CType(Me.DgvJuFla2Member, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblEventsTblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TpJuFla3.ResumeLayout(False)
         Me.TpJuFla3.PerformLayout()
         CType(Me.DgvJuFla3Member, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DtsJuFla, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblEventsTblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CmsJuFla2Member.ResumeLayout(False)
         Me.CmsJuFla3Member.ResumeLayout(False)
-        CType(Me.TblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BsEvents, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblEventsTblJuFla2MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblEventsTblJuFla3MannschaftenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblJuFla2MannschaftenTblJuFla2MemberBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblJuFla3MannschaftenTblJuFla3MemberBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -925,7 +908,6 @@ Partial Class FrmMain
     Friend WithEvents MsJuFla2AddMannschaft As ToolStripMenuItem
     Friend WithEvents MsJuFla3AddMannschaft As ToolStripMenuItem
     Friend WithEvents MsUebersichtMannschaften As ToolStripMenuItem
-    Friend WithEvents Label2 As Label
     Friend WithEvents TbJuFla2AnzMember As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents TiMain As Timer
@@ -938,7 +920,6 @@ Partial Class FrmMain
     Friend WithEvents CmsJuFla2RemoveMember As ToolStripMenuItem
     Friend WithEvents Label5 As Label
     Friend WithEvents TbJuFla3AnzBewerber As TextBox
-    Friend WithEvents Label6 As Label
     Friend WithEvents CmsJuFla3Member As ContextMenuStrip
     Friend WithEvents BtJuFla3AddMember As Button
     Friend WithEvents BtJuFla2PrintMember As Button
@@ -968,8 +949,6 @@ Partial Class FrmMain
     Friend WithEvents DgvJuFla2Member As DataGridView
     Friend WithEvents StartnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DgvJuFla3Member As DataGridView
-    Friend WithEvents TbJuFla2Startnummer As TextBox
-    Friend WithEvents TbJuFla3Startnummer As TextBox
     Friend WithEvents TblJuFla2MannschaftenBindingSource As BindingSource
     Friend WithEvents TblJuFla3MannschaftenBindingSource As BindingSource
     Friend WithEvents BsEvents As BindingSource
@@ -989,10 +968,10 @@ Partial Class FrmMain
     Friend WithEvents ValSportDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents FinishedDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents ComboNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IDDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents MannschaftsIDDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents VornameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents MannschaftsIDDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents IDDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents GeschlechtDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents GeburtsdatumDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents AusweisnummerDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -1002,4 +981,6 @@ Partial Class FrmMain
     Friend WithEvents FinishedDataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
     Friend WithEvents ValEhNachweisDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents ComboNameDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents BtJuFla3RemoveMannschaft As Button
+    Friend WithEvents BtJuFla2RemoveMannschaft As Button
 End Class

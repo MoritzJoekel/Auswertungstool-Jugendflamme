@@ -459,8 +459,6 @@ Partial Public Class DtsJuFla
         
         Private columnID As Global.System.Data.DataColumn
         
-        Private columnStartnummer As Global.System.Data.DataColumn
-        
         Private columnOrt As Global.System.Data.DataColumn
         
         Private columnEventID As Global.System.Data.DataColumn
@@ -505,14 +503,6 @@ Partial Public Class DtsJuFla
         Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property StartnummerColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnStartnummer
             End Get
         End Property
         
@@ -569,11 +559,11 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddTblJuFla2MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla2Mannschaften As TblEventsRow) As TblJuFla2MannschaftenRow
+        Public Overloads Function AddTblJuFla2MannschaftenRow(ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla2Mannschaften As TblEventsRow) As TblJuFla2MannschaftenRow
             Dim rowTblJuFla2MannschaftenRow As TblJuFla2MannschaftenRow = CType(Me.NewRow,TblJuFla2MannschaftenRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort, Nothing}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Ort, Nothing}
             If (Not (parentTblEventsRowByTblEvents_TblJuFla2Mannschaften) Is Nothing) Then
-                columnValuesArray(3) = parentTblEventsRowByTblEvents_TblJuFla2Mannschaften(0)
+                columnValuesArray(2) = parentTblEventsRowByTblEvents_TblJuFla2Mannschaften(0)
             End If
             rowTblJuFla2MannschaftenRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTblJuFla2MannschaftenRow)
@@ -604,7 +594,6 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnID = MyBase.Columns("ID")
-            Me.columnStartnummer = MyBase.Columns("Startnummer")
             Me.columnOrt = MyBase.Columns("Ort")
             Me.columnEventID = MyBase.Columns("EventID")
         End Sub
@@ -614,8 +603,6 @@ Partial Public Class DtsJuFla
         Private Sub InitClass()
             Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnID)
-            Me.columnStartnummer = New Global.System.Data.DataColumn("Startnummer", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStartnummer)
             Me.columnOrt = New Global.System.Data.DataColumn("Ort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrt)
             Me.columnEventID = New Global.System.Data.DataColumn("EventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -626,8 +613,6 @@ Partial Public Class DtsJuFla
             Me.columnID.AutoIncrementStep = -1
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
-            Me.columnStartnummer.AllowDBNull = false
-            Me.columnStartnummer.DefaultValue = CType(0,Integer)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1204,8 +1189,6 @@ Partial Public Class DtsJuFla
         
         Private columnID As Global.System.Data.DataColumn
         
-        Private columnStartnummer As Global.System.Data.DataColumn
-        
         Private columnOrt As Global.System.Data.DataColumn
         
         Private columnEventID As Global.System.Data.DataColumn
@@ -1250,14 +1233,6 @@ Partial Public Class DtsJuFla
         Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property StartnummerColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnStartnummer
             End Get
         End Property
         
@@ -1314,11 +1289,11 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddTblJuFla3MannschaftenRow(ByVal Startnummer As Integer, ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla3Mannschaften As TblEventsRow) As TblJuFla3MannschaftenRow
+        Public Overloads Function AddTblJuFla3MannschaftenRow(ByVal Ort As String, ByVal parentTblEventsRowByTblEvents_TblJuFla3Mannschaften As TblEventsRow) As TblJuFla3MannschaftenRow
             Dim rowTblJuFla3MannschaftenRow As TblJuFla3MannschaftenRow = CType(Me.NewRow,TblJuFla3MannschaftenRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Startnummer, Ort, Nothing}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Ort, Nothing}
             If (Not (parentTblEventsRowByTblEvents_TblJuFla3Mannschaften) Is Nothing) Then
-                columnValuesArray(3) = parentTblEventsRowByTblEvents_TblJuFla3Mannschaften(0)
+                columnValuesArray(2) = parentTblEventsRowByTblEvents_TblJuFla3Mannschaften(0)
             End If
             rowTblJuFla3MannschaftenRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTblJuFla3MannschaftenRow)
@@ -1349,7 +1324,6 @@ Partial Public Class DtsJuFla
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnID = MyBase.Columns("ID")
-            Me.columnStartnummer = MyBase.Columns("Startnummer")
             Me.columnOrt = MyBase.Columns("Ort")
             Me.columnEventID = MyBase.Columns("EventID")
         End Sub
@@ -1359,8 +1333,6 @@ Partial Public Class DtsJuFla
         Private Sub InitClass()
             Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnID)
-            Me.columnStartnummer = New Global.System.Data.DataColumn("Startnummer", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStartnummer)
             Me.columnOrt = New Global.System.Data.DataColumn("Ort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrt)
             Me.columnEventID = New Global.System.Data.DataColumn("EventID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1371,8 +1343,6 @@ Partial Public Class DtsJuFla
             Me.columnID.AutoIncrementStep = -1
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
-            Me.columnStartnummer.AllowDBNull = false
-            Me.columnStartnummer.DefaultValue = CType(0,Integer)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2344,17 +2314,6 @@ Partial Public Class DtsJuFla
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Startnummer() As Integer
-            Get
-                Return CType(Me(Me.tableTblJuFla2Mannschaften.StartnummerColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTblJuFla2Mannschaften.StartnummerColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property Ort() As String
             Get
                 Try 
@@ -2771,17 +2730,6 @@ Partial Public Class DtsJuFla
             End Get
             Set
                 Me(Me.tableTblJuFla3Mannschaften.IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Startnummer() As Integer
-            Get
-                Return CType(Me(Me.tableTblJuFla3Mannschaften.StartnummerColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTblJuFla3Mannschaften.StartnummerColumn) = value
             End Set
         End Property
         
